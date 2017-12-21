@@ -1,0 +1,144 @@
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { StyleSheet, View, Image, TouchableOpacity, Text, Alert } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import TextFieldWithIcon from '../TextFieldWithIcon';
+import UsernameField from '../UsernameField';
+import PasswordField from '../PasswordField';
+import * as colors from '../../constants/colors';
+import * as strings from '../../constants/strings';
+import LineSeperator from '../LineSeperator';
+import * as AuthActions from '../../actions/AuthActions';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  inner: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    paddingLeft: 30,
+    paddingRight: 30,
+  },
+  logo: {
+    marginBottom: 20,
+    height: 200,
+    resizeMode: 'contain',
+  },
+  section: {
+    marginTop: 10,
+    marginBottom: 10,
+    width: '100%',
+  },
+  button: {
+    backgroundColor: colors.teal,
+    borderRadius: 5,
+    alignItems: 'center',
+    padding: 12,
+    marginBottom: 10,
+  },
+  buttonTxt: {
+    color: colors.white,
+  },
+  buttonTxtOnly: {
+    alignItems: 'center',
+  },
+  buttonTxtOnlyText: {
+    color: colors.white,
+  },
+  SignUpButtons: {
+    alignItems: 'center',
+    marginTop: 10,
+  },
+});
+
+class LoginScreen extends PureComponent {
+
+  static navigationOptions = {
+    header: null,
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = { username: '', password: '' };
+  }
+
+  componentWillMount = () => {
+
+  }
+
+  componentDidMount = () => {
+    console.log(this.props);
+  }
+
+  _handleLogIn = () => {
+    console.log('loginscreen::::', this.state);
+    this.props.makeSignInRequest(this.state.username, this.state.password);
+    // this.props.navigation.navigate('Dash');
+    // AsyncStorage.getItem('user')
+    //   .then((res) => {
+    //     const r = JSON.parse(res);
+    //     console.log(r.isAuthenticated);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  }
+  _handleUsername = (text) => {
+    this.setState({ username: text });
+  }
+  _handlePassword = (text) => {
+    this.setState({ password: text });
+  }
+  navigateToDash = () => {
+    this.props.navigation.navigate('Dash');
+  }
+
+  render() {
+    return (
+      <LinearGradient colors={[colors.darkBlueTwo, colors.blue]} style={styles.container}>
+        <View style={styles.inner}>
+          <Image source={require('../../images/logowhite.png')} style={styles.logo} />
+          {this.props.error != null ?
+            <Text>{this.props.error}</Text>
+          : null}
+          {this.props.accessToken != null ? this.navigateToDash() : null}
+          <View style={styles.section}>
+            <UsernameField handleTxtChange={this._handleUsername} />
+          </View>
+          <View style={styles.section}>
+            <PasswordField handleTxtChange={this._handlePassword} />
+          </View>
+          <View style={styles.section}>
+            <TouchableOpacity style={styles.button} onPress={this._handleLogIn}>
+              <Text style={styles.buttonTxt}>{strings.logIn}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.section}>
+            <TouchableOpacity style={styles.buttonTxtOnly}>
+              <Text style={styles.buttonTxtOnlyText}>{strings.forgotPassword}</Text>
+            </TouchableOpacity>
+          </View>
+          <LineSeperator />
+          <View style={styles.sectionTwo}>
+            <TouchableOpacity style={styles.SignUpButtons}>
+              <Text style={styles.buttonTxtOnlyText}>{strings.signUp}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </LinearGradient>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    error: state.session.error,
+    accessToken: state.session.accessToken
+  };
+};
+
+export default connect(mapStateToProps, AuthActions)(LoginScreen);

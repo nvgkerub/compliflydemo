@@ -1,0 +1,1 @@
+export const GRAB_USER_PROFILE = 'GRAB_USER_PROFILE';
