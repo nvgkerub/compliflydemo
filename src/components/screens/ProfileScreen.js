@@ -26,12 +26,13 @@ const styles = StyleSheet.create({
 });
 
 class ProfileScreen extends Component {
+
   render() {
     return (
       <LinearGradient colors={[colors.darkBlueTwo, colors.blue]} style={styles.container}>
         <View style={styles.inner}>
-          <AvatarProfile user={filler} />
-          <ProfileItems user={filler} />
+          <AvatarProfile user={this.props.profile} />
+          <ProfileItems user={this.props.profile} />
         </View>
         <StatusBar hidden />
       </LinearGradient>
@@ -39,4 +40,11 @@ class ProfileScreen extends Component {
   }
 }
 
-export default connect(null, null)(ProfileScreen);
+const mapStateToProps = (state) => {
+  return {
+    token: state.session.accessToken,
+    profile: state.profile.userProfile,
+  };
+};
+
+export default connect(mapStateToProps, null)(ProfileScreen);

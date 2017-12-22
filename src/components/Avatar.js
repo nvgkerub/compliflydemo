@@ -36,7 +36,7 @@ class Avatar extends Component {
             source={require('../images/random.jpg')}
           />
         </TouchableOpacity>
-        <Text style={styles.text}>{this.props.user.name}</Text>
+        <Text style={styles.text}>{this.props.user.first_name} {this.props.user.middle_name} {this.props.user.last_name} </Text>
       </View>
     );
   }
