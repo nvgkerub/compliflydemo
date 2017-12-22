@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   icon: {
-    width: 50,
+    width: 20,
     resizeMode: 'contain',
   }
 });
@@ -40,7 +40,7 @@ class JobItem extends Component {
       <View style={styles.container}>
         <View style={styles.content}>
           <Text style={styles.bold}>{this.props.title}</Text>
-          <Text style={styles.light}>{this.props.subTitle}</Text>
+          <Text style={styles.light}>Sub title</Text>
         </View>
         <TouchableOpacity onPress={this._clicked}>
           <Image style={styles.icon} source={require('../images/setting.png')} />

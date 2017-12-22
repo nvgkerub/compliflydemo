@@ -32,8 +32,12 @@ export const screen = {
 };
 
 export const jobInfoLabel = {
-  phone: 'Phone',
-  address: 'Address',
+  phone: 'Telephone',
+  addressOne: 'Address 1',
+  addressTwo: 'Address 2',
+  state: 'State',
+  city: 'City',
+  zip: 'Zip',
   dob: 'DOB',
   email: 'Email',
   skype: 'Skype',

@@ -40,11 +40,8 @@ class HomeScreen extends Component {
     header: null,
   };
 
-  componentWillMount = () => {
-  }
   componentDidMount = () => {
     this.props.grabUserProfile(this.props.token);
-    console.log('did mount', this.props);
   }
 
   _goToSetting = () => {
