@@ -12,7 +12,7 @@ import LibrarySection from '../Dashboard/LibrarySection';
 import HRSection from '../Dashboard/HRSection';
 import NotesSection from '../Dashboard/NotesSection';
 import MessagesSection from '../Dashboard/MessagesSection';
-import grabUserProfile from '../../actions/ProfileActions';
+import { grabUserProfile } from '../../actions/ProfileActions';
 
 const styles = StyleSheet.create({
   container: {
@@ -41,10 +41,10 @@ class HomeScreen extends Component {
   };
 
   componentWillMount = () => {
-
   }
   componentDidMount = () => {
-    console.log(this.props);
+    this.props.grabUserProfile(this.props.token);
+    console.log('did mount', this.props);
   }
 
   _goToSetting = () => {
@@ -79,9 +79,9 @@ class HomeScreen extends Component {
     return (
       <LinearGradient colors={[colors.darkBlueTwo, colors.blue]} style={styles.container}>
         <View style={styles.inner}>
-          <Header navigation={this.props.navigation} />
+          <Header navigation={this.props.navigation} profile={this.props.profile} />
           <ScrollView>
-            <TopProfileSection nav={this._goToSetting} />
+            <TopProfileSection nav={this._goToSetting} profile={this.props.profile} />
             <LineSeperator />
             <View style={styles.companyContainer}>
               <Image style={styles.companyImage} source={require('../../images/logowhite.png')} />
@@ -108,7 +108,8 @@ class HomeScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    token: state.session.accessToken
+    token: state.session.accessToken,
+    profile: state.profile.userProfile,
   };
 };
 

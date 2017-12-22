@@ -15,11 +15,15 @@ class ProfileItems extends Component {
   render() {
     return (
       <View>
-        <ProfileItemEdit label="Phone" content={this.props.user.phone} />
-        <ProfileItemEdit label="Address" content={this.props.user.address} />
-        <ProfileItemEdit label="DOB" content={this.props.user.dob} />
-        <ProfileItemEdit label="Email" content={this.props.user.email} />
-        <ProfileItemEdit label="Skype" content={this.props.user.skype} />
+        <ProfileItemEdit label="Telephone" content={this.props.user.telephone} />
+        <ProfileItemEdit label="S.S.N." content={this.props.user.ssn} />
+        <ProfileItemEdit label="DOB" content={this.props.user.birth_date} />
+        <ProfileItemEdit label="Gender" content={this.props.user.gender} />
+        <ProfileItemEdit label="Ethnicity" content={this.props.user.ethnicity} />
+        <ProfileItemEdit label="Marital Status" content={this.props.user.marital_status} />
+        <ProfileItemEdit label="State" content={this.props.user.state} />
+        <ProfileItemEdit label="City" content={this.props.user.city} />
+        <ProfileItemEdit label="Zip" content={this.props.user.zip} />
       </View>
     );
   }

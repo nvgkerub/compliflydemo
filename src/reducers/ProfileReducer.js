@@ -4,11 +4,15 @@ import createReducer from '../lib/createReducer';
 const defaultState = {
   isAuthenticated: null,
   error: null,
-  accessToken: null,
+  userProfile: null,
 };
 
 function GRAB_USER_PROFILE(state, action) {
-
+  console.log('inside of reducer', action);
+  return {
+    ...state,
+    userProfile: action.userProfile
+  };
 }
 
 const handlers = {};
