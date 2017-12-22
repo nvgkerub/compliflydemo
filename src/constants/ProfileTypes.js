@@ -1,1 +1,2 @@
 export const GRAB_USER_PROFILE = 'GRAB_USER_PROFILE';
+export const GRAB_USER_JOBS = 'GRAB_USER_JOBS';

@@ -5,17 +5,25 @@ const defaultState = {
   isAuthenticated: null,
   error: null,
   userProfile: null,
+  userJobs: null,
 };
 
 function GRAB_USER_PROFILE(state, action) {
-  console.log('inside of reducer', action);
   return {
     ...state,
-    userProfile: action.userProfile
+    userProfile: action.payload
+  };
+}
+
+function GRAB_USER_JOBS(state, action) {
+  return {
+    ...state,
+    userJobs: action.payload
   };
 }
 
 const handlers = {};
 handlers[ProfileTypes.GRAB_USER_PROFILE] = GRAB_USER_PROFILE;
+handlers[ProfileTypes.GRAB_USER_JOBS] = GRAB_USER_JOBS;
 
 export default createReducer(defaultState, handlers);

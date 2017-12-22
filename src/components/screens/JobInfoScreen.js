@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { ScrollView, View, StyleSheet, StatusBar, Image, Text } from 'react-native';
+import { ScrollView, View, StyleSheet, StatusBar, Image, Text, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
 import ListItem from '../ListItem';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import JobItemInfo from '../JobItemInfo';
+import * as userAPI from '../../lib/api/userAPI';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,6 +16,11 @@ const styles = StyleSheet.create({
   inner: {
     flex: 1,
     backgroundColor: 'transparent',
+  },
+  loadingBox: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   descriptionMain: {
     backgroundColor: colors.blue,
@@ -51,16 +58,29 @@ const styles = StyleSheet.create({
 class JobInfoScreen extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-    title: `${navigation.state.params.jobInfo.title}`,
+    title: `${navigation.state.params.jobInfo.company_name}`,
   });
 
-  //TODO: Add job specific api for data
-  //TODO: change job data from state.params to api data
+  constructor(props) {
+    super(props);
+    this.state = { jobInfo: null };
+  }
 
-  render() {
-    const { subTitle, description, phone, address, dob, email, skype } = this.props.navigation.state.params.jobInfo;
-    return (
-      <LinearGradient colors={[colors.darkBlueTwo, colors.blue]} style={styles.container}>
+  componentWillMount = () => {
+    axios.get(userAPI.jobs.jobData, { params: {
+          access_token: this.props.token,
+          client_id: this.props.navigation.state.params.jobInfo.client_id
+        }
+      })
+        .then((res) => this.setState({ jobInfo: res.data }))
+        .then(() => console.log('inside of jobinfo', this.state))
+        .catch((err) => console.log(err));
+  };
+
+  _renderContent() {
+    if (this.state.jobInfo != null) {
+      const { client_info } = this.state.jobInfo;
+      return (
         <View style={styles.inner}>
           <ScrollView>
             <View style={styles.descriptionMain}>
@@ -70,30 +90,50 @@ class JobInfoScreen extends Component {
                   source={require('../../images/logoblack.png')}
                 />
               </View>
-                {subTitle != null ?
+                {client_info.company_name != null ?
                   <View style={styles.jobTitle}>
                     <Text style={styles.jobLabelLeft}>Job Position: </Text>
-                    <Text style={styles.jobLabelRight}>{ subTitle }</Text>
+                    <Text style={styles.jobLabelRight}>position  here</Text>
                   </View>
                 : null
                 }
               <View style={styles.description}>
-                {description != null ? <Text style={styles.descriptionText}>{ description }</Text> : null}
+                {client_info.company_name != null ? <Text style={styles.descriptionText}>Description here</Text> : null}
               </View>
             </View>
             <View>
-              {phone != null ? <JobItemInfo label={strings.jobInfoLabel.phone} content={phone} /> : null}
-              {address != null ? <JobItemInfo label={strings.jobInfoLabel.address} content={address} /> : null}
-              {dob != null ? <JobItemInfo label={strings.jobInfoLabel.dob} content={dob} /> : null}
-              {email != null ? <JobItemInfo label={strings.jobInfoLabel.email} content={email} /> : null}
-              {skype != null ? <JobItemInfo label={strings.jobInfoLabel.skype} content={skype} /> : null}
+              {client_info.telephone != null ? <JobItemInfo label={strings.jobInfoLabel.phone} content={client_info.telephone} /> : null}
+              {client_info.address1 != null ? <JobItemInfo label={strings.jobInfoLabel.addressOne} content={client_info.address1} /> : null}
+              {client_info.address2 != null ? <JobItemInfo label={strings.jobInfoLabel.addressTwo} content={client_info.address2} /> : null}
+              {client_info.city != null ? <JobItemInfo label={strings.jobInfoLabel.city} content={client_info.city} /> : null}
+              {client_info.state != null ? <JobItemInfo label={strings.jobInfoLabel.state} content={client_info.state} /> : null}
+              {client_info.zip != null ? <JobItemInfo label={strings.jobInfoLabel.zip} content={client_info.zip} /> : null}
             </View>
           </ScrollView>
         </View>
+      );
+    }
+    return (
+      <View style={styles.loadingBox}>
+        <ActivityIndicator size="large" color="#fff" />
+      </View>
+    )
+  }
+
+  render() {
+    return (
+      <LinearGradient colors={[colors.darkBlueTwo, colors.blue]} style={styles.container}>
+          {this._renderContent()}
         <StatusBar hidden />
       </LinearGradient>
     );
   }
 }
 
-export default connect(null, null)(JobInfoScreen);
+const mapStateToProps = (state) => {
+  return {
+    token: state.session.accessToken,
+  };
+};
+
+export default connect(mapStateToProps, null)(JobInfoScreen);
