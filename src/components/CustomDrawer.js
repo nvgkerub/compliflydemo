@@ -17,21 +17,6 @@ const styles = StyleSheet.create({
   closeBtn: {
     paddingLeft: 5,
   },
-  logoutWrapper: {
-    width: '100%',
-    height: 80,
-    alignSelf: 'flex-end',
-    backgroundColor: colors.teal,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logoutIcon: {
-    marginRight: 20,
-  },
-  logoutTxt: {
-    color: colors.white,
-  }
 });
 
 
@@ -48,16 +33,6 @@ class CustomDrawer extends Component {
         <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
           <DrawerItems {...this.props} />
         </SafeAreaView>
-        <TouchableOpacity
-        onPress={() => { this.props.navigation.navigate('DrawerClose'); }}
-        >
-          <View style={styles.logoutWrapper}>
-            <Image style={styles.logoutIcon} source={require('../images/logout.png')} />
-            <Text style={styles.logoutTxt}>
-              {strings.logOut}
-            </Text>
-          </View>
-        </TouchableOpacity>
       </View>
     );
   }
