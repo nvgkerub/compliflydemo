@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import { List } from 'react-native-elements';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
-import lodash from 'lodash';
 import SearchBar from '../SearchBar';
 import LibraryItem from '../LibraryItem';
 import * as colors from '../../constants/colors';

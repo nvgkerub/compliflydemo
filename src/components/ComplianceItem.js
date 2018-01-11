@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity
+} from 'react-native';
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
-import { testAction } from '../actions/NotesActions';
+import * as textStyle from '../constants/textStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,14 +25,8 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
   },
-  bold: {
-    color: colors.white,
-    fontWeight: 'bold',
-  },
-  light: {
-    color: colors.whiteO,
-    fontSize: 12,
-  },
+  bold: textStyle.bold,
+  light: textStyle.light,
   icon: {
     width: 50,
     resizeMode: 'contain',

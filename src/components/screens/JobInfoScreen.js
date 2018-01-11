@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
-import { ScrollView, View, StyleSheet, StatusBar, Image, Text, ActivityIndicator } from 'react-native';
+import {
+  ScrollView,
+  View,
+  StyleSheet,
+  StatusBar,
+  Image,
+  Text,
+  ActivityIndicator
+} from 'react-native';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
-import ListItem from '../ListItem';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
-import JobItemInfo from '../JobItemInfo';
 import * as userAPI from '../../lib/api/userAPI';
+import * as textStyle from '../../constants/textStyle';
+import JobItemInfo from '../JobItemInfo';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   descriptionMain: {
-    backgroundColor: colors.blue,
+    backgroundColor: colors.blueFlat,
     paddingLeft: 15,
     paddingRight: 15,
     paddingBottom: 30,
@@ -39,14 +47,10 @@ const styles = StyleSheet.create({
   },
   jobTitle: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
-  jobLabelLeft: {
-    fontWeight: 'bold',
-    color: colors.white,
-  },
-  jobLabelRight: {
-    color: colors.white,
-  },
+  jobLabelLeft: textStyle.bold,
+  jobLabelRight: textStyle.light,
   description: {
     marginTop: 15,
   },

@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity
+} from 'react-native';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import * as colors from '../constants/colors';
-import * as userAPI from '../lib/api/userAPI';
+import * as textStyle from '../constants/textStyle';
 import { grabUserPic } from '../actions/ProfileActions';
 
 const styles = StyleSheet.create({
   container: {
     padding: 15,
     paddingBottom: 5,
-    // flexDirection: 'row',
   },
   inner: {
     flexDirection: 'row',
@@ -34,13 +38,8 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 10,
   },
-  textBold: {
-    fontWeight: 'bold',
-    color: colors.white,
-  },
-  textLight: {
-    color: colors.white,
-  },
+  textBold: textStyle.bold,
+  textLight: textStyle.light,
 });
 
 class TopProfileSection extends Component {
@@ -49,7 +48,6 @@ class TopProfileSection extends Component {
     this.props.nav();
   }
 
-  //TODO: url from userprofilepic is not a valid url, which is giving an error to Image sourc prop
   _renderContent = () => {
     return (
       <View style={styles.inner}>
