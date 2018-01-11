@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, Platform, Switch, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Platform,
+  TouchableOpacity,
+  Image,
+  ScrollView
+} from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
+import ImagePicker from 'react-native-image-picker';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import ButtonColored from '../ButtonColored';
+import { sendMessageWithFile } from '../../actions/SendingActions';
 
 const styles = StyleSheet.create({
   container: {
@@ -49,22 +60,6 @@ const styles = StyleSheet.create({
        }
      })
   },
-  priority: {
-    flexDirection: 'row',
-    marginTop: 20,
-  },
-  priorityRight: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  priorityRightInner: {
-    flexDirection: 'row',
-  },
-  switchStyle: {
-    marginLeft: 10,
-    marginRight: 10,
-  },
   message: {
     marginTop: 20,
   },
@@ -92,18 +87,61 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginLeft: 15,
     marginRight: 15,
+  },
+  fileButtonContainer: {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  uploadIcon: {
+    width: 30,
+    resizeMode: 'contain',
   }
 });
 
 class MediaFormScreen extends Component {
 
-  //TODO: NEED TO HAVE A PROP FOR TO: {reciever}
+  constructor(props) {
+    super(props);
+    this.state = { subject: null, description: null, extention: 'jpg', fileSource: null, };
+  }
 
   componentDidMount = () => {
-    console.log(this.props);
+    this.setState({ subject: this.props.navigation.state.params.messageInfo.subject });
   }
+
   _handleClick = () => {
-    console.log('asdf');
+    this.props.sendMessageWithFile(this.props.token, this.state.subject, this.state.description, this.state.fileSource, this.state.extention);
+  }
+
+  _handleUploadPic = () => {
+    // Options for ImagePicker
+    const options = {
+      title: 'Select Profile Picture',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      }
+    };
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response from Image = ', response);
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.err) {
+        console.log('ImagePicker Error: ', response.error);
+      } else {
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        this.setState({ fileSource: response.uri });
+      }
+    });
+  }
+
+  _handleSubject(subject) {
+    this.setState({ subject });
+  }
+
+  _handleDesc(description) {
+    this.setState({ description });
   }
 
   render() {
@@ -118,18 +156,15 @@ class MediaFormScreen extends Component {
             <Text style={styles.bold}>Subject:</Text>
             <TextInput
               style={styles.textfield}
-              value={this.props.navigation.state.params.messageInfo.subject}
+              value={this.state.subject}
+              onChangeText={(text) => this._handleSubject(text)}
             />
           </View>
-          <View style={styles.priority}>
-            <Text style={styles.bold}>Priority:</Text>
-            <View style={styles.priorityRight}>
-              <View style={styles.priorityRightInner}>
-                <Text style={styles.light}>Public</Text>
-                <Switch style={styles.switchStyle} />
-                <Text style={styles.light}>Private</Text>
-              </View>
-            </View>
+          <View style={styles.fileButtonContainer}>
+            <Text style={styles.bold}>File Upload:</Text>
+            <TouchableOpacity onPress={this._handleUploadPic.bind(this)}>
+              <Image style={styles.uploadIcon} source={require('../../images/library.png')} />
+            </TouchableOpacity>
           </View>
           <View style={styles.message}>
             <Text style={styles.bold}>Message:</Text>
@@ -137,6 +172,8 @@ class MediaFormScreen extends Component {
                 style={styles.messageInput}
                 multiline
                 numberOfLines={6}
+                value={this.state.description}
+                onChangeText={(text) => this._handleDesc(text)}
               />
           </View>
           <View style={styles.buttonContainer}>
@@ -148,4 +185,12 @@ class MediaFormScreen extends Component {
   }
 }
 
-export default connect(null, null)(MediaFormScreen);
+const mapStateToProps = state => {
+  return {
+    token: state.session.accessToken,
+  };
+};
+
+export default connect(mapStateToProps, {
+  sendMessageWithFile
+})(MediaFormScreen);

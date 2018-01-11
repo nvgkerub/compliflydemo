@@ -7,13 +7,6 @@ import * as strings from '../../constants/strings';
 import JobItem from '../ListItem';
 import { grabUserJobs } from '../../actions/ProfileActions';
 
-const filler = [
-  { title: 'NortVillageGroup', subTitle: 'Code Breaker', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim', phone: '909-123-3210', address: '123 Fake Address', dob: '01 B.C.', email: 'gmail@gmail.com', skype: 'lolol' },
-  { title: 'North', subTitle: 'Code' },
-  { title: 'Village', subTitle: 'Breaker' },
-  { title: 'Group' },
-];
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -31,6 +24,7 @@ class JobScreen extends Component {
 
   _handleClick = (job) => {
     //TODO: pass the whole object of job
+    console.log('asdf');
     this.props.navigation.navigate('ViewInfo', { jobInfo: job });
   }
 
@@ -58,7 +52,6 @@ class JobScreen extends Component {
             {this._renderItems()}
           </ScrollView>
         </View>
-        <StatusBar hidden />
       </LinearGradient>
     );
   }

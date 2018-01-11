@@ -9,8 +9,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingRight: 15,
+    paddingTop: 15,
     backgroundColor: colors.white,
-    height: 50,
+    height: 65,
   },
   left: {
     width: 40,
@@ -37,11 +38,23 @@ const styles = StyleSheet.create({
 
 class Header extends Component {
 
+  _goToNotifications = () => {
+    this.props.goToNotifications();
+  }
+
+  _goToAudio = () => {
+    this.props.goToAudio();
+  }
+
+  _openDrawer = () => {
+    this.props.openDrawer();
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={() => { this.props.navigation.navigate('DrawerToggle'); }}
+          onPress={this._openDrawer}
         >
           <View style={styles.left}>
             <Image style={styles.navIcon} source={require('../images/navIcon.png')} />
@@ -49,8 +62,12 @@ class Header extends Component {
         </TouchableOpacity>
         <Image style={styles.middle} source={require('../images/logo_small.png')} />
         <View style={styles.right}>
-          <Image style={styles.bell} source={require('../images/bellIcon.png')} />
-          <Image style={styles.mic} source={require('../images/micIcon.png')} />
+          <TouchableOpacity onPress={this._goToNotifications}>
+            <Image style={styles.bell} source={require('../images/bellIcon.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this._goToAudio}>
+            <Image style={styles.mic} source={require('../images/micIcon.png')} />
+          </TouchableOpacity>
         </View>
       </View>
     );

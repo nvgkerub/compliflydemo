@@ -2,24 +2,34 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { StackNavigator, DrawerNavigator, TabNavigator } from 'react-navigation';
+import { StackNavigator, DrawerNavigator, TabNavigator, addNavigationHelpers } from 'react-navigation';
 import { Image, StyleSheet } from 'react-native';
 import SplashScreen from './components/screens/SplashScreen';
 import LoginScreen from './components/screens/LoginScreen';
+import PinScreen from './components/screens/PinScreen';
 import HomeScreen from './components/screens/HomeScreen';
 import JobScreen from './components/screens/JobScreen';
 import JobInfoScreen from './components/screens/JobInfoScreen';
 import ProfileScreen from './components/screens/ProfileScreen';
+import NotificationScreen from './components/screens/NotificationScreen';
 import LibraryScreen from './components/screens/LibraryScreen';
+import AudioScreen from './components/screens/AudioScreen';
+import ViewLibraryFile from './components/screens/ViewLibraryFile';
 import LibraryPictureScreen from './components/screens/LibraryPictureScreen';
 import LibraryVideoScreen from './components/screens/LibraryVideoScreen';
 import LibraryAudioScreen from './components/screens/LibraryAudioScreen';
 import HRScreen from './components/screens/HRScreen';
+import ViewCompliance from './components/screens/ViewCompliance';
 import NotesScreen from './components/screens/NotesScreen';
 import AddNotesScreen from './components/screens/AddNotesScreen';
 import MessagesScreen from './components/screens/MessagesScreen';
+import InboxScreen from './components/screens/InboxScreen';
+import InboxFormScreen from './components/screens/InboxFormScreen';
+import ViewMessageScreen from './components/screens/ViewMessageScreen';
+import SentScreen from './components/screens/SentScreen';
+import ViewSentMessageScreen from './components/screens/ViewSentMessageScreen';
 import ManagerMessagesScreen from './components/screens/ManagerMessagesScreen';
-import ManagerFormScreen from './components/screens/ManagerFormScreen';
+import FormScreen from './components/screens/FormScreen';
 import MediaFormScreen from './components/screens/MediaFormScreen';
 import HRMessagesScreen from './components/screens/HRMessagesScreen';
 import SafetyMessagesScreen from './components/screens/SafetyMessagesScreen';
@@ -162,6 +172,9 @@ const HRStack = StackNavigator({
       title: strings.screen.hrFiles
     }
   },
+  ViewCompliance: {
+    screen: ViewCompliance,
+  }
 }, {
   headerMode: 'none',
   initialRouteName: 'Main',
@@ -190,7 +203,7 @@ const ManagerStack = StackNavigator({
     screen: ManagerMessagesScreen,
   },
   Form: {
-    screen: ManagerFormScreen,
+    screen: FormScreen,
   }
 }, {
   headerMode: 'None',
@@ -238,11 +251,52 @@ const DirectMessagesStack = StackNavigator({
     }
   },
   Form: {
-    screen: ManagerFormScreen,
+    screen: FormScreen,
     navigationOptions: {
       tabBarVisible: false,
     }
   }
+}, {
+  headerMode: 'none',
+  initialRouteName: 'Main',
+});
+
+const InboxStack = StackNavigator({
+  Main: {
+    screen: InboxScreen,
+    navigationOptions: {
+      tabBarVisible: false,
+    }
+  },
+  ViewMessage: {
+    screen: ViewMessageScreen,
+    navigationOptions: {
+      tabBarVisible: false,
+    }
+  },
+  Reply: {
+    screen: InboxFormScreen,
+    navigationOptions: {
+      tabBarVisible: false,
+    }
+  }
+}, {
+  headerMode: 'none',
+  initialRouteName: 'Main',
+});
+const SentStack = StackNavigator({
+  Main: {
+    screen: SentScreen,
+    navigationOptions: {
+      tabBarVisible: false,
+    }
+  },
+  ViewMessage: {
+    screen: ViewSentMessageScreen,
+    navigationOptions: {
+      tabBarVisible: false,
+    }
+  },
 }, {
   headerMode: 'none',
   initialRouteName: 'Main',
@@ -256,13 +310,13 @@ const MessagesStack = TabNavigator({
     }
   },
   Inbox: {
-    screen: MessagesScreen,
+    screen: InboxStack,
     navigationOptions: {
       title: strings.messagesScreen.inboxTab
     }
   },
   Sent: {
-    screen: MessagesScreen,
+    screen: SentStack,
     navigationOptions: {
       title: strings.messagesScreen.sentTab
     }
@@ -318,6 +372,27 @@ const MainStack = StackNavigator({
   Messages: {
     screen: MessagesStack,
   },
+  Audio: {
+    screen: AudioScreen,
+    navigationOptions: {
+      title: strings.screen.audio,
+      tabBarVisible: false,
+    },
+  },
+  Notifications: {
+    screen: NotificationScreen,
+    navigationOptions: {
+      title: strings.screen.notifications,
+      tabBarVisible: false,
+    },
+  },
+  ViewFile: {
+    screen: ViewLibraryFile,
+    navigationOptions: {
+      title: strings.screen.viewLibrary,
+      tabBarVisible: false,
+    },
+  }
 }, {
   contentComponent: CustomDrawer,
   contentOptions: {
@@ -345,6 +420,14 @@ const DrawerStack = DrawerNavigator({
       }
     }
   },
+  Pin: {
+    screen: PinScreen,
+    navigationOptions: {
+      drawer: {
+        label: 'Enter Pin',
+      }
+    }
+  },
   Main: {
     screen: MainStack,
   },
@@ -355,11 +438,11 @@ const DrawerStack = DrawerNavigator({
     activeTintColor: colors.white,
   },
   headerMode: 'none',
-  initialRouteName: 'Main',
+  initialRouteName: 'Pin',
 }
 );
 
-const RootStack = StackNavigator({
+export const RootStack = StackNavigator({
   Splash: { screen: SplashScreen },
   Login: { screen: LoginScreen },
   Dash: {
@@ -367,35 +450,20 @@ const RootStack = StackNavigator({
   },
 }, {
   headerMode: 'none',
-  initialRouteName: 'Login',
+  initialRouteName: 'Splash',
 });
 
-class RouterComponent extends Component {
+const AppWithNavigationState = ({ dispatch, nav }) => (
+  <RootStack
+    navigation={addNavigationHelpers({
+      dispatch,
+      state: nav,
+   })}
+  />
+);
 
-  static propTypes = {
-    session: PropTypes.any,
-	};
+const mapStateToProps = state => ({
+  nav: state.nav
+});
 
-  componentWillMount = () => {
-    // console.log('router');
-    // AuthActions.signIn();
-  }
-
-  render() {
-    return (
-      <RootStack />
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    session: state,
-  };
-};
-
-const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(RouterComponent);
-
-// export default RouterComponent;
+export default connect(mapStateToProps)(AppWithNavigationState);

@@ -1,10 +1,13 @@
 import { NavigationActions } from 'react-navigation';
 import { AsyncStorage } from 'react-native';
 import axios from 'axios';
+import { grabUserPic } from './ProfileActions';
 import * as AuthTypes from '../constants/AuthTypes';
 import * as userAPI from '../lib/api/userAPI';
 
-function signInSuccess(token) {
+function signInSuccess(token, username, password) {
+	AsyncStorage.setItem('username', username);
+	AsyncStorage.setItem('password', password);
 	return (dispatch) => {
 		dispatch({
 			type: AuthTypes.SESSION_SIGN_IN_SUCCESS,
@@ -13,6 +16,8 @@ function signInSuccess(token) {
 				isAuthenticated: true,
 			}
 		});
+		// dispatch(grabUserPic(token));
+		dispatch(NavigationActions.navigate({ routeName: 'Main' }));
 	};
 }
 
@@ -29,22 +34,17 @@ function signInFailed(response) {
 }
 
 export function makeSignInRequest(user, pass) {
-	//TODO: Make logic from API if login is confirmed
-	//TODO: send DATA response object to REDUCER to be saved in APP state
-
-	console.log(user, pass);
-
 	const datas = `username=${user}&password=${pass}`;
-
 	return (dispatch) => {
 		axios.post(userAPI.auth.login, datas)
 		.then((res) => (
 			res.data.status === 'success'
 				?
-			dispatch(signInSuccess(res.data.access_token))
+			dispatch(signInSuccess(res.data.access_token, user, pass))
 				:
 			dispatch(signInFailed(res.data.response))
-		)).catch((err) => {
+		))
+		.catch((err) => {
 			console.log(err);
 		});
 	};

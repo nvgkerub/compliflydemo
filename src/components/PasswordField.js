@@ -43,10 +43,11 @@ class PasswordField extends Component {
           <Image source={require('../images/lock.png')} style={styles.icon} />
           <TextInput
             style={styles.textfield}
-            value={this.props.username}
+            value={this.props.password}
             onChangeText={(text) => this.props.handleTxtChange(text)}
             autoCorrent={false}
             autoCapitalize={'none'}
+            secureTextEntry
           />
         </View>
       </View>

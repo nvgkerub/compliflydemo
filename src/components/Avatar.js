@@ -6,12 +6,13 @@ import * as strings from '../constants/strings';
 
 const styles = StyleSheet.create({
   avatar: {
-    resizeMode: 'contain',
+    resizeMode: 'cover',
     width: 90,
     height: 90,
     borderRadius: 45,
     borderWidth: 1,
     borderColor: colors.white,
+    backgroundColor: colors.blueGray,
   },
   text: {
     color: colors.white,
@@ -23,18 +24,29 @@ const styles = StyleSheet.create({
 
 class Avatar extends Component {
 
+  componentDidMount = () => {
+    console.log(this.props);
+  }
+
   _handleClick = () => {
-    console.log('Avatar Clicked');
+    this.props.uploadPic();
   }
 
   render() {
     return (
       <View>
         <TouchableOpacity onPress={this._handleClick}>
-          <Image
-            style={styles.avatar}
-            source={require('../images/random.jpg')}
-          />
+          {
+            this.props.profileUrl === null ?
+            <Image
+              style={styles.avatar}
+            />
+          :
+            <Image
+              style={styles.avatar}
+              source={{ uri: this.props.profileUrl }}
+            />
+          }
         </TouchableOpacity>
         <Text style={styles.text}>{this.props.user.first_name} {this.props.user.middle_name} {this.props.user.last_name} </Text>
       </View>
@@ -42,4 +54,10 @@ class Avatar extends Component {
   }
 }
 
-export default connect(null, null)(Avatar);
+const mapStateToProps = state => {
+  return {
+    profileUrl: state.profile.userProfilePic
+  };
+};
+
+export default connect(mapStateToProps, null)(Avatar);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, StyleSheet, StatusBar, Button } from 'react-native';
+import { ScrollView, View, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
 import lodash from 'lodash';
 import LinearGradient from 'react-native-linear-gradient';
@@ -89,7 +89,6 @@ class NotesScreen extends Component {
             {this._renderItems()}
           </ScrollView>
         </View>
-        <StatusBar hidden />
       </LinearGradient>
     );
   }

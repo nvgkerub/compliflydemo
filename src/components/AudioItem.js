@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: colors.borderGray,
   },
+  inner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   content: {
     flex: 1,
   },
@@ -40,12 +44,12 @@ class AudioItem extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image style={styles.iconFile} source={require('../images/audio.png')} />
-        <View style={styles.content}>
-          <Text style={styles.bold}>{this.props.title}</Text>
-          <Text style={styles.light}>{this.props.subTitle}</Text>
-        </View>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.inner} onPress={this._clicked}>
+          <Image style={styles.iconFile} source={require('../images/audio.png')} />
+          <View style={styles.content}>
+            <Text style={styles.bold}>{this.props.title}</Text>
+            <Text style={styles.light}>{this.props.subTitle}</Text>
+          </View>
           <Image style={styles.icon} source={require('../images/setting.png')} />
         </TouchableOpacity>
       </View>
