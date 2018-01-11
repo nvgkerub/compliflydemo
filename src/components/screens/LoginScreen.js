@@ -1,24 +1,20 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import {
   StyleSheet,
   View,
   Image,
   TouchableOpacity,
   Text,
-  Alert,
   AsyncStorage
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import TextFieldWithIcon from '../TextFieldWithIcon';
 import UsernameField from '../UsernameField';
 import PasswordField from '../PasswordField';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import LineSeperator from '../LineSeperator';
 import * as AuthActions from '../../actions/AuthActions';
-import * as userAPI from '../../lib/api/userAPI';
 
 const styles = StyleSheet.create({
   container: {

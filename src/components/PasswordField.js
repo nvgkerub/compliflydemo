@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
-import { View, TextInput, StyleSheet, Image, Platform } from 'react-native';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Image,
+  Platform
+} from 'react-native';
 import PropTypes from 'prop-types';
 import * as colors from '../constants/colors';
+import * as textStyle from '../constants/textStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,16 +16,17 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   textfield: {
-     height: 40,
-     width: '100%',
-     color: colors.white,
-     paddingLeft: 40,
-     ...Platform.select({
-       ios: {
-         borderBottomColor: colors.borderGray,
-         borderBottomWidth: 1,
-       }
-     })
+    fontSize: textStyle.fontSize.input,
+    height: 40,
+    width: '100%',
+    color: colors.white,
+    paddingLeft: 40,
+    ...Platform.select({
+     ios: {
+       borderBottomColor: colors.borderGray,
+       borderBottomWidth: 1,
+     }
+    })
   },
   icon: {
     position: 'absolute',
