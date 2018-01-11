@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, StyleSheet, StatusBar } from 'react-native';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import HeaderSub from '../HeaderSub';
@@ -23,7 +23,6 @@ class SettingScreen extends Component {
         <View style={styles.inner}>
           <Text>Settings</Text>
         </View>
-        <StatusBar hidden />
       </LinearGradient>
     );
   }

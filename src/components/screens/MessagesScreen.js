@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
-import HeaderSub from '../HeaderSub';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import DirectItem from '../DirectItem';
+import MessagesInnerSection from '../MessagesInnerSection';
+import LineSeperator from '../LineSeperator';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,7 +15,6 @@ const styles = StyleSheet.create({
   inner: {
     backgroundColor: 'transparent',
     marginTop: 30,
-    padding: 15,
   },
   row: {
     flexDirection: 'row',
@@ -56,20 +56,50 @@ class MessagesScreen extends Component {
     return (
       <LinearGradient colors={[colors.blue, colors.blue]} style={styles.container}>
         <View style={styles.inner}>
-          <View style={styles.row}>
-            <DirectItem label={strings.directLabel.manager} nav={this._goToManager} icon='manager' />
-            <DirectItem label={strings.directLabel.hrLabel} nav={this._goToHr} icon='hr' />
-          </View>
-          <View style={styles.row}>
-            <DirectItem label={strings.directLabel.safety} nav={this._goToSafety} icon='safety' />
-            <DirectItem label={strings.directLabel.executive} nav={this._goToExecutive} icon='executive' />
-          </View>
-          <View style={styles.row}>
-            <DirectItem label={strings.directLabel.picture} nav={this._goToPicture} icon='picture' />
-            <DirectItem label={strings.directLabel.video} nav={this._goToVideo} icon='video' />
-          </View>
+          <ScrollView>
+            <MessagesInnerSection
+              nav={this._goToManager}
+              label={strings.messagesScreen.managerTitle}
+              sublabel={strings.messagesScreen.managerSubtitle}
+              type={strings.directLabel.manager}
+            />
+            <LineSeperator />
+            <MessagesInnerSection
+              nav={this._goToHr}
+              label={strings.messagesScreen.hrTitle}
+              sublabel={strings.messagesScreen.hrSubtitle}
+              type={strings.directLabel.hrLabel}
+            />
+            <LineSeperator />
+            <MessagesInnerSection
+              nav={this._goToSafety}
+              label={strings.messagesScreen.safetyTitle}
+              sublabel={strings.messagesScreen.safetySubtitle}
+              type={strings.directLabel.safety}
+            />
+            <LineSeperator />
+            <MessagesInnerSection
+              nav={this._goToExecutive}
+              label={strings.messagesScreen.executiveTitle}
+              sublabel={strings.messagesScreen.executiveSubtitle}
+              type={strings.directLabel.executive}
+            />
+            <LineSeperator />
+            <MessagesInnerSection
+              nav={this._goToPicture}
+              label={strings.messagesScreen.pictureTitle}
+              sublabel={strings.messagesScreen.pictureSubtitle}
+              type={strings.directLabel.picture}
+            />
+            <LineSeperator />
+            <MessagesInnerSection
+              nav={this._goToVideo}
+              label={strings.messagesScreen.videoTitle}
+              sublabel={strings.messagesScreen.videoSubtitle}
+              type={strings.directLabel.video}
+            />
+          </ScrollView>
         </View>
-        <StatusBar hidden />
       </LinearGradient>
     );
   }

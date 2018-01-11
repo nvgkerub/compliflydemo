@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: colors.borderGray,
   },
+  inner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   content: {
     flex: 1,
   },
@@ -32,18 +36,21 @@ const styles = StyleSheet.create({
 class ListItem extends Component {
 
   _clicked = () => {
-    // console.log(this.props);
+    // INSIDE OF PARENT PASS THE WHOLE ITEM OBJECT IN NAVIGATION PARAMS
+    // SIMILAR TO HRScreen
+    // this.props.handleClick();
   }
+  // <Text style={styles.light}>{this.props.subTitle}</Text>
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.content}>
-          <Text style={styles.bold}>{this.props.title}</Text>
-          <Text style={styles.light}>{this.props.subTitle}</Text>
-        </View>
-        <TouchableOpacity onPress={this._clicked}>
-          <Image style={styles.icon} source={require('../images/dots.png')} />
+        <TouchableOpacity style={styles.inner} onPress={this._clicked}>
+          <View style={styles.content}>
+            <Text style={styles.bold}>{this.props.title}</Text>
+            <Text style={styles.light}>{this.props.subtitle}</Text>
+          </View>
+            <Image style={styles.icon} source={require('../images/dots.png')} />
         </TouchableOpacity>
       </View>
     );

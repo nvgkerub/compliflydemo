@@ -1,6 +1,15 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, View, Image, TouchableOpacity, Text, Alert } from 'react-native';
+import axios from 'axios';
+import {
+  StyleSheet,
+  View,
+  Image,
+  TouchableOpacity,
+  Text,
+  Alert,
+  AsyncStorage
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import TextFieldWithIcon from '../TextFieldWithIcon';
 import UsernameField from '../UsernameField';
@@ -9,6 +18,7 @@ import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import LineSeperator from '../LineSeperator';
 import * as AuthActions from '../../actions/AuthActions';
+import * as userAPI from '../../lib/api/userAPI';
 
 const styles = StyleSheet.create({
   container: {
@@ -53,6 +63,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
   },
+  error: {
+    color: colors.white,
+  }
 });
 
 class LoginScreen extends PureComponent {
@@ -61,31 +74,31 @@ class LoginScreen extends PureComponent {
     header: null,
   };
 
+
   constructor(props) {
     super(props);
-    this.state = { username: '', password: '' };
+    //TODO: remove state username/password values
+    this.state = { username: null, password: null };
   }
 
   componentWillMount = () => {
-
+    this._grabData();
   }
 
   componentDidMount = () => {
     console.log(this.props);
   }
 
+  async _grabData() {
+    const username = await AsyncStorage.getItem('username');
+    const password = await AsyncStorage.getItem('password');
+
+    this.setState({ username, password });
+  }
+
   _handleLogIn = () => {
     console.log('loginscreen::::', this.state);
     this.props.makeSignInRequest(this.state.username, this.state.password);
-    // this.props.navigation.navigate('Dash');
-    // AsyncStorage.getItem('user')
-    //   .then((res) => {
-    //     const r = JSON.parse(res);
-    //     console.log(r.isAuthenticated);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   }
   _handleUsername = (text) => {
     this.setState({ username: text });
@@ -94,7 +107,7 @@ class LoginScreen extends PureComponent {
     this.setState({ password: text });
   }
   navigateToDash = () => {
-    this.props.navigation.navigate('Dash');
+    this.props.navigation.navigate('Main');
   }
 
   render() {
@@ -103,9 +116,8 @@ class LoginScreen extends PureComponent {
         <View style={styles.inner}>
           <Image source={require('../../images/logowhite.png')} style={styles.logo} />
           {this.props.error != null ?
-            <Text>{this.props.error}</Text>
+            <Text style={styles.error}>{this.props.error}</Text>
           : null}
-          {this.props.accessToken != null ? this.navigateToDash() : null}
           <View style={styles.section}>
             <UsernameField handleTxtChange={this._handleUsername} />
           </View>
