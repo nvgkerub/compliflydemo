@@ -33,7 +33,7 @@ class ExecutiveMessagesScreen extends Component {
   render() {
     const { executiveTopic } = strings;
     return (
-      <LinearGradient colors={[colors.darkBlueTwo, colors.blue]} style={styles.container}>
+      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
           <Text style={styles.label}>Choose Topic</Text>
           <MessagesButtons

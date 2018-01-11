@@ -81,7 +81,7 @@ class ProfileScreen extends Component {
 
   render() {
     return (
-      <LinearGradient colors={[colors.darkBlueTwo, colors.blue]} style={styles.container}>
+      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
           <ScrollView>
             <AvatarProfile user={this.props.profile} />

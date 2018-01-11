@@ -34,9 +34,6 @@ import MediaFormScreen from './components/screens/MediaFormScreen';
 import HRMessagesScreen from './components/screens/HRMessagesScreen';
 import SafetyMessagesScreen from './components/screens/SafetyMessagesScreen';
 import ExecutiveMessagesScreen from './components/screens/ExecutiveMessagesScreen';
-import PictureMessagesScreen from './components/screens/PictureMessagesScreen';
-import VideoMessagesScreen from './components/screens/VideoMessagesScreen';
-import SettingScreen from './components/screens/SettingScreen';
 import CustomDrawer from './components/CustomDrawer';
 import HideNavItem from './components/HideNavItem';
 import * as colors from './constants/colors';
@@ -53,18 +50,6 @@ const styles = StyleSheet.create({
 const AuthStack = StackNavigator({
   Main: { screen: LoginScreen },
 }, {
-  initialRouteName: 'Main',
-});
-
-const SettingStack = StackNavigator({
-  Main: {
-    screen: SettingScreen,
-    navigationOptions: {
-      title: strings.screen.setting
-    }
-  },
-}, {
-  headerMode: 'none',
   initialRouteName: 'Main',
 });
 
@@ -158,7 +143,7 @@ const LibraryStack = TabNavigator({
     tabStyle: {
       borderColor: 'transparent',
     },
-    activeTintColor: colors.blue,
+    activeTintColor: colors.blueDark,
     inactiveTintColor: colors.gray,
     showLabel: false,
     showIcon: true,
@@ -350,9 +335,6 @@ const MainStack = StackNavigator({
         label: 'Home',
       }
     }
-  },
-  Setting: {
-    screen: SettingStack,
   },
   Job: {
     screen: JobStack,

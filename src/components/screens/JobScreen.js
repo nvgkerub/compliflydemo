@@ -46,7 +46,7 @@ class JobScreen extends Component {
 
   render() {
     return (
-      <LinearGradient colors={[colors.darkBlueTwo, colors.blue]} style={styles.container}>
+      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
           <ScrollView>
             {this._renderItems()}

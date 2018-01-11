@@ -99,24 +99,6 @@ class ViewLibraryFile extends Component {
           <WebView style={styles.webview} source={{ uri: this.state.data.file_path }} />
         </View>
       );
-      // <View style={styles.textContainer}>
-      // <Text style={styles.bold}>{strings.viewFile.addedBy}</Text>
-      // <Text style={styles.light}>{ this.state.data.added_by }</Text>
-      // </View>
-      // <View style={styles.textContainer}>
-      // <Text style={styles.bold}>{strings.viewFile.addedDate}</Text>
-      // <Text style={styles.light}>{ this.state.data.added_date }</Text>
-      // </View>
-      // <View style={styles.textContainer}>
-      // <Text style={styles.bold}>{strings.viewFile.title}</Text>
-      // <Text style={styles.light}>{ this.state.data.title }</Text>
-      // </View>
-      // <View style={styles.buttonContainer}>
-      // <ButtonColored
-      // label={strings.viewFile.download}
-      // clicked={this._handleClick.bind(this, this.state.data)}
-      // />
-      // </View>
     }
     return (
       <View>
@@ -127,7 +109,7 @@ class ViewLibraryFile extends Component {
 
   render() {
     return (
-      <LinearGradient colors={[colors.darkBlueTwo, colors.blue]} style={styles.container}>
+      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
           <ScrollView>
             {this._renderItems()}

@@ -8,7 +8,7 @@ import * as strings from '../constants/strings';
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: colors.darkBlue,
+    backgroundColor: colors.blueDark,
     paddingTop: 15,
   },
   container: {
