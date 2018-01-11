@@ -17,6 +17,7 @@ import ImagePicker from 'react-native-image-picker';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as userAPI from '../../lib/api/userAPI';
+import * as textStyle from '../../constants/textStyle';
 import ButtonColored from '../ButtonColored';
 
 const styles = StyleSheet.create({
@@ -36,15 +37,10 @@ const styles = StyleSheet.create({
   },
   receiver: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
-  bold: {
-    fontWeight: 'bold',
-    color: colors.white,
-    marginRight: 10,
-  },
-  light: {
-    color: colors.white,
-  },
+  bold: textStyle.boldForm,
+  light: textStyle.lightForm,
   subject: {
     marginTop: 20,
   },

@@ -10,14 +10,12 @@ import {
   AsyncStorage,
   Platform
 } from 'react-native';
-import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
 import ButtonColored from '../ButtonColored';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
-import LineSeperator from '../LineSeperator';
+import * as textStyle from '../../constants/textStyle';
 import * as AuthActions from '../../actions/AuthActions';
-import * as userAPI from '../../lib/api/userAPI';
 
 const styles = StyleSheet.create({
   container: {
@@ -59,16 +57,17 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   textfield: {
-     height: 40,
-     width: '100%',
-     color: colors.white,
-     textAlign: 'center',
-     ...Platform.select({
-       ios: {
-         borderBottomColor: colors.borderGray,
-         borderBottomWidth: 1,
-       }
-     })
+    fontSize: textStyle.fontSize.input,
+    height: 40,
+    width: '100%',
+    color: colors.white,
+    textAlign: 'center',
+    ...Platform.select({
+     ios: {
+       borderBottomColor: colors.borderGray,
+       borderBottomWidth: 1,
+     }
+    })
   },
   sectionTwo: {
     width: '100%',

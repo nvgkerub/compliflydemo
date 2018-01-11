@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Image,
+  TouchableOpacity
+} from 'react-native';
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
 import * as strings from '../constants/strings';
+import * as textStyle from '../constants/textStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,6 +41,7 @@ const styles = StyleSheet.create({
   },
   input: {
     color: colors.white,
+    fontSize: textStyle.fontSize.input,
     flex: 1,
     paddingLeft: 10,
     paddingRight: 10,

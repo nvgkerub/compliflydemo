@@ -9,10 +9,10 @@ import {
 import { connect } from 'react-redux';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
-import ButtonColored from '../ButtonColored';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as userAPI from '../../lib/api/userAPI';
+import * as textStyle from '../../constants/textStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,15 +28,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  bold: {
-    fontWeight: '600',
-    color: colors.white,
-  },
-  light: {
-    fontWeight: '300',
-    marginLeft: 10,
-    color: colors.white,
-  },
+  bold: textStyle.boldForm,
+  light: textStyle.lightForm,
   message: {
     height: 300,
     marginTop: 20,

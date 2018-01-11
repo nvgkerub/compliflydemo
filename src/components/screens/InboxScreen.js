@@ -3,7 +3,6 @@ import {
   ScrollView,
   View,
   StyleSheet,
-  StatusBar,
   Text,
   ActivityIndicator,
   TouchableOpacity
@@ -11,11 +10,9 @@ import {
 import { connect } from 'react-redux';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
-import lodash from 'lodash';
 import SearchBar from '../SearchBar';
 import ListItemIcon from '../ListItemIcon';
 import * as colors from '../../constants/colors';
-import * as strings from '../../constants/strings';
 import * as userAPI from '../../lib/api/userAPI';
 
 const styles = StyleSheet.create({

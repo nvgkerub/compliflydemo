@@ -15,6 +15,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as userAPI from '../../lib/api/userAPI';
+import * as textStyle from '../../constants/textStyle';
 import ButtonColored from '../ButtonColored';
 
 const styles = StyleSheet.create({
@@ -34,31 +35,27 @@ const styles = StyleSheet.create({
   },
   receiver: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
-  bold: {
-    fontWeight: 'bold',
-    color: colors.white,
-    marginRight: 10,
-  },
-  light: {
-    color: colors.white,
-  },
+  bold: textStyle.boldForm,
+  light: textStyle.lightForm,
   subject: {
     marginTop: 20,
   },
   textfield: {
-     height: 40,
-     marginTop: 10,
-     paddingLeft: 10,
-     color: colors.white,
-     backgroundColor: colors.blueGray,
-     borderRadius: 5,
-     ...Platform.select({
-       ios: {
-         borderBottomColor: colors.borderGray,
-         borderBottomWidth: 1,
-       }
-     })
+    fontSize: textStyle.fontSize.input,
+    height: 40,
+    marginTop: 10,
+    paddingLeft: 10,
+    color: colors.white,
+    backgroundColor: colors.blueGray,
+    borderRadius: 5,
+    ...Platform.select({
+      ios: {
+        borderBottomColor: colors.borderGray,
+        borderBottomWidth: 1,
+      }
+    })
   },
   message: {
     marginTop: 20,
@@ -67,6 +64,7 @@ const styles = StyleSheet.create({
 
   },
   messageInput: {
+    fontSize: textStyle.fontSize.input,
     marginTop: 10,
     paddingLeft: 10,
     paddingRight: 10,
