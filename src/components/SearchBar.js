@@ -6,7 +6,7 @@ import * as strings from '../constants/strings';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.darkBlue,
+    backgroundColor: colors.blueFlat,
   },
   inner: {
     flexDirection: 'row',
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   search: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: colors.darkBlueTwo,
+    backgroundColor: colors.blueGray,
     padding: 5,
     paddingLeft: 10,
     borderRadius: 20,

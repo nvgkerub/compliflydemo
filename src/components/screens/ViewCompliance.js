@@ -79,7 +79,7 @@ class ViewCompliance extends Component {
 
   render() {
     return (
-      <LinearGradient colors={[colors.darkBlueTwo, colors.blue]} style={styles.container}>
+      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
           <WebView style={styles.webview} source={{ uri: this.state.filePath }} />
         </View>

@@ -73,7 +73,7 @@ class AddNotesScreen extends Component {
 
   render() {
     return (
-      <LinearGradient colors={[colors.darkBlueTwo, colors.blue]} style={styles.container}>
+      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <ScrollView style={styles.inner}>
           <View style={styles.subject}>
             <Text style={styles.bold}>Title:</Text>

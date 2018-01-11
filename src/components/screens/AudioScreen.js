@@ -314,7 +314,7 @@ class AudioScreen extends Component {
 
   render() {
     return (
-      <LinearGradient colors={[colors.blue, colors.blue]} style={styles.container}>
+      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
           <Text style={styles.progressText}>{this.state.currentTime}s</Text>
           <View style={styles.buttonContainer}>

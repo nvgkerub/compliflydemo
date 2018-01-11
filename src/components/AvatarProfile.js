@@ -9,7 +9,7 @@ import { uploadProfilePic } from '../actions/ProfileActions';
 const styles = StyleSheet.create({
   container: {
     height: 150,
-    backgroundColor: colors.darkBlue,
+    backgroundColor: colors.blueFlat,
     justifyContent: 'center',
     alignItems: 'center',
   }

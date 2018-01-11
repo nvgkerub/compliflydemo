@@ -112,7 +112,7 @@ class LoginScreen extends PureComponent {
 
   render() {
     return (
-      <LinearGradient colors={[colors.darkBlueTwo, colors.blue]} style={styles.container}>
+      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
           <Image source={require('../../images/logowhite.png')} style={styles.logo} />
           {this.props.error != null ?
