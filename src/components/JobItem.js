@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
 import * as textStyle from '../constants/textStyle';
+import * as iconStyle from '../constants/iconStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,10 +23,7 @@ const styles = StyleSheet.create({
   },
   bold: textStyle.bold,
   light: textStyle.light,
-  icon: {
-    width: 20,
-    resizeMode: 'contain',
-  }
+  icon: iconStyle.dots,
 });
 
 class JobItem extends Component {

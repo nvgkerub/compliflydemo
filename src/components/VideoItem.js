@@ -31,12 +31,8 @@ const styles = StyleSheet.create({
   },
   bold: textStyle.bold,
   light: textStyle.light,
-  iconFile: {
-    height: 25,
-    resizeMode: 'contain',
-    marginRight: 10,
-  },
-  icon: iconStyle.library,
+  iconFile: iconStyle.library,
+  icon: iconStyle.dots,
 });
 
 class VideoItem extends Component {

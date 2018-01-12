@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
+import * as iconStyle from '../constants/iconStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,17 +10,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingRight: 15,
-    paddingTop: 15,
+    paddingTop: 25,
     backgroundColor: colors.white,
-    height: 65,
+    height: 85,
   },
   left: {
     width: 40,
   },
-  navIcon: {
-    width: 40,
-    resizeMode: 'contain',
-  },
+  navIcon: iconStyle.nav.open,
   right: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -27,13 +25,8 @@ const styles = StyleSheet.create({
   middle: {
     marginLeft: 20,
   },
-  bell: {
-    maxWidth: 20,
-    marginRight: 20,
-  },
-  mic: {
-    maxWidth: 20,
-  }
+  bell: iconStyle.nav.bell,
+  mic: iconStyle.nav.audio,
 });
 
 class Header extends Component {

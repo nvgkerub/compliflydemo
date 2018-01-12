@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
 import * as textStyle from '../constants/textStyle';
+import * as iconStyle from '../constants/iconStyle';
 import { grabUserPic } from '../actions/ProfileActions';
 
 const styles = StyleSheet.create({
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
   },
   textBold: textStyle.bold,
   textLight: textStyle.light,
+  settingIcon: iconStyle.setting,
 });
 
 class TopProfileSection extends Component {
@@ -74,7 +76,7 @@ class TopProfileSection extends Component {
           </View>
           <TouchableOpacity onPress={this._clicked}>
             <View>
-              <Image source={require('../images/setting.png')} />
+              <Image style={styles.settingIcon} source={require('../images/setting.png')} />
             </View>
           </TouchableOpacity>
         </View>

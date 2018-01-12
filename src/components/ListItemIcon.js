@@ -21,12 +21,8 @@ const styles = StyleSheet.create({
   },
   bold: textStyle.bold,
   light: textStyle.light,
-  iconFile: {
-    height: 25,
-    resizeMode: 'contain',
-    marginRight: 10,
-  },
-  icon: iconStyle.library,
+  iconFile: iconStyle.message.file,
+  icon: iconStyle.dots,
 });
 
 

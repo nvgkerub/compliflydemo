@@ -3,7 +3,7 @@ import { View, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 import { DrawerItems, SafeAreaView } from 'react-navigation';
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
-import * as strings from '../constants/strings';
+import * as iconStyle from '../constants/iconStyle';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -16,7 +16,9 @@ const styles = StyleSheet.create({
   },
   closeBtn: {
     paddingLeft: 5,
+    marginTop: 20,
   },
+  icon: iconStyle.nav.close,
 });
 
 
@@ -28,7 +30,7 @@ class CustomDrawer extends Component {
           style={styles.closeBtn}
           onPress={() => { this.props.navigation.navigate('DrawerClose'); }}
         >
-          <Image source={require('../images/close.png')} />
+          <Image style={styles.icon} source={require('../images/close.png')} />
         </TouchableOpacity>
         <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
           <DrawerItems {...this.props} />
