@@ -15,6 +15,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import ImagePicker from 'react-native-image-picker';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
+import * as iconStyle from '../../constants/iconStyle';
 import ButtonColored from '../ButtonColored';
 import { sendMessageWithFile } from '../../actions/SendingActions';
 
@@ -94,10 +95,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  uploadIcon: {
-    width: 30,
-    resizeMode: 'contain',
-  }
+  uploadIcon: iconStyle.upload,
 });
 
 class MediaFormScreen extends Component {
@@ -199,7 +197,7 @@ class MediaFormScreen extends Component {
           <View style={styles.fileButtonContainer}>
             <Text style={styles.bold}>File Upload:</Text>
             <TouchableOpacity onPress={this._handleUploadPic.bind(this)}>
-              <Image style={styles.uploadIcon} source={require('../../images/library.png')} />
+              <Image style={styles.uploadIcon} source={require('../../images/upload2x.png')} />
             </TouchableOpacity>
           </View>
           <View style={styles.message}>
