@@ -190,21 +190,12 @@ const NotesStack = StackNavigator({
   initialRouteName: 'Main',
 });
 
-const ManagerStack = StackNavigator({
-  Main: {
-    screen: ManagerMessagesScreen,
-  },
-  Form: {
-    screen: FormScreen,
-  }
-}, {
-  headerMode: 'None',
-  initialRouteName: 'Main',
-});
-
 const DirectMessagesStack = StackNavigator({
   Main: {
     screen: MessagesScreen,
+    navigationOptions: {
+      tabBarVisible: false,
+    }
   },
   Manager: {
     screen: ManagerMessagesScreen,

@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity
+} from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
-import DirectItem from '../DirectItem';
+import * as textStyle from '../../constants/textStyle';
 import MessagesInnerSection from '../MessagesInnerSection';
 import LineSeperator from '../LineSeperator';
 
@@ -19,14 +25,25 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     marginTop: 15,
+  },
+  customTabs: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginBottom: 30,
+  },
+  tabTxt: {
+    fontSize: textStyle.fontSize.light,
+    fontWeight: textStyle.fontWeight.bold,
+    color: colors.white,
+  },
+  tabTxtActive: {
+    borderBottomWidth: 2,
+    borderBottomColor: colors.teal,
   }
 });
 
 class MessagesScreen extends Component {
-
-  componentDidMount = () => {
-    console.log(this.props);
-  }
 
   _goToManager = () => {
     this.props.navigation.navigate('Manager');
@@ -52,10 +69,29 @@ class MessagesScreen extends Component {
     this.props.navigation.navigate('Video', { messageInfo: { subject: 'Send a Video', receiver: 'Video Rep' } });
   }
 
+  _goToInbox = () => {
+    this.props.navigation.navigate('Inbox');
+  }
+
+  _goToSent = () => {
+    this.props.navigation.navigate('Sent');
+  }
+
   render() {
     return (
       <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
+          <View style={styles.customTabs}>
+            <View style={styles.tabTxtActive}>
+              <Text style={styles.tabTxt}>Direct</Text>
+            </View>
+            <TouchableOpacity onPress={this._goToInbox.bind(this)}>
+              <Text style={styles.tabTxt}>Inbox</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this._goToSent.bind(this)}>
+              <Text style={styles.tabTxt}>Sent</Text>
+            </TouchableOpacity>
+          </View>
           <ScrollView>
             <MessagesInnerSection
               nav={this._goToManager}
