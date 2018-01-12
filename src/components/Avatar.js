@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
-import * as strings from '../constants/strings';
+import * as textStyle from '../constants/textStyle';
 
 const styles = StyleSheet.create({
   avatar: {
@@ -16,17 +16,14 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.white,
-    fontWeight: 'bold',
+    fontWeight: textStyle.fontWeight.bold,
     marginTop: 5,
-    fontSize: 15,
+    fontSize: textStyle.fontSize.light,
+    textAlign: 'center',
   }
 });
 
 class Avatar extends Component {
-
-  componentDidMount = () => {
-    console.log(this.props);
-  }
 
   _handleClick = () => {
     this.props.uploadPic();
