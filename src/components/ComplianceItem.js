@@ -34,16 +34,12 @@ const styles = StyleSheet.create({
 });
 
 class ComplianceItem extends Component {
-
-  _clicked = () => {
-    this.props.handleClick();
-  }
   // <Text style={styles.light}>{this.props.subTitle}</Text>
 
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.inner} onPress={this._clicked}>
+        <View style={styles.inner}>
           <View style={styles.content}>
             <Text style={styles.bold}>{this.props.title}</Text>
             <Text style={styles.light}>Viewed: {this.props.viewed}</Text>
@@ -55,7 +51,7 @@ class ComplianceItem extends Component {
               :
               null
           }
-        </TouchableOpacity>
+        </View>
       </View>
     );
   }
