@@ -18,6 +18,7 @@ import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as userAPI from '../../lib/api/userAPI';
 import * as textStyle from '../../constants/textStyle';
+import * as iconStyle from '../../constants/iconStyle';
 import ButtonColored from '../ButtonColored';
 
 const styles = StyleSheet.create({
@@ -90,11 +91,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  uploadIcon: {
-    width: 30,
-    resizeMode: 'contain',
-  }
+  uploadIcon: iconStyle.upload,
 });
 
 class InboxFormScreen extends Component {
@@ -244,7 +243,7 @@ class InboxFormScreen extends Component {
           <View style={styles.fileButtonContainer}>
             <Text style={styles.bold}>File Upload:</Text>
             <TouchableOpacity onPress={this._handleUploadPic.bind(this)}>
-              <Image style={styles.uploadIcon} source={require('../../images/library.png')} />
+              <Image style={styles.uploadIcon} source={require('../../images/upload2x.png')} />
             </TouchableOpacity>
           </View>
           <View style={styles.message}>

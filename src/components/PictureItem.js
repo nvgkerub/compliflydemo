@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
 import * as textStyle from '../constants/textStyle';
+import * as iconStyle from '../constants/iconStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,10 +36,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginRight: 10,
   },
-  icon: {
-    width: 50,
-    resizeMode: 'contain',
-  }
+  icon: iconStyle.library,
 });
 
 class PictureItem extends Component {
@@ -51,7 +49,7 @@ class PictureItem extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.inner} onPress={this._clicked}>
-          <Image style={styles.iconFile} source={require('../images/imagetab.png')} />
+          <Image style={styles.iconFile} source={require('../images/picture2x.png')} />
           <View style={styles.content}>
             <Text style={styles.bold}>{this.props.title}</Text>
             {this.props.subTitle != null

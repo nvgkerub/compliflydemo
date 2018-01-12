@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
 import * as textStyle from '../constants/textStyle';
+import * as iconStyle from '../constants/iconStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,10 +36,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginRight: 10,
   },
-  icon: {
-    width: 50,
-    resizeMode: 'contain',
-  }
+  icon: iconStyle.library,
 });
 
 class AudioItem extends Component {
@@ -46,7 +44,7 @@ class AudioItem extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.inner} onPress={this._clicked}>
-          <Image style={styles.iconFile} source={require('../images/audio.png')} />
+          <Image style={styles.iconFile} source={require('../images/audiowhite2x.png')} />
           <View style={styles.content}>
             <Text style={styles.bold}>{this.props.title}</Text>
             <Text style={styles.light}>{this.props.subTitle}</Text>
