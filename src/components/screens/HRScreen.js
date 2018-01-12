@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import {
-  ScrollView,
   View,
   StyleSheet,
-  StatusBar,
   ActivityIndicator,
-  Text,
-  FlatList
+  FlatList,
+  TouchableOpacity,
 } from 'react-native';
 import { List } from 'react-native-elements';
 import { connect } from 'react-redux';
@@ -140,13 +138,14 @@ class HRScreen extends Component {
                 this.state.data : this.state.filteredData
               }
               renderItem={({ item }) => (
+                <TouchableOpacity onPress={this._handleClick.bind(this, item)}>
                 <ComplianceItem
                   title={item.file_name}
                   path={item.file_path}
-                  handleClick={this._handleClick.bind(this, item)}
                   compliance_id={item.compliance_id}
                   viewed={item.viewed}
                 />
+                </TouchableOpacity>
               )}
               keyExtractor={item => item.compliance_id}
               ListFooterComponent={this._renderFooter}

@@ -135,10 +135,6 @@ class NotificationScreen extends Component {
     return (
       <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
-          <SearchBar
-            handleSearch={this._handleSearch.bind(this)}
-            sortBy={this._handleSort.bind(this)}
-          />
           <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0, marginTop: 0, backgroundColor: 'transparent' }}>
             <FlatList
               data={
@@ -152,6 +148,7 @@ class NotificationScreen extends Component {
                 />
               )}
               keyExtractor={item => item.notification_id}
+              ListHeaderComponent={this._renderHeader}
               ListFooterComponent={this._renderFooter}
               refreshing={this.state.refreshing}
               onRefresh={this._handleRefresh}

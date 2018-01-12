@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import {
-  ScrollView,
   View,
   StyleSheet,
-  Text,
   ActivityIndicator,
+  FlatList,
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
+import { List } from 'react-native-elements';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
-import lodash from 'lodash';
 import SearchBar from '../SearchBar';
 import ListItemIcon from '../ListItemIcon';
 import * as colors from '../../constants/colors';
@@ -24,17 +23,35 @@ const styles = StyleSheet.create({
   inner: {
     flex: 1,
     backgroundColor: 'transparent',
-  }
+  },
+  loadingBox: {
+    paddingTop: 20,
+    paddingBottom: 20,
+  },
 });
 
 class SentScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { data: null, searchTerm: '', message: null };
+    this.state = {
+      loading: false,
+      data: [],
+      filteredData: [],
+      error: null,
+      refreshing: false,
+      term: '',
+      sortData: [],
+      sort: '',
+    };
   }
 
   componentWillMount = () => {
+    this._makeAPIRequest();
+  }
+
+  _makeAPIRequest = () => {
+    this.setState({ loading: true });
     axios.get(userAPI.message.sentMessagesList, {
       params: {
         access_token: this.props.token,
@@ -44,9 +61,9 @@ class SentScreen extends Component {
       .then((res) => (
         Array.isArray(res.data.response)
         ?
-        this.setState({ data: res.data.response })
+        this.setState({ data: res.data.response, loading: false, refreshing: false })
         :
-        this.setState({ message: res.data.response.message })
+        this.setState({ error: res.data.response.message, loading: false, refreshing: false })
       ))
       .catch((err) => console.log('library err', err));
   }
@@ -55,42 +72,94 @@ class SentScreen extends Component {
     this.props.navigation.navigate('ViewMessage', { message });
   }
 
-  _renderItems = () => {
-    if (this.state.data === null) {
-      if (this.state.message != null) {
-        return (
-          <Text>{this.state.message}</Text>
-        );
-      }
-      return (
-        <View>
-          <Text>Loading...</Text>
-          <ActivityIndicator size="small" color="#fff" />
-        </View>
-      );
-    }
-
-    return this.state.data.map((item, i) => {
-      return (
-        <TouchableOpacity key={i} onPress={this._handleClick.bind(this, item)}>
-          <ListItemIcon title={item.subject} subTitle={item.added_date} />
-        </TouchableOpacity>
-      );
+  _handleSearch(text) {
+    const newData = this.state.data.filter(item => {
+      const itemData = item.subject.toUpperCase();
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+    this.setState({
+      filteredData: newData,
+      text,
+      refreshing: false,
     });
   }
 
-  _handleSearch = (text) => {
-    this.setState({ searchTerm: text });
+  _sortData(sort, data) {
+    this.setState({ refreshing: false });
+    data.sort((a, b) => {
+      const itemA = sort === strings.filterType.abc ? a.subject.toUpperCase() : a.added_date.toUpperCase();
+      const itemB = sort === strings.filterType.abc ? b.subject.toUpperCase() : b.added_date.toUpperCase();
+      if (itemA < itemB) {
+        return -1;
+      }
+      if (itemA > itemB) {
+        return 1;
+      }
+      return 0;
+    });
   }
-//TODO: add searchbar inside of inner above scrollview
-// <SearchBar handleSearch={this._handleSearch} />
+
+  _handleSort(sort) {
+    const d = this.state.filteredData.length === 0 ? this.state.data : this.state.filteredData;
+    const arr = this.state.filteredData.length === 0 ? 'data' : 'filteredData';
+    this.setState({ refreshing: true }, () => {
+      this._sortData(sort, d, arr);
+    });
+  }
+
+  _renderHeader = () => {
+    return (
+      <SearchBar
+        handleSearch={this._handleSearch.bind(this)}
+        sortBy={this._handleSort.bind(this)}
+      />
+    );
+  }
+
+  _renderFooter = () => {
+    if (!this.state.loading) return null;
+
+    return (
+      <View style={styles.loadingBox}>
+        <ActivityIndicator animating size='large' />
+      </View>
+    );
+  }
+
+  _handleRefresh = () => {
+    //TODO: if there is different pages change state here
+    this.setState({ refreshing: true }, () => {
+      this._makeAPIRequest();
+    });
+  }
+
+
   render() {
     return (
       <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
-          <ScrollView>
-            {this._renderItems()}
-          </ScrollView>
+          <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0, marginTop: 0, backgroundColor: 'transparent' }}>
+            <FlatList
+              data={
+                this.state.filteredData.length === 0 ?
+                this.state.data : this.state.filteredData
+              }
+              renderItem={({ item }) => (
+                <TouchableOpacity onPress={this._handleClick.bind(this, item)}>
+                  <ListItemIcon
+                    title={`${item.subject}`}
+                    subTitle={item.added_date}
+                  />
+                </TouchableOpacity>
+              )}
+              keyExtractor={item => item.message_id}
+              ListHeaderComponent={this._renderHeader}
+              ListFooterComponent={this._renderFooter}
+              refreshing={this.state.refreshing}
+              onRefresh={this._handleRefresh}
+            />
+          </List>
         </View>
       </LinearGradient>
     );
