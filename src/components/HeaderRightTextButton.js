@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   label: {
-    color: colors.blue,
+    color: colors.blueDark,
     marginRight: 10,
   }
 });
@@ -20,12 +20,12 @@ class HeaderRightTextButton extends Component {
 
   _handleClicked = () => {
     //TODO: add redux to save note then navigate back to notes
-    this.props.navigation.goBack();
+    this.props.navigation.state.params.save();
   }
 
   render() {
     return (
-      <TouchableOpacity onPress={this._handleClicked}>
+      <TouchableOpacity onPress={this._handleClicked.bind(this)}>
         <View style={styles.container}>
           <Text style={styles.label}>{this.props.label}</Text>
         </View>

@@ -22,6 +22,7 @@ import HRScreen from './components/screens/HRScreen';
 import ViewCompliance from './components/screens/ViewCompliance';
 import NotesScreen from './components/screens/NotesScreen';
 import AddNotesScreen from './components/screens/AddNotesScreen';
+import ViewNoteScreen from './components/screens/ViewNoteScreen';
 import MessagesScreen from './components/screens/MessagesScreen';
 import InboxScreen from './components/screens/InboxScreen';
 import InboxFormScreen from './components/screens/InboxFormScreen';
@@ -174,6 +175,12 @@ const NotesStack = StackNavigator({
   },
   Add: {
     screen: AddNotesScreen,
+    navigationOptions: {
+      title: strings.screen.notes
+    }
+  },
+  ViewNote: {
+    screen: ViewNoteScreen,
     navigationOptions: {
       title: strings.screen.notes
     }

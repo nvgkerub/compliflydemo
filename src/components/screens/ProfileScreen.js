@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import * as strings from '../../constants/strings';
 import * as colors from '../../constants/colors';
+import * as textStyle from '../../constants/textStyle';
 import AvatarProfile from '../AvatarProfile';
 import ProfileItems from '../ProfileItems';
 import ButtonColored from '../ButtonColored';
@@ -26,20 +27,21 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   textfield: {
-     height: 40,
-     marginTop: 10,
-     paddingLeft: 10,
-     marginLeft: 10,
-     marginRight: 10,
-     color: colors.white,
-     backgroundColor: colors.blueGray,
-     borderRadius: 5,
-     ...Platform.select({
-       ios: {
-         borderBottomColor: colors.borderGray,
-         borderBottomWidth: 1,
-       }
-     })
+    fontSize: textStyle.fontSize.input,
+    height: 40,
+    marginTop: 10,
+    paddingLeft: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    color: colors.white,
+    backgroundColor: colors.blueGray,
+    borderRadius: 5,
+    ...Platform.select({
+     ios: {
+       borderBottomColor: colors.borderGray,
+       borderBottomWidth: 1,
+     }
+    })
   },
   buttonContainer: {
     marginLeft: 15,
@@ -49,6 +51,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     marginTop: 10,
     marginBottom: 10,
+    marginLeft: 20,
   },
 });
 
