@@ -51,7 +51,7 @@ class AudioItem extends Component {
             <Text style={styles.bold}>{this.props.title}</Text>
             <Text style={styles.light}>{this.props.subTitle}</Text>
           </View>
-          <Image style={styles.icon} source={require('../images/setting.png')} />
+          <Image style={styles.icon} source={require('../images/dots.png')} />
         </TouchableOpacity>
       </View>
     );

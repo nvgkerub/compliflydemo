@@ -61,7 +61,7 @@ class PictureItem extends Component {
               null
             }
           </View>
-          <Image style={styles.icon} source={require('../images/setting.png')} />
+          <Image style={styles.icon} source={require('../images/dots.png')} />
         </TouchableOpacity>
       </View>
     );

@@ -4,6 +4,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   FlatList,
+  TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
 import { List } from 'react-native-elements';
@@ -142,11 +143,12 @@ class LibraryScreen extends Component {
                 this.state.data : this.state.filteredData
               }
               renderItem={({ item }) => (
-                <LibraryItem
-                  title={item.title}
-                  subTitle={item.created_datetime}
-                  handleClick={this._handleClick.bind(this, item)}
-                />
+                <TouchableOpacity onPress={this._handleClick.bind(this, item)}>
+                  <LibraryItem
+                    title={item.title}
+                    subTitle={item.created_datetime}
+                  />
+                </TouchableOpacity>
               )}
               keyExtractor={item => item.library_id}
               ListFooterComponent={this._renderFooter}
