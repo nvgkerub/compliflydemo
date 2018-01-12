@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet
+} from 'react-native';
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
-import { testAction } from '../actions/NotesActions';
+import * as iconStyle from '../constants/iconStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,10 +32,7 @@ const styles = StyleSheet.create({
     color: colors.whiteO,
     fontSize: 12,
   },
-  icon: {
-    width: 50,
-    resizeMode: 'contain',
-  }
+  icon: iconStyle.dots,
 });
 
 class NoteItem extends Component {

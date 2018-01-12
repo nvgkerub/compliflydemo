@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
 import * as strings from '../constants/strings';
 import * as textStyle from '../constants/textStyle';
+import * as iconStyle from '../constants/iconStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,11 +35,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     alignItems: 'center',
   },
-  icon: {
-    width: 20,
-    height: 20,
-    resizeMode: 'contain',
-  },
+  icon: iconStyle.searchBar,
   input: {
     color: colors.white,
     fontSize: textStyle.fontSize.input,

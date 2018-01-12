@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity
+} from 'react-native';
 import { connect } from 'react-redux';
-import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as textStyle from '../../constants/textStyle';
+import * as iconStyle from '../../constants/iconStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,12 +21,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     marginBottom: 10,
   },
-  icon: {
-    width: 40,
-    marginRight: 35,
-    marginLeft: 15,
-    resizeMode: 'contain',
-  },
+  icon: iconStyle.dash,
   bold: textStyle.bold,
   light: textStyle.light,
   inner: {

@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import {
-  ScrollView,
   View,
   StyleSheet,
   Text,
-  ActivityIndicator,
-  Button
+  Image,
 } from 'react-native';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
-import ButtonColored from '../ButtonColored';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
-import * as userAPI from '../../lib/api/userAPI';
 import * as textStyle from '../../constants/textStyle';
 
 const styles = StyleSheet.create({
@@ -76,7 +71,7 @@ class ViewNoteScreen extends Component {
             </View>
           </View>
           <View style={styles.buttonContainer}>
-
+            <Image source={require('../../images/setting.png')} />
           </View>
         </View>
       </LinearGradient>

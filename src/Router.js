@@ -329,6 +329,7 @@ const MainStack = StackNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
+      headerTintColor: colors.blueDark,
       drawer: {
         label: 'Home',
       }
@@ -336,25 +337,44 @@ const MainStack = StackNavigator({
   },
   Job: {
     screen: JobStack,
+    navigationOptions: {
+      headerTintColor: colors.blueDark,
+    }
   },
   Profile: {
     screen: ProfileStack,
+    navigationOptions: {
+      headerTintColor: colors.blueDark,
+    }
   },
   Library: {
     screen: LibraryStack,
+    navigationOptions: {
+      headerTintColor: colors.blueDark,
+    }
   },
   HRScreen: {
     screen: HRStack,
+    navigationOptions: {
+      headerTintColor: colors.blueDark,
+    }
   },
   Notes: {
     screen: NotesStack,
+    navigationOptions: {
+      headerTintColor: colors.blueDark,
+    }
   },
   Messages: {
     screen: MessagesStack,
+    navigationOptions: {
+      headerTintColor: colors.blueDark,
+    }
   },
   Audio: {
     screen: AudioScreen,
     navigationOptions: {
+      headerTintColor: colors.blueDark,
       title: strings.screen.audio,
       tabBarVisible: false,
     },
@@ -362,6 +382,7 @@ const MainStack = StackNavigator({
   Notifications: {
     screen: NotificationScreen,
     navigationOptions: {
+      headerTintColor: colors.blueDark,
       title: strings.screen.notifications,
       tabBarVisible: false,
     },
@@ -369,6 +390,7 @@ const MainStack = StackNavigator({
   ViewFile: {
     screen: ViewLibraryFile,
     navigationOptions: {
+      headerTintColor: colors.blueDark,
       title: strings.screen.viewLibrary,
       tabBarVisible: false,
     },
