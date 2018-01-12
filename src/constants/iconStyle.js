@@ -68,3 +68,10 @@ export const searchBar = {
   height: 20,
   resizeMode: 'contain',
 };
+
+export const note = {
+  delete: {
+    width: 20,
+    resizeMode: 'contain',
+  }
+};
