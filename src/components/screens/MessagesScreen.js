@@ -62,11 +62,23 @@ class MessagesScreen extends Component {
   }
 
   _goToPicture = () => {
-    this.props.navigation.navigate('Picture', { messageInfo: { subject: 'Send a Picture', receiver: 'Picture Rep' } });
+    this.props.navigation.navigate('Picture', {
+      messageInfo: {
+        subject: 'Send a Picture',
+        receiver: 'Picture Rep',
+        type: 'picture'
+      }
+    });
   }
 
   _goToVideo = () => {
-    this.props.navigation.navigate('Video', { messageInfo: { subject: 'Send a Video', receiver: 'Video Rep' } });
+    this.props.navigation.navigate('Video', {
+      messageInfo: {
+        subject: 'Send a Video',
+        receiver: 'Video Rep',
+        type: 'video'
+      }
+    });
   }
 
   _goToInbox = () => {
