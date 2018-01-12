@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
+import ImagePicker from 'react-native-image-picker';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as userAPI from '../../lib/api/userAPI';
@@ -112,7 +113,6 @@ class FormScreen extends Component {
 
   componentWillMount = () => {
     const { receiver, subject } = this.props.navigation.state.params.messageInfo;
-    console.log(this.props.navigation.state.params.messageInfo);
     this.setState({ receiver, subject });
     this._handleType();
   }
@@ -181,6 +181,43 @@ class FormScreen extends Component {
     this._mssgWithFile();
   }
 
+
+  _handleUploadFile = () => {
+    const options = {
+      title: 'Select file to upload',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+      takePhotoButtonTitle: null,
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response from Image = ', response);
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.err) {
+        Alert.alert(
+          'Upload Failed',
+          'File upload was not successfull. Please try again.',
+          [
+            { text: 'Ok' }
+          ]
+        );
+      } else {
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        this.setState({ fileSource: response.uri });
+        Alert.alert(
+          'Upload Success',
+          'File was uploaded successfully',
+          [
+            { text: 'Ok' }
+          ]
+        );
+      }
+    });
+  }
+
   render() {
     const { receiver, subject } = this.props.navigation.state.params.messageInfo;
     return (
@@ -199,7 +236,7 @@ class FormScreen extends Component {
           </View>
           <View style={styles.fileButtonContainer}>
             <Text style={styles.bold}>File Upload:</Text>
-            <TouchableOpacity onPress={this._handleClick.bind(this)}>
+            <TouchableOpacity onPress={this._handleUploadFile.bind(this)}>
               <Image style={styles.uploadIcon} source={require('../../images/library.png')} />
             </TouchableOpacity>
           </View>

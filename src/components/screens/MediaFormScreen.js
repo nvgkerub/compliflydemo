@@ -121,7 +121,7 @@ class MediaFormScreen extends Component {
       this.props.token,
       this.state.subject,
       this.state.description,
-      this.state.fileSource, 
+      this.state.fileSource,
       this.state.extention
     );
   }
@@ -152,7 +152,7 @@ class MediaFormScreen extends Component {
       } else if (response.err) {
         Alert.alert(
           'Upload Failed',
-          'Video upload was not successfull. Please try again.',
+          'File upload was not successfull. Please try again.',
           [
             { text: 'Ok' }
           ]
@@ -162,7 +162,7 @@ class MediaFormScreen extends Component {
         this.setState({ fileSource: response.uri });
         Alert.alert(
           'Upload Success',
-          'Video was uploaded successfully',
+          'File was uploaded successfully',
           [
             { text: 'Ok' }
           ]

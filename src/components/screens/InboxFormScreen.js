@@ -197,11 +197,12 @@ class InboxFormScreen extends Component {
   _handleUploadPic = () => {
     // Options for ImagePicker
     const options = {
-      title: 'Select Profile Picture',
+      title: 'Select file to upload',
       storageOptions: {
         skipBackup: true,
         path: 'images',
-      }
+      },
+      takePhotoButtonTitle: null,
     };
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response from Image = ', response);
