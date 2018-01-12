@@ -77,7 +77,6 @@ class JobInfoScreen extends Component {
         }
       })
         .then((res) => this.setState({ jobInfo: res.data }))
-        .then(() => console.log('inside of jobinfo', this.state))
         .catch((err) => console.log(err));
   };
 
