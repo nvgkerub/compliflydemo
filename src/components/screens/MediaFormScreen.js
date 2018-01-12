@@ -7,7 +7,8 @@ import {
   Platform,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
@@ -103,7 +104,12 @@ class MediaFormScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { subject: null, description: null, extention: 'jpg', fileSource: null, };
+    this.state = {
+      subject: null,
+      description: null,
+      extention: 'jpg',
+      fileSource: null,
+    };
   }
 
   componentDidMount = () => {
@@ -111,27 +117,56 @@ class MediaFormScreen extends Component {
   }
 
   _handleClick = () => {
-    this.props.sendMessageWithFile(this.props.token, this.state.subject, this.state.description, this.state.fileSource, this.state.extention);
+    this.props.sendMessageWithFile(
+      this.props.token,
+      this.state.subject,
+      this.state.description,
+      this.state.fileSource, 
+      this.state.extention
+    );
   }
 
   _handleUploadPic = () => {
-    // Options for ImagePicker
-    const options = {
-      title: 'Select Profile Picture',
+    const { type } = this.props.navigation.state.params.messageInfo;
+    const optionsVideo = {
+      title: 'Select a video to upload',
       storageOptions: {
         skipBackup: true,
         path: 'images',
-      }
+      },
+      takePhotoButtonTitle: 'Take a video',
+      mediaType: 'video',
+      videoQuality: 'high',
     };
-    ImagePicker.showImagePicker(options, (response) => {
+    const optionsPicture = {
+      title: 'Select an image to pload',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    ImagePicker.showImagePicker(type === 'picture' ? optionsPicture : optionsVideo, (response) => {
       console.log('Response from Image = ', response);
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.err) {
-        console.log('ImagePicker Error: ', response.error);
+        Alert.alert(
+          'Upload Failed',
+          'Video upload was not successfull. Please try again.',
+          [
+            { text: 'Ok' }
+          ]
+        );
       } else {
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
         this.setState({ fileSource: response.uri });
+        Alert.alert(
+          'Upload Success',
+          'Video was uploaded successfully',
+          [
+            { text: 'Ok' }
+          ]
+        );
       }
     });
   }
@@ -145,12 +180,13 @@ class MediaFormScreen extends Component {
   }
 
   render() {
+    const { receiver } = this.props.navigation.state.params.messageInfo;
     return (
       <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <ScrollView style={styles.inner}>
           <View style={styles.receiver}>
             <Text style={styles.bold}>To:</Text>
-            <Text style={styles.light}>{this.props.navigation.state.params.messageInfo.receiver}</Text>
+            <Text style={styles.light}>{receiver}</Text>
           </View>
           <View style={styles.subject}>
             <Text style={styles.bold}>Subject:</Text>
