@@ -159,3 +159,8 @@ export const libraryFileTypes = {
     mp3: '.mp3',
   }
 };
+
+export const note = {
+  title: 'Title:',
+  note: 'Note',
+};

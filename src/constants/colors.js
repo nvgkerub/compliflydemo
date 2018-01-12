@@ -12,6 +12,7 @@ export const blueFlat = '#0e2750';
 export const gray = '#909090';
 
 export const borderGray = 'rgba(255,255,255,0.1)';
+export const loading = '#fff';
 
 // bg-dark #193562   -  bg-light #254e8e
 // flat dark blue #0e2750, searbar bg

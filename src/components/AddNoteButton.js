@@ -21,7 +21,13 @@ const styles = StyleSheet.create({
 class AddNoteButton extends Component {
 
   _handleClicked = () => {
-    this.props.navigation.navigate('Add');
+    this.props.navigation.navigate('Add', {
+      refresh: this._handleRefresh
+    });
+  }
+
+  _handleRefresh = () => {
+    this.props.navigation.state.params.refresh();
   }
 
   render() {

@@ -78,6 +78,9 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  error: {
+    color: colors.white,
   }
 });
 
@@ -134,7 +137,7 @@ class PinScreen extends PureComponent {
         <View style={styles.inner}>
           <Image source={require('../../images/logowhite.png')} style={styles.logo} />
           {this.state.error != null ?
-            <Text>{this.state.error}</Text>
+            <Text style={styles.error}>{this.state.error}</Text>
           : null}
           <View style={styles.section}>
             <TextInput

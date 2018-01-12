@@ -50,12 +50,10 @@ class NotificationScreen extends Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props);
     this._makeAPIRequest();
   }
 
   _makeAPIRequest = () => {
-    console.log('making request');
     this.setState({ loading: true });
     axios.get(userAPI.notifications.grabNotifications, { params: {
         access_token: this.props.token,
