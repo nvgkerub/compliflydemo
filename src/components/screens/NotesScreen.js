@@ -144,6 +144,7 @@ class NotesScreen extends Component {
   _viewNote(item) {
     this.props.navigation.navigate('ViewNote', {
       note: item,
+      refresh: this._makeAPIRequest,
     });
   }
 

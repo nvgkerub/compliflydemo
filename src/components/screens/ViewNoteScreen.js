@@ -4,12 +4,15 @@ import {
   StyleSheet,
   Text,
   Image,
+  TouchableOpacity,
+  AsyncStorage,
 } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as textStyle from '../../constants/textStyle';
+import * as iconStyle from '../../constants/iconStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -41,7 +44,10 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginLeft: 15,
     marginRight: 15,
-  }
+    marginTop: 30,
+    alignItems: 'flex-end',
+  },
+  icon: iconStyle.note.delete,
 });
 
 class ViewNoteScreen extends Component {
@@ -53,6 +59,28 @@ class ViewNoteScreen extends Component {
   constructor(props) {
     super(props);
     this.state = { data: null, loading: true };
+  }
+
+  componentDidMount = () => {
+    this._grabData();
+  }
+
+  async _grabData() {
+    const data = await AsyncStorage.getItem('noteList');
+    const parsed = JSON.parse(data);
+    this.setState({ data: parsed });
+  }
+
+  _handleDelete(noteId) {
+    this.state.data.map((item, i) => {
+      if (item.note_id === noteId) {
+        return this.state.data.pop(i);
+      }
+    });
+    const data = JSON.stringify(this.state.data);
+    AsyncStorage.setItem('noteList', data);
+    this.props.navigation.state.params.refresh();
+    this.props.navigation.goBack();
   }
 
   render() {
@@ -71,7 +99,9 @@ class ViewNoteScreen extends Component {
             </View>
           </View>
           <View style={styles.buttonContainer}>
-            <Image source={require('../../images/setting.png')} />
+            <TouchableOpacity onPress={this._handleDelete.bind(this, note_id)}>
+              <Image stlye={styles.icon} source={require('../../images/setting.png')} />
+            </TouchableOpacity>
           </View>
         </View>
       </LinearGradient>
