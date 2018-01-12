@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   inner: {
     backgroundColor: 'transparent',
-    marginBottom: 10,
+    marginBottom: 30,
   },
   textfield: {
     fontSize: textStyle.fontSize.input,
