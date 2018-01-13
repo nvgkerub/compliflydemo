@@ -8,7 +8,8 @@ import {
   Text,
   TextInput,
   AsyncStorage,
-  Platform
+  Platform,
+  KeyboardAvoidingView
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import ButtonColored from '../ButtonColored';
@@ -18,6 +19,9 @@ import * as textStyle from '../../constants/textStyle';
 import * as AuthActions from '../../actions/AuthActions';
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
   container: {
     flex: 1,
   },
@@ -107,10 +111,6 @@ class PinScreen extends PureComponent {
     this._grabData();
   }
 
-  componentDidMount = () => {
-
-  }
-
   async _grabData() {
     // TODO: grab username and password from local and save to state
     const appKey = await AsyncStorage.getItem('appKey');
@@ -133,29 +133,31 @@ class PinScreen extends PureComponent {
 
   render() {
     return (
-      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
-        <View style={styles.inner}>
-          <Image source={require('../../images/logowhite.png')} style={styles.logo} />
-          {this.state.error != null ?
-            <Text style={styles.error}>{this.state.error}</Text>
-          : null}
-          <View style={styles.section}>
-            <TextInput
-              style={styles.textfield}
-              value={this.state.typedAppKey}
-              onChangeText={(text) =>this.setState({ typedAppKey: text })}
-            />
+      <KeyboardAvoidingView behavior='padding' style={styles.wrapper}>
+        <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
+          <View style={styles.inner}>
+            <Image source={require('../../images/logowhite.png')} style={styles.logo} />
+            {this.state.error != null ?
+              <Text style={styles.error}>{this.state.error}</Text>
+            : null}
+            <View style={styles.section}>
+              <TextInput
+                style={styles.textfield}
+                value={this.state.typedAppKey}
+                onChangeText={(text) =>this.setState({ typedAppKey: text })}
+              />
+            </View>
+            <View style={styles.sectionTwo}>
+              <ButtonColored label={strings.logIn} clicked={this._handleLogIn} />
+            </View>
+            <View style={styles.sectionTwo}>
+              <TouchableOpacity style={styles.forgotBttn} onPress={this._handleForgot}>
+                <Text style={styles.buttonTxtOnlyText}>{strings.forgotPinTxt}</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.sectionTwo}>
-            <ButtonColored label={strings.logIn} clicked={this._handleLogIn} />
-          </View>
-          <View style={styles.sectionTwo}>
-            <TouchableOpacity style={styles.forgotBttn} onPress={this._handleForgot}>
-              <Text style={styles.buttonTxtOnlyText}>{strings.forgotPinTxt}</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </LinearGradient>
+        </LinearGradient>
+      </KeyboardAvoidingView>
     );
   }
 }

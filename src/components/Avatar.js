@@ -20,6 +20,13 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: textStyle.fontSize.light,
     textAlign: 'center',
+  },
+  camera: {
+    width: 20,
+    resizeMode: 'contain',
+    position: 'absolute',
+    bottom: 0,
+    left: '40%',
   }
 });
 
@@ -39,10 +46,16 @@ class Avatar extends Component {
               style={styles.avatar}
             />
           :
-            <Image
-              style={styles.avatar}
-              source={{ uri: this.props.profileUrl }}
-            />
+            <View>
+              <Image
+                style={styles.avatar}
+                source={{ uri: this.props.profileUrl }}
+              />
+              <Image
+                style={styles.camera}
+                source={require('../images/pictureMssg.png')}
+              />
+            </View>
           }
         </TouchableOpacity>
         <Text style={styles.text}>{this.props.user.first_name} {this.props.user.middle_name} {this.props.user.last_name} </Text>

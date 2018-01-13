@@ -8,7 +8,8 @@ import {
   Alert,
   ScrollView,
   TouchableOpacity,
-  Image
+  Image,
+  KeyboardAvoidingView
 } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
@@ -21,6 +22,9 @@ import * as iconStyle from '../../constants/iconStyle';
 import ButtonColored from '../ButtonColored';
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     paddingTop: 30,
@@ -219,38 +223,40 @@ class FormScreen extends Component {
   render() {
     const { receiver, subject } = this.props.navigation.state.params.messageInfo;
     return (
-      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
-        <ScrollView style={styles.inner}>
-          <View style={styles.receiver}>
-            <Text style={styles.bold}>To:</Text>
-            <Text style={styles.light}>{receiver}</Text>
-          </View>
-          <View style={styles.subject}>
-            <Text style={styles.bold}>Subject:</Text>
-            <TextInput
-              style={styles.textfield}
-              value={subject}
-            />
-          </View>
-          <View style={styles.fileButtonContainer}>
-            <Text style={styles.bold}>File Upload:</Text>
-            <TouchableOpacity onPress={this._handleUploadFile.bind(this)}>
-              <Image style={styles.uploadIcon} source={require('../../images/upload2x.png')} />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.message}>
-            <Text style={styles.bold}>Message:</Text>
+      <KeyboardAvoidingView behavior='padding' style={styles.wrapper}>
+        <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
+          <ScrollView style={styles.inner}>
+            <View style={styles.receiver}>
+              <Text style={styles.bold}>To:</Text>
+              <Text style={styles.light}>{receiver}</Text>
+            </View>
+            <View style={styles.subject}>
+              <Text style={styles.bold}>Subject:</Text>
               <TextInput
-                style={styles.messageInput}
-                multiline
-                numberOfLines={6}
+                style={styles.textfield}
+                value={subject}
               />
-          </View>
-          <View style={styles.buttonContainer}>
-            <ButtonColored label={strings.form.sendButton} clicked={this._handleClick} />
-          </View>
-        </ScrollView>
-      </LinearGradient>
+            </View>
+            <View style={styles.fileButtonContainer}>
+              <Text style={styles.bold}>File Upload:</Text>
+              <TouchableOpacity onPress={this._handleUploadFile.bind(this)}>
+                <Image style={styles.uploadIcon} source={require('../../images/upload2x.png')} />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.message}>
+              <Text style={styles.bold}>Message:</Text>
+                <TextInput
+                  style={styles.messageInput}
+                  multiline
+                  numberOfLines={6}
+                />
+            </View>
+            <View style={styles.buttonContainer}>
+              <ButtonColored label={strings.form.sendButton} clicked={this._handleClick} />
+            </View>
+          </ScrollView>
+        </LinearGradient>
+      </KeyboardAvoidingView>
     );
   }
 }
