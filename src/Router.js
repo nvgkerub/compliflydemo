@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
-import { StackNavigator, DrawerNavigator, TabNavigator, addNavigationHelpers } from 'react-navigation';
+// import { bindActionCreators } from 'redux';
+// import PropTypes from 'prop-types';
+import {
+  StackNavigator,
+  DrawerNavigator, 
+  TabNavigator,
+  addNavigationHelpers
+} from 'react-navigation';
 import { Image, StyleSheet } from 'react-native';
 import SplashScreen from './components/screens/SplashScreen';
 import LoginScreen from './components/screens/LoginScreen';
@@ -422,14 +427,6 @@ const DrawerStack = DrawerNavigator({
       }
     }
   },
-  Pin: {
-    screen: PinScreen,
-    navigationOptions: {
-      drawer: {
-        label: 'Enter Pin',
-      }
-    }
-  },
   Main: {
     screen: MainStack,
   },
@@ -440,13 +437,21 @@ const DrawerStack = DrawerNavigator({
     activeTintColor: colors.white,
   },
   headerMode: 'none',
-  initialRouteName: 'Pin',
+  initialRouteName: 'Main',
 }
 );
 
 export const RootStack = StackNavigator({
   Splash: { screen: SplashScreen },
   Login: { screen: LoginScreen },
+  Pin: {
+    screen: PinScreen,
+    navigationOptions: {
+      drawer: {
+        label: 'Enter Pin',
+      }
+    }
+  },
   Dash: {
     screen: DrawerStack,
   },
