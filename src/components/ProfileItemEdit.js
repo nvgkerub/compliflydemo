@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+} from 'react-native';
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
-import { testAction } from '../actions/NotesActions';
 
 const styles = StyleSheet.create({
   container: {

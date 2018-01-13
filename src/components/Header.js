@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  StyleSheet
+} from 'react-native';
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
 import * as iconStyle from '../constants/iconStyle';

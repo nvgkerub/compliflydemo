@@ -8,9 +8,10 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import LinearGradient from 'react-native-linear-gradient';
-import { signIn, makeSignInRequest } from '../../actions/AuthActions';
+// import { signIn, makeSignInRequest } from '../../actions/AuthActions';
 import * as colors from '../../constants/colors';
 import * as iconStyle from '../../constants/iconStyle';
+import * as routeNames from '../../constants/routeNames';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,17 +46,13 @@ class SplashScreen extends Component {
   componentWillMount = () => {
     this._checkAppKey();
   }
-
-  componentDidMount = () => {
-    console.log('before mount', this.props);
-  }
-
+  
   async _checkAppKey() {
     const appKey = await AsyncStorage.getItem('appKey');
     if (appKey === null) {
-      this.props.navigation.navigate('Login');
+      this.props.navigation.navigate(routeNames.root.login);
     } else {
-      this.props.navigation.navigate('Pin');
+      this.props.navigation.navigate(routeNames.root.pin);
     }
   }
 

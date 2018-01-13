@@ -12,6 +12,7 @@ import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
+import * as routeNames from '../../constants/routeNames';
 import * as userAPI from '../../lib/api/userAPI';
 import JobItem from '../ListItem';
 import SearchBar from '../SearchBar';
@@ -46,7 +47,7 @@ class JobScreen extends Component {
   }
 
   _handleClick = (job) => {
-    this.props.navigation.navigate('ViewInfo', { jobInfo: job });
+    this.props.navigation.navigate(routeNames.job.view, { jobInfo: job });
   }
 
   _handleSearch(text) {
@@ -136,10 +137,10 @@ class JobScreen extends Component {
               }
               renderItem={({ item }) => (
                 <TouchableOpacity onPress={this._handleClick.bind(this, item)}>
-                <JobItem
-                  title={`${item.company_name}`}
-                  subtitle={item.generated_datetime}
-                />
+                  <JobItem
+                    title={`${item.company_name}`}
+                    subtitle={item.generated_datetime}
+                  />
                 </TouchableOpacity>
               )}
               keyExtractor={item => item.client_id}

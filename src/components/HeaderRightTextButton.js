@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  StyleSheet
+} from 'react-native';
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
-import * as strings from '../constants/strings';
 
 const styles = StyleSheet.create({
   container: {

@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import { DrawerItems, SafeAreaView } from 'react-navigation';
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
+import * as routeNames from '../constants/routeNames';
 import * as iconStyle from '../constants/iconStyle';
 
 const styles = StyleSheet.create({
@@ -28,7 +34,7 @@ class CustomDrawer extends Component {
       <View style={styles.wrapper}>
         <TouchableOpacity
           style={styles.closeBtn}
-          onPress={() => { this.props.navigation.navigate('DrawerClose'); }}
+          onPress={() => { this.props.navigation.navigate(routeNames.drawer.close); }}
         >
           <Image style={styles.icon} source={require('../images/xicon2x.png')} />
         </TouchableOpacity>

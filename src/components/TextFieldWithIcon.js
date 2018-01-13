@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, TextInput, StyleSheet, Image, Platform } from 'react-native';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Image,
+  Platform
+} from 'react-native';
 import PropTypes from 'prop-types';
 import * as colors from '../constants/colors';
 

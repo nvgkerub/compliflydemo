@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
+import * as routeNames from '../../constants/routeNames';
 import MessagesButtons from '../MessagesButtons';
 
 const styles = StyleSheet.create({
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
 class ManagerMessagesScreen extends Component {
 
   _handleClick = () => {
-    this.props.navigation.navigate('Form');
+    this.props.navigation.navigate(routeNames.direct.form);
   }
 
   render() {

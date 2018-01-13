@@ -3,7 +3,6 @@ import {
   ScrollView,
   View,
   StyleSheet,
-  StatusBar,
   Image,
   Text,
   ActivityIndicator
@@ -127,7 +126,6 @@ class JobInfoScreen extends Component {
     return (
       <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
           {this._renderContent()}
-        <StatusBar hidden />
       </LinearGradient>
     );
   }

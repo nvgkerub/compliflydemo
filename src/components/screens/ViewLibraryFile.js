@@ -3,7 +3,6 @@ import {
   ScrollView,
   View,
   StyleSheet,
-  Text,
   ActivityIndicator,
   WebView,
   Dimensions
@@ -11,9 +10,7 @@ import {
 import { connect } from 'react-redux';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
-import ButtonColored from '../ButtonColored';
 import * as colors from '../../constants/colors';
-import * as strings from '../../constants/strings';
 import * as userAPI from '../../lib/api/userAPI';
 
 const styles = StyleSheet.create({

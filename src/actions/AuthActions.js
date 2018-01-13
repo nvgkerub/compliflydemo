@@ -2,6 +2,7 @@ import { NavigationActions } from 'react-navigation';
 import { AsyncStorage } from 'react-native';
 import axios from 'axios';
 import * as AuthTypes from '../constants/AuthTypes';
+import * as routeNames from '../constants/routeNames';
 import * as userAPI from '../lib/api/userAPI';
 
 function signInSuccess(token, username, password) {
@@ -16,7 +17,7 @@ function signInSuccess(token, username, password) {
 			}
 		});
 		// dispatch(grabUserPic(token));
-		dispatch(NavigationActions.navigate({ routeName: 'Dash' }));
+		dispatch(NavigationActions.navigate({ routeName: routeNames.root.drawer }));
 	};
 }
 

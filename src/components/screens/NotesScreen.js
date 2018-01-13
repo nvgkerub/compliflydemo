@@ -17,6 +17,7 @@ import AddNoteButton from '../AddNoteButton';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as textStyle from '../../constants/textStyle';
+import * as routeNames from '../../constants/routeNames';
 
 const styles = StyleSheet.create({
   container: {
@@ -142,7 +143,7 @@ class NotesScreen extends Component {
   }
 
   _viewNote(item) {
-    this.props.navigation.navigate('ViewNote', {
+    this.props.navigation.navigate(routeNames.notes.view, {
       note: item,
       refresh: this._makeAPIRequest,
     });

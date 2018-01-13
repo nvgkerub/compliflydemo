@@ -4,7 +4,6 @@ import {
   Text,
   Image,
   StyleSheet,
-  TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as colors from '../constants/colors';
