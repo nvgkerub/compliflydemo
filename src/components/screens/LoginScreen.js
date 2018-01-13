@@ -6,7 +6,9 @@ import {
   Image,
   TouchableOpacity,
   Text,
-  AsyncStorage
+  AsyncStorage,
+  ScrollView,
+  KeyboardAvoidingView,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import UsernameField from '../UsernameField';
@@ -17,6 +19,9 @@ import LineSeperator from '../LineSeperator';
 import * as AuthActions from '../../actions/AuthActions';
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
   container: {
     flex: 1,
   },
@@ -108,36 +113,38 @@ class LoginScreen extends PureComponent {
 
   render() {
     return (
-      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
-        <View style={styles.inner}>
-          <Image source={require('../../images/logowhite.png')} style={styles.logo} />
-          {this.props.error != null ?
-            <Text style={styles.error}>{this.props.error}</Text>
-          : null}
-          <View style={styles.section}>
-            <UsernameField handleTxtChange={this._handleUsername} />
+      <KeyboardAvoidingView behavior='padding' style={styles.wrapper}>
+        <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
+          <View style={styles.inner}>
+            <Image source={require('../../images/logowhite.png')} style={styles.logo} />
+            {this.props.error != null ?
+              <Text style={styles.error}>{this.props.error}</Text>
+            : null}
+            <View style={styles.section}>
+              <UsernameField handleTxtChange={this._handleUsername} />
+            </View>
+            <View style={styles.section}>
+              <PasswordField handleTxtChange={this._handlePassword} />
+            </View>
+            <View style={styles.section}>
+              <TouchableOpacity style={styles.button} onPress={this._handleLogIn}>
+                <Text style={styles.buttonTxt}>{strings.logIn}</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.section}>
+              <TouchableOpacity style={styles.buttonTxtOnly}>
+                <Text style={styles.buttonTxtOnlyText}>{strings.forgotPassword}</Text>
+              </TouchableOpacity>
+            </View>
+            <LineSeperator />
+            <View style={styles.sectionTwo}>
+              <TouchableOpacity style={styles.SignUpButtons}>
+                <Text style={styles.buttonTxtOnlyText}>{strings.signUp}</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.section}>
-            <PasswordField handleTxtChange={this._handlePassword} />
-          </View>
-          <View style={styles.section}>
-            <TouchableOpacity style={styles.button} onPress={this._handleLogIn}>
-              <Text style={styles.buttonTxt}>{strings.logIn}</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.section}>
-            <TouchableOpacity style={styles.buttonTxtOnly}>
-              <Text style={styles.buttonTxtOnlyText}>{strings.forgotPassword}</Text>
-            </TouchableOpacity>
-          </View>
-          <LineSeperator />
-          <View style={styles.sectionTwo}>
-            <TouchableOpacity style={styles.SignUpButtons}>
-              <Text style={styles.buttonTxtOnlyText}>{strings.signUp}</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </LinearGradient>
+        </LinearGradient>
+      </KeyboardAvoidingView>
     );
   }
 }
