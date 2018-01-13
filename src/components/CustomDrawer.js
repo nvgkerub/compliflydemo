@@ -30,7 +30,7 @@ class CustomDrawer extends Component {
           style={styles.closeBtn}
           onPress={() => { this.props.navigation.navigate('DrawerClose'); }}
         >
-          <Image style={styles.icon} source={require('../images/close.png')} />
+          <Image style={styles.icon} source={require('../images/xicon2x.png')} />
         </TouchableOpacity>
         <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
           <DrawerItems {...this.props} />

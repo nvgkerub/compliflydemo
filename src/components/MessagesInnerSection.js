@@ -37,25 +37,25 @@ class MessegesInnerSection extends Component {
   _renderIcon() {
     switch (this.props.type) {
       case strings.directLabel.manager:
-        return <Image style={styles.icon} source={require('../images/manager.png')} />;
+        return <Image style={styles.icon} source={require('../images/directManager2x.png')} />;
 
       case strings.directLabel.hrLabel:
-        return <Image style={styles.icon} source={require('../images/HR.png')} />;
+        return <Image style={styles.icon} source={require('../images/directHr2x.png')} />;
 
       case strings.directLabel.safety:
-        return <Image style={styles.icon} source={require('../images/safety.png')} />;
+        return <Image style={styles.icon} source={require('../images/directSafety2x.png')} />;
 
       case strings.directLabel.executive:
-        return <Image style={styles.icon} source={require('../images/executive.png')} />;
+        return <Image style={styles.icon} source={require('../images/directExecutive2x.png')} />;
 
       case strings.directLabel.picture:
-        return <Image style={styles.icon} source={require('../images/pictureMssg.png')} />;
+        return <Image style={styles.icon} source={require('../images/directPicture2x.png')} />;
 
       case strings.directLabel.video:
-        return <Image style={styles.icon} source={require('../images/videoMssg.png')} />;
+        return <Image style={styles.icon} source={require('../images/directVideo2x.png')} />;
 
       default:
-        return <Image style={styles.icon} source={require('../images/messages.png')} />;
+        return <Image style={styles.icon} source={require('../images/directManager2x.png')} />;
     }
   }
 

@@ -39,7 +39,7 @@ class JobItem extends Component {
           <Text style={styles.bold}>{this.props.title}</Text>
           <Text style={styles.light}>Sub title</Text>
         </View>
-        <Image style={styles.icon} source={require('../images/setting.png')} />
+        <Image style={styles.icon} source={require('../images/dots2x.png')} />
       </View>
     );
   }

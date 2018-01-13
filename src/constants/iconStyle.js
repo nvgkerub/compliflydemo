@@ -15,12 +15,14 @@ export const dots = {
 };
 export const nav = {
   close: {
-    width: 40,
+    width: 20,
     resizeMode: 'contain',
+    marginLeft: 15,
   },
   open: {
-    width: 50,
+    width: 20,
     resizeMode: 'contain',
+    marginLeft: 15,
   },
   back: {
     width: 40,
@@ -34,6 +36,11 @@ export const nav = {
   audio: {
     width: 15,
     resizeMode: 'contain',
+  },
+  logo: {
+    width: 35,
+    resizeMode: 'contain',
+    marginLeft: 30,
   }
 };
 
@@ -43,15 +50,47 @@ export const setting = {
 };
 
 export const dash = {
-  width: 40,
-  resizeMode: 'contain',
-  marginRight: 35,
-  marginLeft: 15,
+  mssg: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+    marginRight: 35,
+    marginLeft: 15,
+  },
+  job: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+    marginRight: 35,
+    marginLeft: 15,
+  },
+  library: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+    marginRight: 35,
+    marginLeft: 15,
+  },
+  compliance: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+    marginRight: 35,
+    marginLeft: 15,
+  },
+  notes: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+    marginRight: 35,
+    marginLeft: 15,
+  },
 };
 
 export const message = {
   direct: {
     width: 40,
+    height: 40,
     resizeMode: 'contain',
     marginRight: 35,
     marginLeft: 15,
@@ -72,6 +111,19 @@ export const searchBar = {
 export const note = {
   delete: {
     width: 20,
+    resizeMode: 'contain',
+  },
+  newnote: {
+    resizeMode: 'contain',
+    width: 20,
+    marginRight: 10,
+  }
+};
+
+export const splash = {
+  logo: {
+    marginBottom: 20,
+    height: 200,
     resizeMode: 'contain',
   }
 };

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
   },
-  icon: iconStyle.dash,
+  icon: iconStyle.dash.job,
   bold: textStyle.bold,
   light: textStyle.light,
   inner: {
@@ -33,7 +33,7 @@ class JobSection extends Component {
     return (
       <TouchableOpacity onPress={this._clicked}>
         <View style={styles.container}>
-          <Image style={styles.icon} source={require('../../images/search.png')} />
+          <Image style={styles.icon} source={require('../../images/search3x.png')} />
           <View style={styles.inner}>
             <Text style={styles.bold}>{strings.dashboard.JobTitle}</Text>
             <Text style={styles.light}>{strings.dashboard.JobSubTitle}</Text>

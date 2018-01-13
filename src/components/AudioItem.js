@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginRight: 10,
   },
-  icon: iconStyle.library,
+  icon: iconStyle.dots,
 });
 
 class AudioItem extends Component {
@@ -49,7 +49,7 @@ class AudioItem extends Component {
             <Text style={styles.bold}>{this.props.title}</Text>
             <Text style={styles.light}>{this.props.subTitle}</Text>
           </View>
-          <Image style={styles.icon} source={require('../images/dots.png')} />
+          <Image style={styles.icon} source={require('../images/dots2x.png')} />
         </TouchableOpacity>
       </View>
     );

@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Image,
+  AsyncStorage
+} from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import LinearGradient from 'react-native-linear-gradient';
 import { signIn, makeSignInRequest } from '../../actions/AuthActions';
 import * as colors from '../../constants/colors';
+import * as iconStyle from '../../constants/iconStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,11 +28,7 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     paddingRight: 30,
   },
-  logo: {
-    marginBottom: 20,
-    height: 200,
-    resizeMode: 'contain',
-  },
+  logo: iconStyle.splash.logo,
 });
 
 class SplashScreen extends Component {
@@ -61,7 +63,7 @@ class SplashScreen extends Component {
     return (
       <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
-          <Image source={require('../../images/logowhite.png')} style={styles.logo} />
+          <Image source={require('../../images/splashLogo3x.png')} style={styles.logo} />
         </View>
       </LinearGradient>
     );

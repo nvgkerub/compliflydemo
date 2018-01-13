@@ -76,7 +76,7 @@ class TopProfileSection extends Component {
           </View>
           <TouchableOpacity onPress={this._clicked}>
             <View>
-              <Image style={styles.settingIcon} source={require('../images/setting.png')} />
+              <Image style={styles.settingIcon} source={require('../images/setting2x.png')} />
             </View>
           </TouchableOpacity>
         </View>

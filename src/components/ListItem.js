@@ -47,7 +47,7 @@ class ListItem extends Component {
             <Text style={styles.bold}>{this.props.title}</Text>
             <Text style={styles.light}>{this.props.subtitle}</Text>
           </View>
-            <Image style={styles.icon} source={require('../images/dots.png')} />
+            <Image style={styles.icon} source={require('../images/dots2x.png')} />
         </TouchableOpacity>
       </View>
     );

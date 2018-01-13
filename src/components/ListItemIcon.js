@@ -43,7 +43,7 @@ class ListItemIcon extends Component {
           }
         </View>
         <TouchableOpacity>
-          <Image style={styles.icon} source={require('../images/dots.png')} />
+          <Image style={styles.icon} source={require('../images/dots2x.png')} />
         </TouchableOpacity>
       </View>
     );

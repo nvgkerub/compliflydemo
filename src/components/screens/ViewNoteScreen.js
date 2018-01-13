@@ -100,7 +100,7 @@ class ViewNoteScreen extends Component {
           </View>
           <View style={styles.buttonContainer}>
             <TouchableOpacity onPress={this._handleDelete.bind(this, note_id)}>
-              <Image stlye={styles.icon} source={require('../../images/setting.png')} />
+              <Image style={styles.icon} source={require('../../images/trash2x.png')} />
             </TouchableOpacity>
           </View>
         </View>
