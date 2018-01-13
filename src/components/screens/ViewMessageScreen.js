@@ -74,15 +74,23 @@ class ViewMessageScreen extends Component {
   }
 
   handleDelete = () => {
+    console.log(this.props);
     axios.get(userAPI.message.deleteMessage, {
       params: {
         access_token: this.props.token,
         message_id: this.state.data.message_id,
       }
     })
-      .then(res => (res.data.status === 'success' ? this.props.navigation.goBack() : null))
+      .then(res => (res.data.status === 'success' ? this._refreshDelete()
+       : null))
       .catch(err => console.log('error deleting message', err));
   }
+
+  _refreshDelete() {
+    this.props.navigation.state.params.refresh();
+    this.props.navigation.goBack();
+  }
+
   _handleClick(message) {
     this.props.navigation.navigate('Reply', { message });
   }

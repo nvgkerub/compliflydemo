@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   FlatList,
+  Text,
 } from 'react-native';
 import { List } from 'react-native-elements';
 import { connect } from 'react-redux';
@@ -15,6 +16,7 @@ import ListItemIcon from '../ListItemIcon';
 import * as colors from '../../constants/colors';
 import * as userAPI from '../../lib/api/userAPI';
 import * as strings from '../../constants/strings';
+import * as textStyle from '../../constants/textStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,6 +30,13 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
   },
+  txt: {
+    marginTop: 20,
+    textAlign: 'center',
+    color: colors.white,
+    fontSize: textStyle.fontSize.light,
+    fontWeight: textStyle.fontWeight.light,
+  }
 });
 
 class InboxScreen extends Component {
@@ -51,10 +60,11 @@ class InboxScreen extends Component {
   }
 
   _handleClick = (message) => {
-    this.props.navigation.navigate('ViewMessage', { message });
+    this.props.navigation.navigate('ViewMessage', { message, refresh: this._makeAPIRequest });
   }
 
   _makeAPIRequest = () => {
+    console.log('reached');
     this.setState({ loading: true });
     axios.get(userAPI.message.retrieveInbox, {
       params: {
@@ -158,6 +168,11 @@ class InboxScreen extends Component {
               onRefresh={this._handleRefresh}
             />
           </List>
+          {this.state.data.length === 0 ?
+            <Text style={styles.txt}>No messages</Text>
+            :
+            null
+          }
         </View>
       </LinearGradient>
     );
