@@ -105,7 +105,7 @@ class SearchBar extends Component {
             />
           </View>
           <TouchableOpacity onPress={this._openSort.bind(this)}>
-            <Image style={styles.icon} source={require('../images/filter.png')} />
+            <Image style={styles.icon} source={require('../images/sort2x.png')} />
           </TouchableOpacity>
         </View>
         {this.state.sortOpen ?

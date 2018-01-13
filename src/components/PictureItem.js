@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginRight: 10,
   },
-  icon: iconStyle.library,
+  icon: iconStyle.dots,
 });
 
 class PictureItem extends Component {
@@ -59,7 +59,7 @@ class PictureItem extends Component {
               null
             }
           </View>
-          <Image style={styles.icon} source={require('../images/dots.png')} />
+          <Image style={styles.icon} source={require('../images/dots2x.png')} />
         </TouchableOpacity>
       </View>
     );

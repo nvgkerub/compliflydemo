@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Image,
+  StyleSheet
+} from 'react-native';
 import { connect } from 'react-redux';
-import * as colors from '../constants/colors';
-import * as strings from '../constants/strings';
+import * as iconStyle from '../constants/iconStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,12 +14,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  image: {
-    resizeMode: 'contain',
-    width: 20,
-    height: 20,
-    marginRight: 10,
-  }
+  image: iconStyle.note.newnote,
 });
 
 class AddNoteButton extends Component {
@@ -34,7 +33,7 @@ class AddNoteButton extends Component {
     return (
       <TouchableOpacity onPress={this._handleClicked}>
         <View style={styles.container}>
-          <Image style={styles.image} source={require('../images/write.png')} />
+          <Image style={styles.image} source={require('../images/newnote2x.png')} />
         </View>
       </TouchableOpacity>
     );

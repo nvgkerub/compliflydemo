@@ -22,11 +22,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  middle: {
-    marginLeft: 20,
-  },
   bell: iconStyle.nav.bell,
   mic: iconStyle.nav.audio,
+  logo: iconStyle.nav.logo,
 });
 
 class Header extends Component {
@@ -50,16 +48,16 @@ class Header extends Component {
           onPress={this._openDrawer}
         >
           <View style={styles.left}>
-            <Image style={styles.navIcon} source={require('../images/navIcon.png')} />
+            <Image style={styles.navIcon} source={require('../images/nav2x.png')} />
           </View>
         </TouchableOpacity>
-        <Image style={styles.middle} source={require('../images/logo_small.png')} />
+        <Image style={styles.logo} source={require('../images/logoSmall2x.png')} />
         <View style={styles.right}>
           <TouchableOpacity onPress={this._goToNotifications}>
-            <Image style={styles.bell} source={require('../images/bellIcon.png')} />
+            <Image style={styles.bell} source={require('../images/bell2x.png')} />
           </TouchableOpacity>
           <TouchableOpacity onPress={this._goToAudio}>
-            <Image style={styles.mic} source={require('../images/micIcon.png')} />
+            <Image style={styles.mic} source={require('../images/mic2x.png')} />
           </TouchableOpacity>
         </View>
       </View>

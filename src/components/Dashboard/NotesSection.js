@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
   },
-  icon: iconStyle.dash,
+  icon: iconStyle.dash.notes,
   bold: textStyle.bold,
   light: textStyle.light,
   inner: {
@@ -38,7 +38,7 @@ class NotesSection extends Component {
     return (
       <TouchableOpacity onPress={this._clicked}>
         <View style={styles.container}>
-          <Image style={styles.icon} source={require('../../images/notes.png')} />
+          <Image style={styles.icon} source={require('../../images/notes2x.png')} />
           <View style={styles.inner}>
             <Text style={styles.bold}>{strings.dashboard.NotesTitle}</Text>
             <Text style={styles.light}>{strings.dashboard.NotesSubTitle}</Text>

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
   },
-  icon: iconStyle.dash,
+  icon: iconStyle.dash.compliance,
   bold: textStyle.bold,
   light: textStyle.light,
   inner: {
@@ -38,7 +38,7 @@ class HRSection extends Component {
     return (
       <TouchableOpacity onPress={this._clicked}>
         <View style={styles.container}>
-          <Image style={styles.icon} source={require('../../images/hrfiles.png')} />
+          <Image style={styles.icon} source={require('../../images/compliance2x.png')} />
           <View style={styles.inner}>
             <Text style={styles.bold}>{strings.dashboard.HRTitle}</Text>
             <Text style={styles.light}>{strings.dashboard.HRSubTitle}</Text>

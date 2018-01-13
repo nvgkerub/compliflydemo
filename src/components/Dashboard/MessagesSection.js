@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     marginBottom: 10,
   },
-  icon: iconStyle.dash,
+  icon: iconStyle.dash.mssg,
   bold: textStyle.bold,
   light: textStyle.light,
   inner: {
@@ -39,7 +39,7 @@ class MessagesSection extends Component {
     return (
       <TouchableOpacity onPress={this._clicked}>
         <View style={styles.container}>
-          <Image style={styles.icon} source={require('../../images/messages.png')} />
+          <Image style={styles.icon} source={require('../../images/mssg2x.png')} />
           <View style={styles.inner}>
             <Text style={styles.bold}>{strings.dashboard.MessagesTitle}</Text>
             <Text style={styles.light}>{strings.dashboard.MessagesSubTitle}</Text>

@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
   inner: {
     backgroundColor: 'transparent',
     marginTop: 30,
+    flex: 1,
   },
   row: {
     flexDirection: 'row',
