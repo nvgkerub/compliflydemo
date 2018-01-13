@@ -14,6 +14,7 @@ import ButtonColored from '../ButtonColored';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as userAPI from '../../lib/api/userAPI';
+import * as routeNames from '../../constants/routeNames';
 import * as textStyle from '../../constants/textStyle';
 
 const styles = StyleSheet.create({
@@ -92,7 +93,7 @@ class ViewMessageScreen extends Component {
   }
 
   _handleClick(message) {
-    this.props.navigation.navigate('Reply', { message });
+    this.props.navigation.navigate(routeNames.inbox.reply, { message });
   }
 
   _renderItems() {

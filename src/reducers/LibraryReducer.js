@@ -7,7 +7,6 @@ const defaultState = {
 };
 
 function GRAB_PDF_LIST(state, action) {
-  console.log(action.payload);
   return {
     ...state,
     pdfList: action.payload

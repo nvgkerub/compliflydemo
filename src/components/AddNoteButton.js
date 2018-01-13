@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as iconStyle from '../constants/iconStyle';
+import * as routeNames from '../constants/routeNames';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
 class AddNoteButton extends Component {
 
   _handleClicked = () => {
-    this.props.navigation.navigate('Add', {
+    this.props.navigation.navigate(routeNames.notes.add, {
       refresh: this._handleRefresh
     });
   }

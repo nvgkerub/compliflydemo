@@ -13,7 +13,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import ComplianceItem from '../ComplianceItem';
 import SearchBar from '../SearchBar';
 import * as colors from '../../constants/colors';
-import * as strings from '../../constants/strings';
+import * as routeNames from '../../constants/routeNames';
 import * as userAPI from '../../lib/api/userAPI';
 
 const styles = StyleSheet.create({
@@ -119,7 +119,10 @@ class HRScreen extends Component {
   }
 
   _handleClick(item) {
-    this.props.navigation.navigate('ViewCompliance', { message: item, refresh: this._makeAPIRequest });
+    this.props.navigation.navigate(routeNames.compliance.view, {
+      message: item,
+      refresh: this._makeAPIRequest
+    });
   }
 
   render() {

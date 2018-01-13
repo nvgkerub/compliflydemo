@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Text,
   AsyncStorage,
-  ScrollView,
   KeyboardAvoidingView,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -17,6 +16,7 @@ import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import LineSeperator from '../LineSeperator';
 import * as AuthActions from '../../actions/AuthActions';
+import * as routeNames from '../../constants/routeNames';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -108,7 +108,7 @@ class LoginScreen extends PureComponent {
     this.setState({ password: text });
   }
   navigateToDash = () => {
-    this.props.navigation.navigate('Main');
+    this.props.navigation.navigate(routeNames.root.drawer);
   }
 
   render() {

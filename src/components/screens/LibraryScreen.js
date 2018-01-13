@@ -15,6 +15,7 @@ import LibraryItem from '../LibraryItem';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as userAPI from '../../lib/api/userAPI';
+import * as routeNames from '../../constants/routeNames';
 
 const styles = StyleSheet.create({
   container: {
@@ -79,7 +80,7 @@ class LibraryScreen extends Component {
   }
 
   _handleClick(file) {
-    this.props.navigation.navigate('ViewFile', { file });
+    this.props.navigation.navigate(routeNames.dash.viewFile, { file });
   }
 
   _handleSearch(text) {

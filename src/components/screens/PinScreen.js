@@ -17,6 +17,7 @@ import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as textStyle from '../../constants/textStyle';
 import * as AuthActions from '../../actions/AuthActions';
+import * as routeNames from '../../constants/routeNames';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -128,7 +129,7 @@ class PinScreen extends PureComponent {
   }
 
   _handleForgot = () => {
-    this.props.navigation.navigate('Login');
+    this.props.navigation.navigate(routeNames.root.login);
   }
 
   render() {

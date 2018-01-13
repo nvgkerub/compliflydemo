@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 import {
   StackNavigator,
-  DrawerNavigator, 
+  DrawerNavigator,
   TabNavigator,
   addNavigationHelpers
 } from 'react-navigation';
@@ -41,10 +41,11 @@ import HRMessagesScreen from './components/screens/HRMessagesScreen';
 import SafetyMessagesScreen from './components/screens/SafetyMessagesScreen';
 import ExecutiveMessagesScreen from './components/screens/ExecutiveMessagesScreen';
 import CustomDrawer from './components/CustomDrawer';
-import HideNavItem from './components/HideNavItem';
+// import HideNavItem from './components/HideNavItem';
 import * as colors from './constants/colors';
-import * as AuthActions from './actions/AuthActions';
+// import * as AuthActions from './actions/AuthActions';
 import * as strings from './constants/strings';
+import * as routeNames from './constants/routeNames';
 
 const styles = StyleSheet.create({
   icon: {
@@ -52,31 +53,31 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   }
 });
-
-const AuthStack = StackNavigator({
-  Main: { screen: LoginScreen },
-}, {
-  initialRouteName: 'Main',
-});
+//
+// const AuthStack = StackNavigator({
+//   Main: { screen: LoginScreen },
+// }, {
+//   initialRouteName: 'Main',
+// });
 
 const JobStack = StackNavigator({
   // Home: { screen: HomeScreen },
-  Main: {
+  [routeNames.job.main]: {
     screen: JobScreen,
     navigationOptions: {
       title: strings.screen.job
     }
   },
-  ViewInfo: {
+  [routeNames.job.view]: {
     screen: JobInfoScreen,
   }
 }, {
   headerMode: 'none',
-  initialRouteName: 'Main',
+  initialRouteName: routeNames.job.main,
 });
 
 const ProfileStack = StackNavigator({
-  Main: {
+  [routeNames.profile.main]: {
     screen: ProfileScreen,
     navigationOptions: {
       title: strings.screen.profile
@@ -84,11 +85,11 @@ const ProfileStack = StackNavigator({
   },
 }, {
   headerMode: 'none',
-  initialRouteName: 'Main',
+  initialRouteName: routeNames.profile.main,
 });
 
 const LibraryStack = TabNavigator({
-  Main: {
+  [routeNames.library.main]: {
     screen: LibraryScreen,
     navigationOptions: {
       title: strings.screen.library,
@@ -100,7 +101,7 @@ const LibraryStack = TabNavigator({
       ),
     },
   },
-  Pictures: {
+  [routeNames.library.picture]: {
     screen: LibraryPictureScreen,
     navigationOptions: {
       title: strings.screen.library,
@@ -112,7 +113,7 @@ const LibraryStack = TabNavigator({
       ),
     }
   },
-  Videos: {
+  [routeNames.library.video]: {
     screen: LibraryVideoScreen,
     navigationOptions: {
       title: strings.screen.library,
@@ -124,7 +125,7 @@ const LibraryStack = TabNavigator({
       ),
     }
   },
-  Audios: {
+  [routeNames.library.audio]: {
     screen: LibraryAudioScreen,
     navigationOptions: {
       title: strings.screen.library,
@@ -140,7 +141,7 @@ const LibraryStack = TabNavigator({
   headerMode: 'none',
   tabBarPosition: 'bottom',
   animationEnabled: true,
-  initialRouteName: 'Main',
+  initialRouteName: routeNames.library.main,
   tabBarOptions: {
     style: {
       backgroundColor: colors.white,
@@ -157,34 +158,34 @@ const LibraryStack = TabNavigator({
 });
 
 const HRStack = StackNavigator({
-  Main: {
+  [routeNames.compliance.main]: {
     screen: HRScreen,
     navigationOptions: {
       title: strings.screen.hrFiles
     }
   },
-  ViewCompliance: {
+  [routeNames.compliance.view]: {
     screen: ViewCompliance,
   }
 }, {
   headerMode: 'none',
-  initialRouteName: 'Main',
+  initialRouteName: routeNames.compliance.main,
 });
 
 const NotesStack = StackNavigator({
-  Main: {
+  [routeNames.notes.main]: {
     screen: NotesScreen,
     navigationOptions: {
       title: strings.screen.notes
     }
   },
-  Add: {
+  [routeNames.notes.add]: {
     screen: AddNotesScreen,
     navigationOptions: {
       title: strings.screen.notes
     }
   },
-  ViewNote: {
+  [routeNames.notes.view]: {
     screen: ViewNoteScreen,
     navigationOptions: {
       title: strings.screen.notes
@@ -192,53 +193,53 @@ const NotesStack = StackNavigator({
   },
 }, {
   headerMode: 'none',
-  initialRouteName: 'Main',
+  initialRouteName: routeNames.notes.main,
 });
 
 const DirectMessagesStack = StackNavigator({
-  Main: {
+  [routeNames.direct.main]: {
     screen: MessagesScreen,
     navigationOptions: {
       tabBarVisible: false,
     }
   },
-  Manager: {
+  [routeNames.direct.manager]: {
     screen: ManagerMessagesScreen,
     navigationOptions: {
       tabBarVisible: false,
     }
   },
-  Hr: {
+  [routeNames.direct.compliance]: {
     screen: HRMessagesScreen,
     navigationOptions: {
       tabBarVisible: false,
     }
   },
-  Safety: {
+  [routeNames.direct.safety]: {
     screen: SafetyMessagesScreen,
     navigationOptions: {
       tabBarVisible: false,
     }
   },
-  Executive: {
+  [routeNames.direct.executive]: {
     screen: ExecutiveMessagesScreen,
     navigationOptions: {
       tabBarVisible: false,
     }
   },
-  Picture: {
+  [routeNames.direct.picture]: {
     screen: MediaFormScreen,
     navigationOptions: {
       tabBarVisible: false,
     }
   },
-  Video: {
+  [routeNames.direct.video]: {
     screen: MediaFormScreen,
     navigationOptions: {
       tabBarVisible: false,
     }
   },
-  Form: {
+  [routeNames.direct.form]: {
     screen: FormScreen,
     navigationOptions: {
       tabBarVisible: false,
@@ -246,23 +247,23 @@ const DirectMessagesStack = StackNavigator({
   }
 }, {
   headerMode: 'none',
-  initialRouteName: 'Main',
+  initialRouteName: routeNames.direct.main,
 });
 
 const InboxStack = StackNavigator({
-  Main: {
+  [routeNames.inbox.main]: {
     screen: InboxScreen,
     navigationOptions: {
       tabBarVisible: false,
     }
   },
-  ViewMessage: {
+  [routeNames.inbox.view]: {
     screen: ViewMessageScreen,
     navigationOptions: {
       tabBarVisible: false,
     }
   },
-  Reply: {
+  [routeNames.inbox.reply]: {
     screen: InboxFormScreen,
     navigationOptions: {
       tabBarVisible: false,
@@ -270,16 +271,16 @@ const InboxStack = StackNavigator({
   }
 }, {
   headerMode: 'none',
-  initialRouteName: 'Main',
+  initialRouteName: routeNames.inbox.main,
 });
 const SentStack = StackNavigator({
-  Main: {
+  [routeNames.sent.main]: {
     screen: SentScreen,
     navigationOptions: {
       tabBarVisible: false,
     }
   },
-  ViewMessage: {
+  [routeNames.sent.view]: {
     screen: ViewSentMessageScreen,
     navigationOptions: {
       tabBarVisible: false,
@@ -287,23 +288,23 @@ const SentStack = StackNavigator({
   },
 }, {
   headerMode: 'none',
-  initialRouteName: 'Main',
+  initialRouteName: routeNames.sent.main,
 });
 
 const MessagesStack = TabNavigator({
-  Main: {
+  [routeNames.messages.direct]: {
     screen: DirectMessagesStack,
     navigationOptions: {
       title: strings.messagesScreen.directTab,
     }
   },
-  Inbox: {
+  [routeNames.messages.inbox]: {
     screen: InboxStack,
     navigationOptions: {
       title: strings.messagesScreen.inboxTab
     }
   },
-  Sent: {
+  [routeNames.messages.sent]: {
     screen: SentStack,
     navigationOptions: {
       title: strings.messagesScreen.sentTab
@@ -313,7 +314,7 @@ const MessagesStack = TabNavigator({
   headerMode: 'none',
   tabBarPosition: 'top',
   animationEnabled: true,
-  initialRouteName: 'Main',
+  initialRouteName: routeNames.messages.direct,
   tabBarOptions: {
     style: {
       backgroundColor: colors.blue,
@@ -331,7 +332,7 @@ const MessagesStack = TabNavigator({
 
 
 const MainStack = StackNavigator({
-  Home: {
+  [routeNames.dash.home]: {
     screen: HomeScreen,
     navigationOptions: {
       headerTintColor: colors.blueDark,
@@ -340,43 +341,43 @@ const MainStack = StackNavigator({
       }
     }
   },
-  Job: {
+  [routeNames.dash.job]: {
     screen: JobStack,
     navigationOptions: {
       headerTintColor: colors.blueDark,
     }
   },
-  Profile: {
+  [routeNames.dash.profile]: {
     screen: ProfileStack,
     navigationOptions: {
       headerTintColor: colors.blueDark,
     }
   },
-  Library: {
+  [routeNames.dash.library]: {
     screen: LibraryStack,
     navigationOptions: {
       headerTintColor: colors.blueDark,
     }
   },
-  HRScreen: {
+  [routeNames.dash.compliance]: {
     screen: HRStack,
     navigationOptions: {
       headerTintColor: colors.blueDark,
     }
   },
-  Notes: {
+  [routeNames.dash.notes]: {
     screen: NotesStack,
     navigationOptions: {
       headerTintColor: colors.blueDark,
     }
   },
-  Messages: {
+  [routeNames.dash.messages]: {
     screen: MessagesStack,
     navigationOptions: {
       headerTintColor: colors.blueDark,
     }
   },
-  Audio: {
+  [routeNames.dash.audio]: {
     screen: AudioScreen,
     navigationOptions: {
       headerTintColor: colors.blueDark,
@@ -384,7 +385,7 @@ const MainStack = StackNavigator({
       tabBarVisible: false,
     },
   },
-  Notifications: {
+  [routeNames.dash.notifications]: {
     screen: NotificationScreen,
     navigationOptions: {
       headerTintColor: colors.blueDark,
@@ -392,7 +393,7 @@ const MainStack = StackNavigator({
       tabBarVisible: false,
     },
   },
-  ViewFile: {
+  [routeNames.dash.viewFile]: {
     screen: ViewLibraryFile,
     navigationOptions: {
       headerTintColor: colors.blueDark,
@@ -406,8 +407,8 @@ const MainStack = StackNavigator({
     inactiveTintColor: colors.white,
     activeTintColor: colors.white,
   },
-  initialRouteName: 'Home',
-}
+  initialRouteName: routeNames.dash.home,
+  }
 );
 
 const DrawerStack = DrawerNavigator({
@@ -427,7 +428,7 @@ const DrawerStack = DrawerNavigator({
       }
     }
   },
-  Main: {
+  [routeNames.dash.dashboard]: {
     screen: MainStack,
   },
 }, {
@@ -437,14 +438,14 @@ const DrawerStack = DrawerNavigator({
     activeTintColor: colors.white,
   },
   headerMode: 'none',
-  initialRouteName: 'Main',
+  initialRouteName: routeNames.dash.dashboard,
 }
 );
 
 export const RootStack = StackNavigator({
-  Splash: { screen: SplashScreen },
-  Login: { screen: LoginScreen },
-  Pin: {
+  [routeNames.root.splash]: { screen: SplashScreen },
+  [routeNames.root.login]: { screen: LoginScreen },
+  [routeNames.root.pin]: {
     screen: PinScreen,
     navigationOptions: {
       drawer: {
@@ -452,12 +453,12 @@ export const RootStack = StackNavigator({
       }
     }
   },
-  Dash: {
+  [routeNames.root.drawer]: {
     screen: DrawerStack,
   },
 }, {
   headerMode: 'none',
-  initialRouteName: 'Splash',
+  initialRouteName: routeNames.root.splash,
 });
 
 const AppWithNavigationState = ({ dispatch, nav }) => (

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import * as colors from '../constants/colors';
-import * as strings from '../constants/strings';
+import * as routeNames from '../constants/routeNames';
+
 import Button from './Button';
 
 const styles = StyleSheet.create({
@@ -13,12 +13,8 @@ const styles = StyleSheet.create({
 
 class MessagesButtons extends Component {
 
-  componentDidMount = () => {
-    console.log(this.props);
-  }
-
   _handleClick = (subject) => {
-    this.props.navigation.navigate('Form', { messageInfo: { subject, receiver: this.props.receiver } });
+    this.props.navigation.navigate(routeNames.direct.form, { messageInfo: { subject, receiver: this.props.receiver } });
   }
 
   _renderButtons = () => {

@@ -11,6 +11,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as textStyle from '../../constants/textStyle';
+import * as routeNames from '../../constants/routeNames';
 import MessagesInnerSection from '../MessagesInnerSection';
 import LineSeperator from '../LineSeperator';
 
@@ -47,23 +48,23 @@ const styles = StyleSheet.create({
 class MessagesScreen extends Component {
 
   _goToManager = () => {
-    this.props.navigation.navigate('Manager');
+    this.props.navigation.navigate(routeNames.direct.manager);
   }
 
   _goToHr = () => {
-    this.props.navigation.navigate('Hr');
+    this.props.navigation.navigate(routeNames.direct.compliance);
   }
 
   _goToSafety = () => {
-    this.props.navigation.navigate('Safety');
+    this.props.navigation.navigate(routeNames.direct.safety);
   }
 
   _goToExecutive = () => {
-    this.props.navigation.navigate('Executive');
+    this.props.navigation.navigate(routeNames.direct.executive);
   }
 
   _goToPicture = () => {
-    this.props.navigation.navigate('Picture', {
+    this.props.navigation.navigate(routeNames.direct.picture, {
       messageInfo: {
         subject: 'Send a Picture',
         receiver: 'Picture Rep',
@@ -73,7 +74,7 @@ class MessagesScreen extends Component {
   }
 
   _goToVideo = () => {
-    this.props.navigation.navigate('Video', {
+    this.props.navigation.navigate(routeNames.direct.video, {
       messageInfo: {
         subject: 'Send a Video',
         receiver: 'Video Rep',
@@ -83,11 +84,11 @@ class MessagesScreen extends Component {
   }
 
   _goToInbox = () => {
-    this.props.navigation.navigate('Inbox');
+    this.props.navigation.navigate(routeNames.messages.inbox);
   }
 
   _goToSent = () => {
-    this.props.navigation.navigate('Sent');
+    this.props.navigation.navigate(routeNames.messages.sent);
   }
 
   render() {

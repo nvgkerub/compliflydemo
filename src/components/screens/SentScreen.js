@@ -15,6 +15,7 @@ import ListItemIcon from '../ListItemIcon';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as userAPI from '../../lib/api/userAPI';
+import * as routeNames from '../../constants/routeNames';
 
 const styles = StyleSheet.create({
   container: {
@@ -69,7 +70,7 @@ class SentScreen extends Component {
   }
 
   _handleClick = (message) => {
-    this.props.navigation.navigate('ViewMessage', { message });
+    this.props.navigation.navigate(routeNames.sent.view, { message });
   }
 
   _handleSearch(text) {

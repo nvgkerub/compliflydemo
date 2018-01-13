@@ -17,6 +17,7 @@ import * as colors from '../../constants/colors';
 import * as userAPI from '../../lib/api/userAPI';
 import * as strings from '../../constants/strings';
 import * as textStyle from '../../constants/textStyle';
+import * as routeNames from '../../constants/routeNames';
 
 const styles = StyleSheet.create({
   container: {
@@ -60,7 +61,7 @@ class InboxScreen extends Component {
   }
 
   _handleClick = (message) => {
-    this.props.navigation.navigate('ViewMessage', { message, refresh: this._makeAPIRequest });
+    this.props.navigation.navigate(routeNames.inbox.view, { message, refresh: this._makeAPIRequest });
   }
 
   _makeAPIRequest = () => {

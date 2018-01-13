@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Image, View, StatusBar } from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Image,
+  View
+} from 'react-native';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../Header';
 import * as colors from '../../constants/colors';
+import * as routeNames from '../../constants/routeNames';
 import TopProfileSection from '../TopProfileSection';
 import LineSeperator from '../LineSeperator';
 import JobSection from '../Dashboard/JobSection';
@@ -60,39 +66,39 @@ class HomeScreen extends Component {
   }
 
   _openDrawer = () => {
-    this.props.navigation.navigate('DrawerOpen');
+    this.props.navigation.navigate(routeNames.drawer.open);
   }
 
   _goToJob = () => {
-    this.props.navigation.navigate('Job');
+    this.props.navigation.navigate(routeNames.dash.job);
   }
 
   _goToProfile = () => {
-    this.props.navigation.navigate('Profile');
+    this.props.navigation.navigate(routeNames.dash.profile);
   }
 
   _goToLibrary = () => {
-    this.props.navigation.navigate('Library');
+    this.props.navigation.navigate(routeNames.dash.library);
   }
 
   _goToHR = () => {
-    this.props.navigation.navigate('HRScreen');
+    this.props.navigation.navigate(routeNames.dash.compliance);
   }
 
   _goToNotes = () => {
-    this.props.navigation.navigate('Notes');
+    this.props.navigation.navigate(routeNames.dash.notes);
   }
 
   _goToMessages = () => {
-    this.props.navigation.navigate('Messages');
+    this.props.navigation.navigate(routeNames.dash.messages);
   }
 
   _goToNotifications = () => {
-    this.props.navigation.navigate('Notifications');
+    this.props.navigation.navigate(routeNames.dash.notifications);
   }
 
   _goToAudio = () => {
-    this.props.navigation.navigate('Audio');
+    this.props.navigation.navigate(routeNames.dash.audio);
   }
 
   render() {

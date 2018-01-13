@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import {
-  ScrollView,
   View,
   StyleSheet,
-  Text,
-  ActivityIndicator,
   WebView,
   Dimensions
 } from 'react-native';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
-import ButtonColored from '../ButtonColored';
 import * as colors from '../../constants/colors';
-import * as strings from '../../constants/strings';
+import * as routeNames from '../../constants/routeNames';
 import * as userAPI from '../../lib/api/userAPI';
 
 const styles = StyleSheet.create({
