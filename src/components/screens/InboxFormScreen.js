@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   uploadIcon: iconStyle.upload,
+  uploadTxt: textStyle.light,
 });
 
 class InboxFormScreen extends Component {
@@ -149,10 +150,11 @@ class InboxFormScreen extends Component {
   _mssgWithFile = () => {
     const { subject, priority, message, fileSource, extention } = this.state;
     const { message_id } = this.props.navigation.state.params.message;
+    console.log('file', fileSource);
     const body = new FormData();
     body.append('file_path', {
       uri: fileSource,
-      type: 'image/jpeg',
+      type: 'image/jpg',
       name: 'mssgreply'
     });
     body.append('access_token', this.props.token);
@@ -251,6 +253,11 @@ class InboxFormScreen extends Component {
                 <Image style={styles.uploadIcon} source={require('../../images/upload2x.png')} />
               </TouchableOpacity>
             </View>
+            {this.state.fileSource != null ?
+              <View>
+                <Text style={styles.uploadTxt}>File uploaded successfully</Text>
+              </View>
+            : null }
             <View style={styles.message}>
               <Text style={styles.bold}>Message:</Text>
                 <TextInput
