@@ -17,6 +17,7 @@ import ImagePicker from 'react-native-image-picker';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
 import * as iconStyle from '../../constants/iconStyle';
+import * as textStyle from '../../constants/textStyle';
 import ButtonColored from '../ButtonColored';
 import { sendMessageWithFile } from '../../actions/SendingActions';
 
@@ -42,13 +43,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   bold: {
-    fontWeight: 'bold',
+    fontWeight: textStyle.fontWeight.bold,
     color: colors.white,
+    fontSize: textStyle.fontSize.bold,
     marginRight: 10,
   },
-  light: {
-    color: colors.white,
-  },
+  light: textStyle.light,
   subject: {
     marginTop: 20,
   },
@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   uploadIcon: iconStyle.upload,
+  uploadTxt: textStyle.light,
 });
 
 class MediaFormScreen extends Component {
@@ -205,6 +206,11 @@ class MediaFormScreen extends Component {
                 <Image style={styles.uploadIcon} source={require('../../images/upload2x.png')} />
               </TouchableOpacity>
             </View>
+            {this.state.fileSource != null ?
+              <View>
+                <Text style={styles.uploadTxt}>File uploaded successfully</Text>
+              </View>
+            : null }
             <View style={styles.message}>
               <Text style={styles.bold}>Message:</Text>
                 <TextInput

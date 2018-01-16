@@ -11,17 +11,17 @@ export const signUp = "Don't have an Account? Sign Up";
 
 export const dashboard = {
   JobTitle: 'My Job',
-  JobSubTitle: 'Kerub',
+  JobSubTitle: 'Job(s) description',
   ProfileTitle: 'My Profile',
-  ProfileSubTitle: 'Kerub kerub kerub',
+  ProfileSubTitle: 'View profile',
   LibraryTitle: 'My Library',
-  LibrarySubTitle: 'Kerub kerub kerub',
+  LibrarySubTitle: 'A list of files',
   HRTitle: 'My Compliance',
-  HRSubTitle: 'Kerub kerub kerub',
+  HRSubTitle: 'View compliance files',
   NotesTitle: 'My Notes',
-  NotesSubTitle: 'Kerub kerub kerub',
+  NotesSubTitle: 'Manage your notes',
   MessagesTitle: 'My Messages',
-  MessagesSubTitle: 'Kerub kerub kerub',
+  MessagesSubTitle: 'View messages',
 };
 
 export const screen = {

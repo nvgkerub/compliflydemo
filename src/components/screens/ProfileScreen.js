@@ -7,7 +7,7 @@ import {
   ScrollView,
   Platform,
   Text,
-  Image
+  KeyboardAvoidingView
 } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     marginLeft: 20,
+    fontSize: textStyle.fontSize.light,
   },
 });
 
@@ -84,28 +85,37 @@ class ProfileScreen extends Component {
 
   render() {
     return (
-      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
-        <View style={styles.inner}>
-          <ScrollView>
-            <AvatarProfile user={this.props.profile} />
-            <ProfileItems user={this.props.profile} />
-            <Text style={styles.changedPinStyle}>{strings.pinProfileLabel}</Text>
-            <TextInput
-              style={styles.textfield}
-              value={this.state.appKey === null ? '' : this.state.appKey}
-              onChangeText={(appKey) => this.setState({ appKey })}
-            />
-            <View style={styles.buttonContainer}>
-              {
-                this.state.changedPinTxt != null ?
-                  <Text style={styles.changedPinStyle}>{this.state.changePinTxt}</Text> :
-                null
-              }
-              <ButtonColored label={strings.changePin} clicked={this._handleChangePin.bind(this,this.state.appKey)} />
-            </View>
-          </ScrollView>
-        </View>
-      </LinearGradient>
+      <KeyboardAvoidingView behavior='padding' style={styles.wrapper}>
+        <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
+          <View style={styles.inner}>
+            <ScrollView>
+              <AvatarProfile user={this.props.profile} />
+              <ProfileItems user={this.props.profile} />
+              <Text style={styles.changedPinStyle}>{strings.pinProfileLabel}</Text>
+              <TextInput
+                style={styles.textfield}
+                value={this.state.appKey === null ? '' : this.state.appKey}
+                onChangeText={(appKey) => this.setState({ appKey })}
+              />
+              <View style={styles.buttonContainer}>
+                {
+                  this.state.changedPinTxt != null ?
+                    <Text style={styles.changedPinStyle}>{this.state.changedPinTxt}</Text> :
+                  null
+                }
+                {this.state.appKey != null ?
+                  <ButtonColored
+                    label={strings.changePin}
+                    clicked={this._handleChangePin.bind(this,this.state.appKey)}
+                  />
+                  :
+                  null
+                }
+              </View>
+            </ScrollView>
+          </View>
+        </LinearGradient>
+      </KeyboardAvoidingView>
     );
   }
 }
