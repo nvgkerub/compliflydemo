@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   uploadIcon: iconStyle.upload,
+  uploadTxt: textStyle.light,
 });
 
 class FormScreen extends Component {
@@ -243,6 +244,11 @@ class FormScreen extends Component {
                 <Image style={styles.uploadIcon} source={require('../../images/upload2x.png')} />
               </TouchableOpacity>
             </View>
+            {this.state.fileSource != null ?
+              <View>
+                <Text style={styles.uploadTxt}>File uploaded successfully</Text>
+              </View>
+            : null }
             <View style={styles.message}>
               <Text style={styles.bold}>Message:</Text>
                 <TextInput
