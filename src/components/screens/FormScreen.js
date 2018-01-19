@@ -146,7 +146,7 @@ class FormScreen extends Component {
     body.append('file_path', {
       uri: fileSource,
       type: 'image/jpg',
-      name: 'mssgreply'
+      name: 'mssgreply.jpg'
     });
     body.append('access_token', this.props.token);
     body.append('subject', subject);
