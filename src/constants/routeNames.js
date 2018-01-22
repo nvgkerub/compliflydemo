@@ -39,6 +39,7 @@ export const inbox = {
   main: 'INBOX_MAIN',
   view: 'INBOX_VIEW',
   reply: 'INBOX_REPLY',
+  file: 'INBOX_VIEW_FILE',
 };
 
 export const direct = {
