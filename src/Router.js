@@ -32,6 +32,7 @@ import MessagesScreen from './components/screens/MessagesScreen';
 import InboxScreen from './components/screens/InboxScreen';
 import InboxFormScreen from './components/screens/InboxFormScreen';
 import ViewMessageScreen from './components/screens/ViewMessageScreen';
+import ViewFileScreen from './components/screens/ViewFileScreen';
 import SentScreen from './components/screens/SentScreen';
 import ViewSentMessageScreen from './components/screens/ViewSentMessageScreen';
 import ManagerMessagesScreen from './components/screens/ManagerMessagesScreen';
@@ -265,6 +266,12 @@ const InboxStack = StackNavigator({
   },
   [routeNames.inbox.reply]: {
     screen: InboxFormScreen,
+    navigationOptions: {
+      tabBarVisible: false,
+    }
+  },
+  [routeNames.inbox.file]: {
+    screen: ViewFileScreen,
     navigationOptions: {
       tabBarVisible: false,
     }

@@ -108,6 +108,7 @@ export const form = {
   message: 'Message:',
   sendButton: 'Send',
   replyButton: 'Reply',
+  viewFile: 'View attached file',
 };
 
 export const formReceiver = {

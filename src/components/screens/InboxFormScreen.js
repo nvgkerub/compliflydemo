@@ -105,7 +105,7 @@ class InboxFormScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { subject: '', priority: null, message: '', fileSource: null, extention: 'jpeg' };
+    this.state = { subject: '', priority: null, message: '', fileSource: null, extention: '.jpg' };
   }
 
   componentDidMount = () => {
@@ -152,17 +152,18 @@ class InboxFormScreen extends Component {
     const { message_id } = this.props.navigation.state.params.message;
     console.log('file', fileSource);
     const body = new FormData();
-    body.append('file_path', {
-      uri: fileSource,
-      type: 'image/jpg',
-      name: 'mssgreply.jpg'
-    });
     body.append('access_token', this.props.token);
+    body.append('type', null);
     body.append('subject', subject);
     body.append('description', message);
     body.append('extention', extention);
     body.append('is_public', priority);
     body.append('message_id', message_id);
+    body.append('file_path', {
+      uri: fileSource,
+      type: 'image/jpg',
+      name: 'mssgreply'
+    });
     fetch(userAPI.message.replyMessage, {
       method: 'POST',
       body

@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Text,
   ActivityIndicator,
-  Button
+  Button,
+  TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -40,7 +41,10 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginLeft: 15,
     marginRight: 15,
-  }
+  },
+  viewButton: {
+    marginTop: 20,
+  },
 });
 
 class ViewMessageScreen extends Component {
@@ -96,6 +100,13 @@ class ViewMessageScreen extends Component {
     this.props.navigation.navigate(routeNames.inbox.reply, { message });
   }
 
+  _viewFile() {
+    this.props.navigation.navigate(routeNames.inbox.file, { file: {
+      uri: this.state.data.file_path,
+      }
+    });
+  }
+
   _renderItems() {
     if (this.state.data != null) {
       return (
@@ -122,6 +133,15 @@ class ViewMessageScreen extends Component {
           <View style={styles.textContainer}>
             <Text style={styles.light}>{this.state.data.description}</Text>
           </View>
+          {
+            this.state.data.file_path === null
+            ?
+            null
+            :
+            <TouchableOpacity onPress={this._viewFile.bind(this)} style={styles.viewButton}>
+              <Text style={styles.bold}>{strings.form.viewFile}</Text>
+            </TouchableOpacity>
+          }
           <View style={styles.buttonContainer}>
             <ButtonColored
               label={strings.form.replyButton}

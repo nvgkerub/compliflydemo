@@ -109,7 +109,7 @@ class FormScreen extends Component {
       subject: null,
       description: null,
       fileSource: null,
-      extention: 'jpg',
+      extention: '.jpg',
       type: null,
     };
   }
@@ -143,15 +143,17 @@ class FormScreen extends Component {
   _mssgWithFile = () => {
     const { subject, description, fileSource, extention } = this.state;
     const body = new FormData();
+    body.append('access_token', this.props.token);
+    body.append('type', null);
+    body.append('subject', subject);
+    body.append('description', description);
+    body.append('is_public', 1);
+    body.append('extention', extention);
     body.append('file_path', {
       uri: fileSource,
       type: 'image/jpg',
       name: 'mssgreply.jpg'
     });
-    body.append('access_token', this.props.token);
-    body.append('subject', subject);
-    body.append('description', description);
-    body.append('extention', extention);
     fetch(userAPI.message.sendMessageToClient, {
       method: 'POST',
       body
