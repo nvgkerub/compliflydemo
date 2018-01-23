@@ -3,7 +3,7 @@ export const updateProfile = 'Update';
 export const pinProfileLabel = 'My Pin:';
 export const languageLabel = 'Language:';
 export const forgotPinTxt = 'Forgot My Pin';
-export const chooseTopic = 'Choose Topic';
+export const chooseTopic = 'Elija un tema';
 export const logOut = 'LOGOUT';
 
 export const forgotPassword = 'Forgot Password?';
@@ -11,17 +11,17 @@ export const forgotPassword = 'Forgot Password?';
 export const signUp = "Don't have an Account? Sign Up";
 
 export const dashboard = {
-  JobTitle: 'My Job',
+  JobTitle: 'Mi Trabajo',
   JobSubTitle: 'Your job details',
-  ProfileTitle: 'My Profile',
+  ProfileTitle: 'Mi Perfil',
   ProfileSubTitle: 'View profile',
-  LibraryTitle: 'My Library',
+  LibraryTitle: 'Mi Biblioteca',
   LibrarySubTitle: 'Your library files',
-  HRTitle: 'My Compliance',
+  HRTitle: 'Mi Cumpplimento',
   HRSubTitle: 'View compliance/hr files',
-  NotesTitle: 'My Notes',
+  NotesTitle: 'Mi Notas',
   NotesSubTitle: 'Create and save notes',
-  MessagesTitle: 'My Messages',
+  MessagesTitle: 'Mi Mensaje',
   MessagesSubTitle: 'View and send messages',
 };
 
@@ -51,21 +51,21 @@ export const jobInfoLabel = {
 };
 
 export const messagesScreen = {
-  directTab: 'Direct',
-  inboxTab: 'Inbox',
-  sentTab: 'Sent',
-  managerTitle: 'Manager',
-  managerSubtitle: 'Write a message to your manager',
+  directTab: 'Directo',
+  inboxTab: 'Mensajes',
+  sentTab: 'Expedido',
+  managerTitle: 'Director',
+  managerSubtitle: 'Escribe un mensaje a tu gerente',
   hrTitle: 'HR',
-  hrSubtitle: 'Write a message to HR',
-  safetyTitle: 'Safety',
-  safetySubtitle: 'Write a message about safety',
-  executiveTitle: 'Executive',
-  executiveSubtitle: 'Write to executive',
-  pictureTitle: 'Picture',
-  pictureSubtitle: 'Send a picture',
+  hrSubtitle: 'Escribe un mensaje a hr',
+  safetyTitle: 'Seguridad',
+  safetySubtitle: 'Escribir un mensaje sobre seguridad',
+  executiveTitle: 'Ejecutivo',
+  executiveSubtitle: 'Escribir al ejecutivo',
+  pictureTitle: 'Foto',
+  pictureSubtitle: 'Manda una foto',
   videoTitle: 'Video',
-  videoSubtitle: 'Send a video',
+  videoSubtitle: 'Envía un video',
 };
 
 export const directLabel = {
@@ -78,27 +78,27 @@ export const directLabel = {
 };
 
 export const managerTopic = {
-  late: 'I Am Running Late',
-  timeOff: 'Time Off Request',
-  sickDay: 'Sick Day',
+  late: 'Estoy llegando tarde',
+  timeOff: 'Solicitud de tiempo libre',
+  sickDay: 'Día de enfermedad',
 };
 
 export const hrTopic = {
-  payroll: 'Payroll Issue',
-  deduction: 'I Need to Change My Deductions',
-  benefit: 'Benefit Questions',
+  payroll: 'Problema de nómina',
+  deduction: 'Necesito cambiar mis deducciones',
+  benefit: 'Preguntas sobre beneficios',
 };
 
 export const safetyTopic = {
-  injury: 'Report an Injury',
-  hazard: 'Report a Hazard',
-  gear: 'Question Regarding Safety Gear',
+  injury: 'Reportar una lesión',
+  hazard: 'Reportar un peligro',
+  gear: 'Pregunta sobre el engranaje de seguridad',
 };
 
 export const executiveTopic = {
-  issue: 'Report Unresolved Issue',
-  harrasment: 'Report Harassment',
-  solution: 'Solution for a Problem',
+  issue: 'Informar un problema no resuelto',
+  harrasment: 'Denuncia de hostigamiento',
+  solution: 'Solución para un problema',
 };
 
 export const form = {

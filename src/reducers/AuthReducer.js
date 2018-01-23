@@ -5,6 +5,7 @@ const defaultState = {
   isAuthenticated: null,
   error: null,
   accessToken: null,
+  language: null,
 };
 
 // TODO: STATE NOT BEING SENT TO COMPONENTS
@@ -17,6 +18,7 @@ function SESSION_SIGN_IN_SUCCESS(state, action) {
 		...state,
     isAuthenticated: action.payload.isAuthenticated,
     accessToken: action.payload.token,
+    language: action.payload.language,
     error: null,
 	};
 }
@@ -30,8 +32,18 @@ function SESSION_SIGN_IN_FAILED(state, action) {
   };
 }
 
+
+function UPDATE_PROFLE_LANG(state, action) {
+  return {
+    ...state,
+    language: action.payload
+  };
+}
+
+
 const handlers = {};
 handlers[AuthTypes.SESSION_SIGN_IN_SUCCESS] = SESSION_SIGN_IN_SUCCESS;
 handlers[AuthTypes.SESSION_SIGN_IN_FAILED] = SESSION_SIGN_IN_FAILED;
+handlers[AuthTypes.UPDATE_PROFLE_LANG] = UPDATE_PROFLE_LANG;
 
 export default createReducer(defaultState, handlers);

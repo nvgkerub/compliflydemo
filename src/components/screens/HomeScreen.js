@@ -3,13 +3,16 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  View
+  View,
+  AsyncStorage
 } from 'react-native';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../Header';
 import * as colors from '../../constants/colors';
+import * as english from '../../constants/strings';
+import * as spanish from '../../constants/spanish';
 import * as routeNames from '../../constants/routeNames';
 import TopProfileSection from '../TopProfileSection';
 import LineSeperator from '../LineSeperator';
@@ -18,7 +21,7 @@ import LibrarySection from '../Dashboard/LibrarySection';
 import HRSection from '../Dashboard/HRSection';
 import NotesSection from '../Dashboard/NotesSection';
 import MessagesSection from '../Dashboard/MessagesSection';
-import { grabUserProfile, grabUserPic } from '../../actions/ProfileActions';
+import { grabUserProfile, grabUserPic, updateLang } from '../../actions/ProfileActions';
 import * as userAPI from '../../lib/api/userAPI';
 
 const styles = StyleSheet.create({
@@ -50,7 +53,7 @@ class HomeScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { clientLogo: null };
+    this.state = { clientLogo: null, language: null };
   }
 
   componentWillMount = () => {
@@ -65,6 +68,10 @@ class HomeScreen extends Component {
     this.props.grabUserPic(this.props.token);
   }
 
+  componentDidMount = () => {
+    this.setState({ language: this.props.language });
+  }
+
   _openDrawer = () => {
     this.props.navigation.navigate(routeNames.drawer.open);
   }
@@ -74,7 +81,9 @@ class HomeScreen extends Component {
   }
 
   _goToProfile = () => {
-    this.props.navigation.navigate(routeNames.dash.profile);
+    this.props.navigation.navigate(routeNames.dash.profile, {
+      refresh: this._reGrabLanguage,
+    });
   }
 
   _goToLibrary = () => {
@@ -101,7 +110,22 @@ class HomeScreen extends Component {
     this.props.navigation.navigate(routeNames.dash.audio);
   }
 
+  _reGrabLanguage = () => {
+    this._grabLang();
+  }
+
+  async _grabLang() {
+    const language = await AsyncStorage.getItem('language');
+    this.setState({ language });
+  }
+
   render() {
+    var lang = null;
+    if (this.state.language === 'spanish') {
+      lang = spanish;
+    } else {
+      lang = english;
+    }
     return (
       <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
@@ -132,15 +156,15 @@ class HomeScreen extends Component {
               }
             </View>
             <LineSeperator />
-            <MessagesSection nav={this._goToMessages} />
+            <MessagesSection nav={this._goToMessages} strings={lang} />
             <LineSeperator />
-            <JobSection nav={this._goToJob} />
+            <JobSection nav={this._goToJob} strings={lang} />
             <LineSeperator />
-            <LibrarySection nav={this._goToLibrary} />
+            <LibrarySection nav={this._goToLibrary} strings={lang} />
             <LineSeperator />
-            <HRSection nav={this._goToHR} />
+            <HRSection nav={this._goToHR} strings={lang} />
             <LineSeperator />
-            <NotesSection nav={this._goToNotes} />
+            <NotesSection nav={this._goToNotes} strings={lang} />
           </ScrollView>
         </View>
       </LinearGradient>
@@ -152,10 +176,12 @@ const mapStateToProps = (state) => {
   return {
     token: state.session.accessToken,
     profile: state.profile.userProfile,
+    language: state.session.language,
   };
 };
 
 export default connect(mapStateToProps, {
   grabUserProfile,
-  grabUserPic
+  grabUserPic,
+  updateLang
 })(HomeScreen);

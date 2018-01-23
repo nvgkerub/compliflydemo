@@ -7,7 +7,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import * as strings from '../../constants/strings';
 import * as textStyle from '../../constants/textStyle';
 import * as iconStyle from '../../constants/iconStyle';
 
@@ -40,8 +39,8 @@ class NotesSection extends Component {
         <View style={styles.container}>
           <Image style={styles.icon} source={require('../../images/notes2x.png')} />
           <View style={styles.inner}>
-            <Text style={styles.bold}>{strings.dashboard.NotesTitle}</Text>
-            <Text style={styles.light}>{strings.dashboard.NotesSubTitle}</Text>
+            <Text style={styles.bold}>{this.props.strings.dashboard.NotesTitle}</Text>
+            <Text style={styles.light}>{this.props.strings.dashboard.NotesSubTitle}</Text>
           </View>
         </View>
       </TouchableOpacity>

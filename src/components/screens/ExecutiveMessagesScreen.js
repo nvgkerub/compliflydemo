@@ -3,7 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import * as colors from '../../constants/colors';
-import * as strings from '../../constants/strings';
+import * as english from '../../constants/strings';
+import * as spanish from '../../constants/spanish';
 import * as routeNames from '../../constants/routeNames';
 import MessagesButtons from '../MessagesButtons';
 
@@ -32,11 +33,17 @@ class ExecutiveMessagesScreen extends Component {
   }
 
   render() {
+    var strings = null;
+    if (this.props.language === 'spanish') {
+      strings = spanish;
+    } else {
+      strings = english;
+    }
     const { executiveTopic } = strings;
     return (
       <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
-          <Text style={styles.label}>Choose Topic</Text>
+          <Text style={styles.label}>{strings.chooseTopic}</Text>
           <MessagesButtons
             navigation={this.props.navigation}
             clicked={this._handleClick}
@@ -49,4 +56,10 @@ class ExecutiveMessagesScreen extends Component {
   }
 }
 
-export default connect(null, null)(ExecutiveMessagesScreen);
+const mapStateToProps = state => {
+  return {
+    language: state.session.language,
+  };
+};
+
+export default connect(mapStateToProps, null)(ExecutiveMessagesScreen);

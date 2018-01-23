@@ -7,7 +7,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import * as strings from '../../constants/strings';
 import * as textStyle from '../../constants/textStyle';
 import * as iconStyle from '../../constants/iconStyle';
 
@@ -40,8 +39,8 @@ class LibrarySection extends Component {
         <View style={styles.container}>
           <Image style={styles.icon} source={require('../../images/library2x.png')} />
           <View style={styles.inner}>
-            <Text style={styles.bold}>{strings.dashboard.LibraryTitle}</Text>
-            <Text style={styles.light}>{strings.dashboard.LibrarySubTitle}</Text>
+            <Text style={styles.bold}>{this.props.strings.dashboard.LibraryTitle}</Text>
+            <Text style={styles.light}>{this.props.strings.dashboard.LibrarySubTitle}</Text>
           </View>
         </View>
       </TouchableOpacity>

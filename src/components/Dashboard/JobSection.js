@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import * as strings from '../../constants/strings';
 import * as textStyle from '../../constants/textStyle';
 import * as iconStyle from '../../constants/iconStyle';
 
@@ -35,8 +34,8 @@ class JobSection extends Component {
         <View style={styles.container}>
           <Image style={styles.icon} source={require('../../images/search3x.png')} />
           <View style={styles.inner}>
-            <Text style={styles.bold}>{strings.dashboard.JobTitle}</Text>
-            <Text style={styles.light}>{strings.dashboard.JobSubTitle}</Text>
+            <Text style={styles.bold}>{this.props.strings.dashboard.JobTitle}</Text>
+            <Text style={styles.light}>{this.props.strings.dashboard.JobSubTitle}</Text>
           </View>
         </View>
       </TouchableOpacity>

@@ -7,7 +7,9 @@ import {
   ScrollView,
   Platform,
   Text,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Picker,
+  Alert
 } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
@@ -17,6 +19,7 @@ import * as textStyle from '../../constants/textStyle';
 import AvatarProfile from '../AvatarProfile';
 import ProfileItems from '../ProfileItems';
 import ButtonColored from '../ButtonColored';
+import { updateLang } from '../../actions/AuthActions';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -55,35 +58,47 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     marginLeft: 20,
-    fontSize: textStyle.fontSize.light,
+    fontSize: textStyle.fontSize.bold,
   },
+  picker: {
+    height: 60,
+  },
+  pickerItem: {
+    height: 60,
+    color: colors.white,
+    fontSize: textStyle.fontSize.input,
+  }
 });
 
 class ProfileScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { appKey: null, changedPinTxt: null };
+    this.state = { appKey: null, changedPinTxt: null, language: null };
   }
 
   componentWillMount = () => {
-    console.log('reaced');
-    this._getAppKey();
+    this._getProfile();
   }
 
-  async _getAppKey() {
+  async _getProfile() {
     const appKey = await AsyncStorage.getItem('appKey');
-    this.setState({ appKey });
+    const language = await AsyncStorage.getItem('language');
+    this.setState({ appKey, language });
   }
 
-  async _setAppKey() {
-    await AsyncStorage.setItem('appKey', this.state.appKey);
-    this.setState({ appKey: this.state.appKey });
-  }
-
-  _handleChangePin(pin) {
-    AsyncStorage.setItem('appKey', pin);
-    this.setState({ changedPinTxt: 'Succesfully changed pin' });
+  _handleUpdateProfile() {
+    const { appKey } = this.state;
+    AsyncStorage.setItem('appKey', appKey);
+    this.props.updateLang(this.state.language);
+    Alert.alert(
+      'Successfull',
+      'Profile has been updated.',
+      [
+        { text: 'Ok', onPress: () => this.props.navigation.state.params.refresh() }
+      ],
+      { cancelable: false }
+    );
   }
 
 
@@ -95,6 +110,16 @@ class ProfileScreen extends Component {
             <ScrollView>
               <AvatarProfile user={this.props.profile} />
               <ProfileItems user={this.props.profile} />
+              <Text style={styles.changedPinStyle}>{strings.languageLabel}</Text>
+              <Picker
+                style={styles.picker}
+                itemStyle={styles.pickerItem}
+                selectedValue={this.state.language}
+                onValueChange={(itemValue) => this.setState({ language: itemValue })}
+              >
+                <Picker.Item label="English" value="english" />
+                <Picker.Item label="Spanish" value="spanish" />
+              </Picker>
               <Text style={styles.changedPinStyle}>{strings.pinProfileLabel}</Text>
               <TextInput
                 style={styles.textfield}
@@ -109,8 +134,8 @@ class ProfileScreen extends Component {
                 }
                 {this.state.appKey != null ?
                   <ButtonColored
-                    label={strings.changePin}
-                    clicked={this._handleChangePin.bind(this,this.state.appKey)}
+                    label={strings.updateProfile}
+                    clicked={this._handleUpdateProfile.bind(this)}
                   />
                   :
                   null
@@ -131,4 +156,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(ProfileScreen);
+export default connect(mapStateToProps, {
+  updateLang
+})(ProfileScreen);

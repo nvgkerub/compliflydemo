@@ -7,7 +7,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import * as strings from '../../constants/strings';
 import * as textStyle from '../../constants/textStyle';
 import * as iconStyle from '../../constants/iconStyle';
 
@@ -41,8 +40,8 @@ class MessagesSection extends Component {
         <View style={styles.container}>
           <Image style={styles.icon} source={require('../../images/mssg2x.png')} />
           <View style={styles.inner}>
-            <Text style={styles.bold}>{strings.dashboard.MessagesTitle}</Text>
-            <Text style={styles.light}>{strings.dashboard.MessagesSubTitle}</Text>
+            <Text style={styles.bold}>{this.props.strings.dashboard.MessagesTitle}</Text>
+            <Text style={styles.light}>{this.props.strings.dashboard.MessagesSubTitle}</Text>
           </View>
         </View>
       </TouchableOpacity>

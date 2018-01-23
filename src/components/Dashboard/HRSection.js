@@ -7,7 +7,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import * as strings from '../../constants/strings';
 import * as textStyle from '../../constants/textStyle';
 import * as iconStyle from '../../constants/iconStyle';
 
@@ -40,8 +39,8 @@ class HRSection extends Component {
         <View style={styles.container}>
           <Image style={styles.icon} source={require('../../images/compliance2x.png')} />
           <View style={styles.inner}>
-            <Text style={styles.bold}>{strings.dashboard.HRTitle}</Text>
-            <Text style={styles.light}>{strings.dashboard.HRSubTitle}</Text>
+            <Text style={styles.bold}>{this.props.strings.dashboard.HRTitle}</Text>
+            <Text style={styles.light}>{this.props.strings.dashboard.HRSubTitle}</Text>
           </View>
         </View>
       </TouchableOpacity>

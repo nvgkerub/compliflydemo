@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { AsyncStorage } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import * as ProfileTypes from '../constants/ProfileTypes';
 import * as userAPI from '../lib/api/userAPI';
@@ -89,4 +90,14 @@ export function uploadProfilePic(token, image) {
   //   ))
   //   .catch(err => console.log('error uploading profile pic', err))
   // };
+}
+
+export function updateLang(lang) {
+  AsyncStorage.setItem('language', lang);
+  return dispatch => {
+    dispatch({
+      type: ProfileTypes.UPDATE_PROFLE_LANG,
+      payload: lang,
+    });
+  };
 }
