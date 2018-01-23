@@ -104,7 +104,8 @@ class PinScreen extends PureComponent {
       username: null,
       password: null,
       appKey: null,
-      typedAppKey: null
+      typedAppKey: null,
+      language: null,
     };
   }
 
@@ -117,12 +118,13 @@ class PinScreen extends PureComponent {
     const appKey = await AsyncStorage.getItem('appKey');
     const username = await AsyncStorage.getItem('username');
     const password = await AsyncStorage.getItem('password');
-    this.setState({ appKey, username, password });
+    const language = await AsyncStorage.getItem('language');
+    this.setState({ appKey, username, password, language });
   }
 
   _handleLogIn = () => {
     if (this.state.appKey === this.state.typedAppKey) {
-      this.props.makeSignInRequest(this.state.username, this.state.password);
+      this.props.makeSignInRequest(this.state.username, this.state.password, this.state.language);
     } else {
       this.setState({ error: 'Incorrect Pin' });
     }

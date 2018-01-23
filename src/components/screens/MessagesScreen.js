@@ -9,7 +9,8 @@ import {
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import * as colors from '../../constants/colors';
-import * as strings from '../../constants/strings';
+import * as english from '../../constants/strings';
+import * as spanish from '../../constants/spanish';
 import * as textStyle from '../../constants/textStyle';
 import * as routeNames from '../../constants/routeNames';
 import MessagesInnerSection from '../MessagesInnerSection';
@@ -92,18 +93,24 @@ class MessagesScreen extends Component {
   }
 
   render() {
+    var strings = null;
+    if (this.props.language === 'spanish') {
+      strings = spanish;
+    } else {
+      strings = english;
+    }
     return (
       <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
           <View style={styles.customTabs}>
             <View style={styles.tabTxtActive}>
-              <Text style={styles.tabTxt}>Direct</Text>
+              <Text style={styles.tabTxt}>{strings.messagesScreen.directTab}</Text>
             </View>
             <TouchableOpacity onPress={this._goToInbox.bind(this)}>
-              <Text style={styles.tabTxt}>Inbox</Text>
+              <Text style={styles.tabTxt}>{strings.messagesScreen.inboxTab}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={this._goToSent.bind(this)}>
-              <Text style={styles.tabTxt}>Sent</Text>
+              <Text style={styles.tabTxt}>{strings.messagesScreen.sentTab}</Text>
             </TouchableOpacity>
           </View>
           <ScrollView>
@@ -155,4 +162,10 @@ class MessagesScreen extends Component {
   }
 }
 
-export default connect(null, null)(MessagesScreen);
+const mapStateToProps = state => {
+  return {
+    language: state.session.language,
+  };
+};
+
+export default connect(mapStateToProps, null)(MessagesScreen);

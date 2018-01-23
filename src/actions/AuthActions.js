@@ -5,7 +5,7 @@ import * as AuthTypes from '../constants/AuthTypes';
 import * as routeNames from '../constants/routeNames';
 import * as userAPI from '../lib/api/userAPI';
 
-function signInSuccess(token, username, password) {
+function signInSuccess(token, username, password, lang) {
 	AsyncStorage.setItem('username', username);
 	AsyncStorage.setItem('password', password);
 	return (dispatch) => {
@@ -13,6 +13,7 @@ function signInSuccess(token, username, password) {
 			type: AuthTypes.SESSION_SIGN_IN_SUCCESS,
 			payload: {
 				token,
+				language: lang,
 				isAuthenticated: true,
 			}
 		});
@@ -33,14 +34,14 @@ function signInFailed(response) {
 	};
 }
 
-export function makeSignInRequest(user, pass) {
+export function makeSignInRequest(user, pass, lang) {
 	const datas = `username=${user}&password=${pass}`;
 	return (dispatch) => {
 		axios.post(userAPI.auth.login, datas)
 		.then((res) => (
 			res.data.status === 'success'
 				?
-			dispatch(signInSuccess(res.data.access_token, user, pass))
+			dispatch(signInSuccess(res.data.access_token, user, pass, lang))
 				:
 			dispatch(signInFailed(res.data.response))
 		))
@@ -48,4 +49,14 @@ export function makeSignInRequest(user, pass) {
 			console.log(err);
 		});
 	};
+}
+
+export function updateLang(lang) {
+  AsyncStorage.setItem('language', lang);
+  return dispatch => {
+    dispatch({
+      type: AuthTypes.UPDATE_PROFLE_LANG,
+      payload: lang,
+    });
+  };
 }
