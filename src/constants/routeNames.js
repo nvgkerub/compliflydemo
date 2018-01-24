@@ -8,6 +8,9 @@ export const root = {
 export const drawer = {
   open: 'DrawerOpen',
   close: 'DrawerClose',
+  profile: 'DRAWER_PROFILE',
+  help: 'DRAWER_HELP',
+  privacy: 'DRAWER_PRIVACY',
 };
 
 export const dash = {

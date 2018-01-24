@@ -35,6 +35,7 @@ function signInFailed(response) {
 }
 
 export function makeSignInRequest(user, pass, lang) {
+	console.log('reached ');
 	const datas = `username=${user}&password=${pass}`;
 	return (dispatch) => {
 		axios.post(userAPI.auth.login, datas)

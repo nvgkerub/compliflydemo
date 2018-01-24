@@ -419,24 +419,35 @@ const MainStack = StackNavigator({
 );
 
 const DrawerStack = DrawerNavigator({
-  Home: {
-    screen: HomeScreen,
-    navigationOptions: {
-      drawer: {
-        label: 'Home',
-      }
-    }
-  },
-  Login: {
-    screen: LoginScreen,
-    navigationOptions: {
-      drawer: {
-        label: 'Login',
-      }
-    }
-  },
   [routeNames.dash.dashboard]: {
     screen: MainStack,
+    drawer: {
+      label: 'Home',
+    }
+  },
+  [routeNames.drawer.profile]: {
+    screen: ProfileStack,
+    navigationOptions: {
+      drawer: {
+        label: 'Setting',
+      }
+    }
+  },
+  [routeNames.drawer.help]: {
+    screen: MainStack,
+    navigationOptions: {
+      drawer: {
+        label: 'Help',
+      }
+    }
+  },
+  [routeNames.drawer.privacy]: {
+    screen: MainStack,
+    navigationOptions: {
+      drawer: {
+        label: 'Privacy Policy',
+      }
+    }
   },
 }, {
   contentComponent: CustomDrawer,

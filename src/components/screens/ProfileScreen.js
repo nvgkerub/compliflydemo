@@ -7,12 +7,12 @@ import {
   ScrollView,
   Platform,
   Text,
-  KeyboardAvoidingView,
   Picker,
   Alert
 } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import * as strings from '../../constants/strings';
 import * as colors from '../../constants/colors';
 import * as textStyle from '../../constants/textStyle';
@@ -62,6 +62,9 @@ const styles = StyleSheet.create({
   },
   picker: {
     height: 60,
+    marginLeft: 15,
+    marginRight: 15,
+    color: colors.white,
   },
   pickerItem: {
     height: 60,
@@ -104,8 +107,8 @@ class ProfileScreen extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView behavior='padding' style={styles.wrapper}>
-        <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
+      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
+        <KeyboardAwareScrollView>
           <View style={styles.inner}>
             <ScrollView>
               <AvatarProfile user={this.props.profile} />
@@ -143,8 +146,8 @@ class ProfileScreen extends Component {
               </View>
             </ScrollView>
           </View>
-        </LinearGradient>
-      </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
+      </LinearGradient>
     );
   }
 }
