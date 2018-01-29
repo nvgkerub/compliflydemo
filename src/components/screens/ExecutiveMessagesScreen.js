@@ -48,7 +48,7 @@ class ExecutiveMessagesScreen extends Component {
             navigation={this.props.navigation}
             clicked={this._handleClick}
             receiver={strings.formReceiver.executive}
-            label={[executiveTopic.issue, executiveTopic.harrasment, executiveTopic.solution]}
+            label={[executiveTopic.issue, executiveTopic.harrasment, executiveTopic.solution, strings.customMssg]}
           />
         </View>
       </LinearGradient>

@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     paddingLeft: 30,
     paddingRight: 30,
+    paddingTop: 60,
   },
   logo: {
     marginBottom: 20,

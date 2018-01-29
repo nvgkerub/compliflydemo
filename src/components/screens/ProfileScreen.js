@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     height: 60,
     marginLeft: 15,
     marginRight: 15,
-    color: colors.white,
+    // color: colors.white,
   },
   pickerItem: {
     height: 60,

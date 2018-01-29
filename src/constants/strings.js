@@ -166,3 +166,5 @@ export const note = {
   title: 'Title:',
   note: 'Note',
 };
+
+export const customMssg = 'Custom Message';
