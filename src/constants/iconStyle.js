@@ -36,6 +36,7 @@ export const nav = {
   audio: {
     width: 15,
     resizeMode: 'contain',
+    marginRight: 15,
   },
   logo: {
     width: 35,

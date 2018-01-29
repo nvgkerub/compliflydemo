@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
 import ImagePicker from 'react-native-image-picker';
@@ -233,8 +234,8 @@ class InboxFormScreen extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView behavior='padding' style={styles.wrapper}>
-        <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
+      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
+        <KeyboardAwareScrollView>
           <ScrollView style={styles.inner}>
             <View style={styles.receiver}>
               <Text style={styles.bold}>To:</Text>
@@ -272,8 +273,8 @@ class InboxFormScreen extends Component {
               <ButtonColored label={strings.form.sendButton} clicked={this._handleClick} />
             </View>
           </ScrollView>
-        </LinearGradient>
-      </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
+      </LinearGradient>
     );
   }
 }

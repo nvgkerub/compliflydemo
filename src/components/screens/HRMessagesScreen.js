@@ -52,7 +52,7 @@ class HRMessagesScreen extends Component {
             navigation={this.props.navigation}
             clicked={this._handleClick}
             receiver={strings.formReceiver.hr}
-            label={[hrTopic.payroll, hrTopic.deduction, hrTopic.benefit]}
+            label={[hrTopic.payroll, hrTopic.deduction, hrTopic.benefit, strings.customMssg]}
           />
         </View>
       </LinearGradient>

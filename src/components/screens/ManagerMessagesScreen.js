@@ -48,7 +48,7 @@ class ManagerMessagesScreen extends Component {
             navigation={this.props.navigation}
             clicked={this._handleClick}
             receiver={strings.formReceiver.manager}
-            label={[managerTopic.late, managerTopic.timeOff, managerTopic.sickDay]}
+            label={[managerTopic.late, managerTopic.timeOff, managerTopic.sickDay, strings.customMssg]}
           />
         </View>
       </LinearGradient>

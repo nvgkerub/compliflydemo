@@ -8,10 +8,10 @@ import {
   Platform,
   AsyncStorage,
   Alert,
-  KeyboardAvoidingView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import * as colors from '../../constants/colors';
 import * as textStyle from '../../constants/textStyle';
 import HeaderRightTextButton from '../HeaderRightTextButton';
@@ -134,31 +134,31 @@ class AddNotesScreen extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView behavior='padding' style={styles.wrapper}>
         <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
-          <ScrollView style={styles.inner}>
-            <View style={styles.subject}>
-              <Text style={styles.bold}>Title:</Text>
-              <TextInput
-                style={styles.textfield}
-                value={this.state.title}
-                onChangeText={(title) => this.setState({ title })}
-              />
-            </View>
-            <View style={styles.message}>
-              <Text style={styles.bold}>Note:</Text>
-              <TextInput
-                style={styles.messageInput}
-                value={this.state.message}
-                onChangeText={(message) => this.setState({ message })}
-                multiline
-                numberOfLines={6}
-                placeholder="Your notes here..."
-              />
-            </View>
-          </ScrollView>
+          <KeyboardAwareScrollView>
+            <ScrollView style={styles.inner}>
+              <View style={styles.subject}>
+                <Text style={styles.bold}>Title:</Text>
+                <TextInput
+                  style={styles.textfield}
+                  value={this.state.title}
+                  onChangeText={(title) => this.setState({ title })}
+                />
+              </View>
+              <View style={styles.message}>
+                <Text style={styles.bold}>Note:</Text>
+                <TextInput
+                  style={styles.messageInput}
+                  value={this.state.message}
+                  onChangeText={(message) => this.setState({ message })}
+                  multiline
+                  numberOfLines={6}
+                  placeholder="Your notes here..."
+                />
+              </View>
+            </ScrollView>
+          </KeyboardAwareScrollView>
         </LinearGradient>
-      </KeyboardAvoidingView>
     );
   }
 }

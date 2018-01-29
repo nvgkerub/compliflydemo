@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     borderRadius: 45,
     borderWidth: 1,
     borderColor: colors.white,
-    backgroundColor: colors.blueGray,
+    backgroundColor: colors.transparent,
   },
   text: {
     color: colors.white,

@@ -48,7 +48,7 @@ class SafetyMessagesScreen extends Component {
             navigation={this.props.navigation}
             clicked={this._handleClick}
             receiver={strings.formReceiver.safety}
-            label={[safetyTopic.injury, safetyTopic.hazard, safetyTopic.gear]}
+            label={[safetyTopic.injury, safetyTopic.hazard, safetyTopic.gear, strings.customMssg]}
           />
         </View>
       </LinearGradient>

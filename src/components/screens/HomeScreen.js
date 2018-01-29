@@ -21,8 +21,11 @@ import LibrarySection from '../Dashboard/LibrarySection';
 import HRSection from '../Dashboard/HRSection';
 import NotesSection from '../Dashboard/NotesSection';
 import MessagesSection from '../Dashboard/MessagesSection';
+import HeaderLeft from '../HeaderLeft';
+import HeaderRight from '../HeaderRight';
 import { grabUserProfile, grabUserPic, updateLang } from '../../actions/ProfileActions';
 import * as userAPI from '../../lib/api/userAPI';
+import * as iconStyle from '../../constants/iconStyle';
 
 const styles = StyleSheet.create({
   container: {
@@ -39,16 +42,30 @@ const styles = StyleSheet.create({
     height: 120,
   },
   companyImage: {
-    width: '100%',
+    width: '90%',
     height: 100,
     resizeMode: 'contain',
   },
+  logo: {
+    width: 35,
+    resizeMode: 'contain',
+  }
 });
 
 class HomeScreen extends Component {
 
-  static navigationOptions = {
-    header: null,
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerLeft: (
+        <HeaderLeft onPress={navigation} />
+      ),
+      headerRight: (
+        <HeaderRight onPress={navigation} />
+      ),
+      headerTitle: (
+        <Image style={styles.logo} source={require('../../images/logoSmall2x.png')} />
+      )
+    };
   };
 
   constructor(props) {
@@ -70,6 +87,9 @@ class HomeScreen extends Component {
 
   componentDidMount = () => {
     this.setState({ language: this.props.language });
+    this.props.navigation.setParams({ openDrawer: this._openDrawer });
+    this.props.navigation.setParams({ goToNotifications: this._goToNotifications });
+    this.props.navigation.setParams({ goToAudio: this._goToAudio });
   }
 
   _openDrawer = () => {
@@ -129,12 +149,6 @@ class HomeScreen extends Component {
     return (
       <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <View style={styles.inner}>
-          <Header
-            goToNotifications={this._goToNotifications}
-            goToAudio={this._goToAudio}
-            openDrawer={this._openDrawer}
-            profile={this.props.profile}
-          />
           <ScrollView>
             <TopProfileSection
               nav={this._goToProfile}

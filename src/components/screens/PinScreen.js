@@ -9,9 +9,9 @@ import {
   TextInput,
   AsyncStorage,
   Platform,
-  KeyboardAvoidingView
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ButtonColored from '../ButtonColored';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     paddingLeft: 30,
     paddingRight: 30,
+    paddingTop: 60,
   },
   logo: {
     marginBottom: 20,
@@ -136,8 +137,8 @@ class PinScreen extends PureComponent {
 
   render() {
     return (
-      <KeyboardAvoidingView behavior='padding' style={styles.wrapper}>
-        <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
+      <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
+        <KeyboardAwareScrollView>
           <View style={styles.inner}>
             <Image source={require('../../images/logowhite.png')} style={styles.logo} />
             {this.state.error != null ?
@@ -159,8 +160,8 @@ class PinScreen extends PureComponent {
               </TouchableOpacity>
             </View>
           </View>
-        </LinearGradient>
-      </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
+      </LinearGradient>
     );
   }
 }

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.white,
     marginRight: 15,
-    backgroundColor: colors.blueGray,
+    backgroundColor: colors.transparent,
   },
   pill: {
     flexDirection: 'row',

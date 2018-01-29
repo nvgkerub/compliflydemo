@@ -102,6 +102,7 @@ class AudioScreen extends Component {
       warnings: null,
       name: null,
       finalPath: null,
+      audioPlay: false,
     };
   }
 
@@ -246,16 +247,23 @@ class AudioScreen extends Component {
       await this._stop();
     }
 
+    if (this.state.audioPlay) {
+      this.setState({ warnings: 'Audio already playing' });
+      return;
+    }
+
     setTimeout(() => {
       var sound = new Sound(this.state.audioPath, '', (error) => {
         if (error) {
           console.log('failed to load the sound', error);
         }
+        this.setState({ audioPlay: true });
       });
 
       setTimeout(() => {
         sound.play((success) => {
           if (success) {
+            this.setState({ warnings: '', audioPlay: false });
             console.log('successfully finished playing');
           } else {
             console.log('playback failed due to audio decoding errors');

@@ -21,3 +21,5 @@ export const loading = '#fff';
 export const darkBlue = 'red';
 export const darkBlueTwo = 'green';
 export const blue = 'pink';
+
+export const transparent = 'transparent';
