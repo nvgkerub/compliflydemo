@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Text,
   AsyncStorage,
+  Dimensions
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -20,7 +21,7 @@ import * as routeNames from '../../constants/routeNames';
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
+    height: Dimensions.get('window').height,
   },
   container: {
     flex: 1,
@@ -36,7 +37,6 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginBottom: 20,
-    marginTop: 40,
     height: 200,
     resizeMode: 'contain',
   },
@@ -87,10 +87,6 @@ class LoginScreen extends PureComponent {
     this._grabData();
   }
 
-  componentDidMount = () => {
-    console.log(this.props);
-  }
-
   async _grabData() {
     const username = await AsyncStorage.getItem('username');
     const password = await AsyncStorage.getItem('password');
@@ -99,7 +95,6 @@ class LoginScreen extends PureComponent {
   }
 
   _handleLogIn = () => {
-    console.log('loginscreen::::', this.state);
     this.props.makeSignInRequest(this.state.username, this.state.password);
   }
   _handleUsername = (text) => {
