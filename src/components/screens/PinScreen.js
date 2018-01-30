@@ -9,9 +9,11 @@ import {
   TextInput,
   AsyncStorage,
   Platform,
+  Dimensions
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import * as _ from 'lodash';
 import ButtonColored from '../ButtonColored';
 import * as colors from '../../constants/colors';
 import * as strings from '../../constants/strings';
@@ -27,6 +29,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inner: {
+    backgroundColor: 'transparent',
+    height: Dimensions.get('window').height,
+  },
+  content: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
@@ -34,7 +40,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     paddingLeft: 30,
     paddingRight: 30,
-    paddingTop: 60,
   },
   logo: {
     marginBottom: 20,
@@ -108,6 +113,10 @@ class PinScreen extends PureComponent {
       typedAppKey: null,
       language: null,
     };
+    this._debouncedNavigate = _.debounce(props.navigation.navigate, 200, {
+      leading: true,
+      trailing: false,
+    });
   }
 
   componentWillMount = () => {
@@ -132,7 +141,8 @@ class PinScreen extends PureComponent {
   }
 
   _handleForgot = () => {
-    this.props.navigation.navigate(routeNames.root.login);
+    // this.props.navigation.navigate(routeNames.root.login);
+    this._debouncedNavigate(routeNames.root.login);
   }
 
   render() {
@@ -140,24 +150,27 @@ class PinScreen extends PureComponent {
       <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
         <KeyboardAwareScrollView>
           <View style={styles.inner}>
-            <Image source={require('../../images/logowhite.png')} style={styles.logo} />
-            {this.state.error != null ?
-              <Text style={styles.error}>{this.state.error}</Text>
-            : null}
-            <View style={styles.section}>
-              <TextInput
-                style={styles.textfield}
-                value={this.state.typedAppKey}
-                onChangeText={(text) =>this.setState({ typedAppKey: text })}
-              />
-            </View>
-            <View style={styles.sectionTwo}>
-              <ButtonColored label={strings.logIn} clicked={this._handleLogIn} />
-            </View>
-            <View style={styles.sectionTwo}>
-              <TouchableOpacity style={styles.forgotBttn} onPress={this._handleForgot}>
-                <Text style={styles.buttonTxtOnlyText}>{strings.forgotPinTxt}</Text>
-              </TouchableOpacity>
+            <View style={styles.content}>
+              <Image source={require('../../images/logowhite.png')} style={styles.logo} />
+              {this.state.error != null ?
+                <Text style={styles.error}>{this.state.error}</Text>
+              : null}
+              <View style={styles.section}>
+                <TextInput
+                  style={styles.textfield}
+                  value={this.state.typedAppKey}
+                  secureTextEntry
+                  onChangeText={(text) =>this.setState({ typedAppKey: text })}
+                />
+              </View>
+              <View style={styles.sectionTwo}>
+                <ButtonColored label={strings.logIn} clicked={this._handleLogIn} />
+              </View>
+              <View style={styles.sectionTwo}>
+                <TouchableOpacity style={styles.forgotBttn} onPress={this._handleForgot}>
+                  <Text style={styles.buttonTxtOnlyText}>{strings.forgotPinTxt}</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </KeyboardAwareScrollView>
