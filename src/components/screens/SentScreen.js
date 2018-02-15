@@ -70,6 +70,7 @@ class SentScreen extends Component {
   }
 
   _handleClick = (message) => {
+    console.log(message);
     this.props.navigation.navigate(routeNames.sent.view, { message });
   }
 

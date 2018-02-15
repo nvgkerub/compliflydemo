@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -116,6 +117,9 @@ class FormScreen extends Component {
 
   componentWillMount = () => {
     const { receiver, subject } = this.props.navigation.state.params.messageInfo;
+    // if(subject === " "){
+    //   this.setState({ subject: ""});
+    // }
     this.setState({ receiver, subject });
     this._handleType();
   }
@@ -141,19 +145,19 @@ class FormScreen extends Component {
   }
 
   _mssgWithFile = () => {
-    const { subject, description, fileSource, extention } = this.state;
+    const { subject, description, fileSource, extention, type } = this.state;
     const body = new FormData();
     body.append('access_token', this.props.token);
-    body.append('type', null);
+    body.append('type', type);
     body.append('subject', subject);
     body.append('description', description);
-    body.append('is_public', 1);
     body.append('extention', extention);
     body.append('file_path', {
       uri: fileSource,
       type: 'image/jpg',
       name: 'mssgreply.jpg'
     });
+    console.log(body);
     fetch(userAPI.message.sendMessageToClient, {
       method: 'POST',
       body
@@ -181,9 +185,74 @@ class FormScreen extends Component {
     ))
     .catch(err => console.log(err));
   }
+  _mssgWithOutFile = () => {
+    console.log(this.props.token);
+    console.log(this.state.type);
+    const { subject, description, type } = this.state;
+    const mssg = `access_token=${this.props.token}&type=${type}&subject=${subject}&description=${description}`;
+    // const body = new FormData();
+    // body.append('access_token', this.props.token);
+    // body.append('type', type);
+    // body.append('subject', subject);
+    // body.append('description', description);
+    // console.log(body);
+    axios.post(userAPI.message.sendMessageToClient, mssg)
+    .then((res) => (
+      res.status === 200
+      ?
+        Alert.alert(
+          'Success',
+          'Message was sent successfully',
+          [
+            { text: 'OK', onPress: () => this.props.navigation.goBack() },
+          ],
+          { cancelable: false }
+        )
+      :
+        Alert.alert(
+          'Failed',
+          'Message was not sent. Try again later.',
+          [
+            { text: 'OK', onPress: () => console.log('OK Pressed') },
+          ],
+          { cancelable: false }
+        )
+    ))
+    .catch(err => console.log(err));
+    // fetch(userAPI.message.sendMessageToClient, {
+    //   method: 'POST',
+    //   body
+    // })
+    // .then(res => (
+    //   res.status === 200
+    //   ?
+    //     Alert.alert(
+    //       'Success',
+    //       'Message was sent successfully',
+    //       [
+    //         { text: 'OK', onPress: () => this.props.navigation.goBack() },
+    //       ],
+    //       { cancelable: false }
+    //     )
+    //   :
+    //     Alert.alert(
+    //       'Failed',
+    //       'Message was not sent. Try again later.',
+    //       [
+    //         { text: 'OK', onPress: () => console.log('OK Pressed') },
+    //       ],
+    //       { cancelable: false }
+    //     )
+    // ))
+    // .catch(err => console.log(err));
+  }
 
   _handleClick = () => {
-    this._mssgWithFile();
+    if (this.state.fileSource === null) {
+      this._mssgWithOutFile();
+    } else {
+      this._mssgWithFile();
+    }
   }
 
 
@@ -224,7 +293,7 @@ class FormScreen extends Component {
   }
 
   render() {
-    const { receiver, subject } = this.props.navigation.state.params.messageInfo;
+    const { receiver, subject } = this.state;
     return (
         <LinearGradient colors={[colors.blueDark, colors.blueLight]} style={styles.container}>
           <KeyboardAwareScrollView>
@@ -236,6 +305,7 @@ class FormScreen extends Component {
               <View style={styles.subject}>
                 <Text style={styles.bold}>Subject:</Text>
                 <TextInput
+                  onChangeText={(subjectTxt) => this.setState({ subject: subjectTxt })}
                   style={styles.textfield}
                   value={subject}
                 />
@@ -254,6 +324,7 @@ class FormScreen extends Component {
               <View style={styles.message}>
                 <Text style={styles.bold}>Message:</Text>
                   <TextInput
+                    onChangeText={(text) => this.setState({ description: text })}
                     style={styles.messageInput}
                     multiline
                     numberOfLines={6}
@@ -269,4 +340,10 @@ class FormScreen extends Component {
   }
 }
 
-export default connect(null, null)(FormScreen);
+const mapStateToProps = state => {
+  return {
+    token: state.session.accessToken
+  };
+};
+
+export default connect(mapStateToProps, null)(FormScreen);
