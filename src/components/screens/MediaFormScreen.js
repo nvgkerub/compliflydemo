@@ -9,6 +9,7 @@ import {
   Image,
   ScrollView,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
@@ -112,6 +113,7 @@ class MediaFormScreen extends Component {
       description: null,
       extention: 'jpg',
       fileSource: null,
+      loading: false,
     };
   }
 
@@ -127,6 +129,7 @@ class MediaFormScreen extends Component {
       this.state.fileSource,
       this.state.extention
     );
+    this.setState({ loading: false });
   }
 
   _handleUploadPic = () => {
@@ -182,6 +185,13 @@ class MediaFormScreen extends Component {
     this.setState({ description });
   }
 
+  _renderButton = () => {
+    if (this.state.loading) {
+      return <ActivityIndicator animating size='large' />;
+    }
+    return <ButtonColored label={strings.form.sendButton} clicked={this._handleClick} />;
+  }
+
   render() {
     const { receiver } = this.props.navigation.state.params.messageInfo;
     return (
@@ -222,7 +232,7 @@ class MediaFormScreen extends Component {
                   />
               </View>
               <View style={styles.buttonContainer}>
-                <ButtonColored label={strings.form.sendButton} clicked={this._handleClick} />
+                {this._renderButton()}
               </View>
             </ScrollView>
           </KeyboardAwareScrollView>

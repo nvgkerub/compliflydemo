@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   Text,
   AsyncStorage,
-  Dimensions
+  Dimensions,
+  ActivityIndicator
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -80,7 +81,7 @@ class LoginScreen extends PureComponent {
   constructor(props) {
     super(props);
     //TODO: remove state username/password values
-    this.state = { username: null, password: null };
+    this.state = { username: null, password: null, loading: false };
   }
 
   componentWillMount = () => {
@@ -95,6 +96,7 @@ class LoginScreen extends PureComponent {
   }
 
   _handleLogIn = () => {
+    this.setState({ loading: true });
     this.props.makeSignInRequest(this.state.username, this.state.password);
   }
   _handleUsername = (text) => {
@@ -105,6 +107,18 @@ class LoginScreen extends PureComponent {
   }
   navigateToDash = () => {
     this.props.navigation.navigate(routeNames.root.drawer);
+  }
+  _renderButton = () => {
+    console.log('loading');
+    if (this.state.loading) {
+      return <ActivityIndicator animating size='large' />;
+    } else {
+      return (
+        <TouchableOpacity style={styles.button} onPress={this._handleLogIn}>
+          <Text style={styles.buttonTxt}>{strings.logIn}</Text>
+        </TouchableOpacity>
+      );
+    }
   }
 
   render() {
@@ -124,9 +138,7 @@ class LoginScreen extends PureComponent {
                   <PasswordField handleTxtChange={this._handlePassword} />
                 </View>
                 <View style={styles.section}>
-                  <TouchableOpacity style={styles.button} onPress={this._handleLogIn}>
-                    <Text style={styles.buttonTxt}>{strings.logIn}</Text>
-                  </TouchableOpacity>
+                  {this._renderButton()}
                 </View>
                 <View style={styles.section}>
                   <TouchableOpacity style={styles.buttonTxtOnly}>

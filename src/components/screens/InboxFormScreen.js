@@ -10,6 +10,7 @@ import {
   ScrollView,
   Alert,
   KeyboardAvoidingView,
+  ActivityIndicator
 } from 'react-native';
 import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -106,7 +107,7 @@ class InboxFormScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { subject: '', priority: null, message: '', fileSource: null, extention: '.jpg' };
+    this.state = { subject: '', priority: null, message: '', fileSource: null, extention: '.jpg', loading: false };
   }
 
   componentDidMount = () => {
@@ -138,7 +139,7 @@ class InboxFormScreen extends Component {
             'Failed',
             'Message was not sent. Try again later.',
             [
-              { text: 'OK', onPress: () => console.log('OK Pressed') },
+              { text: 'OK', onPress: () => this.setState({ loading: false }) },
             ],
             { cancelable: false }
           )
@@ -185,7 +186,7 @@ class InboxFormScreen extends Component {
           'Failed',
           'Message was not sent. Try again later.',
           [
-            { text: 'OK', onPress: () => console.log('OK Pressed') },
+            { text: 'OK', onPress: () => this.setState({ loading: false }) },
           ],
           { cancelable: false }
         )
@@ -194,6 +195,7 @@ class InboxFormScreen extends Component {
   }
 
   _handleClick = () => {
+    this.setState({ loading: true });
     if (this.state.fileSource === null) {
       this._mssgWithoutFile();
     } else {
@@ -230,6 +232,13 @@ class InboxFormScreen extends Component {
         );
       }
     });
+  }
+
+  _renderButton = () => {
+    if (this.state.loading) {
+      return <ActivityIndicator animating size='large' />;
+    }
+    return <ButtonColored label={strings.form.sendButton} clicked={this._handleClick} />;
   }
 
   render() {
@@ -270,7 +279,7 @@ class InboxFormScreen extends Component {
                 />
             </View>
             <View style={styles.buttonContainer}>
-              <ButtonColored label={strings.form.sendButton} clicked={this._handleClick} />
+              {this._renderButton()}
             </View>
           </ScrollView>
         </KeyboardAwareScrollView>
