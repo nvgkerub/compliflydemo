@@ -9,6 +9,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+  ActivityIndicator
 } from 'react-native';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -112,6 +113,7 @@ class FormScreen extends Component {
       fileSource: null,
       extention: '.jpg',
       type: null,
+      loading: false,
     };
   }
 
@@ -178,7 +180,7 @@ class FormScreen extends Component {
           'Failed',
           'Message was not sent. Try again later.',
           [
-            { text: 'OK', onPress: () => console.log('OK Pressed') },
+            { text: 'OK', onPress: () => this.setState({ loading: false }) },
           ],
           { cancelable: false }
         )
@@ -186,6 +188,7 @@ class FormScreen extends Component {
     .catch(err => console.log(err));
   }
   _mssgWithOutFile = () => {
+    this.setState({ loading: true });
     console.log(this.props.token);
     console.log(this.state.type);
     const { subject, description, type } = this.state;
@@ -213,7 +216,7 @@ class FormScreen extends Component {
           'Failed',
           'Message was not sent. Try again later.',
           [
-            { text: 'OK', onPress: () => console.log('OK Pressed') },
+            { text: 'OK', onPress: () => this.setState({ loading: false }) },
           ],
           { cancelable: false }
         )
@@ -248,6 +251,7 @@ class FormScreen extends Component {
   }
 
   _handleClick = () => {
+    this.setState({ loading: true });
     if (this.state.fileSource === null) {
       this._mssgWithOutFile();
     } else {
@@ -291,6 +295,13 @@ class FormScreen extends Component {
       }
     });
   }
+  _renderButton = () => {
+    if (this.state.loading) {
+      return <ActivityIndicator animating size='large' />;
+    } else {
+      return <ButtonColored label={strings.form.sendButton} clicked={this._handleClick} />;
+    }
+  }
 
   render() {
     const { receiver, subject } = this.state;
@@ -331,7 +342,7 @@ class FormScreen extends Component {
                   />
               </View>
               <View style={styles.buttonContainer}>
-                <ButtonColored label={strings.form.sendButton} clicked={this._handleClick} />
+                {this._renderButton()}
               </View>
             </ScrollView>
           </KeyboardAwareScrollView>

@@ -9,7 +9,8 @@ import {
   TextInput,
   AsyncStorage,
   Platform,
-  Dimensions
+  Dimensions,
+  ActivityIndicator
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -112,6 +113,7 @@ class PinScreen extends PureComponent {
       appKey: null,
       typedAppKey: null,
       language: null,
+      loading: false,
     };
     this._debouncedNavigate = _.debounce(props.navigation.navigate, 200, {
       leading: true,
@@ -133,16 +135,24 @@ class PinScreen extends PureComponent {
   }
 
   _handleLogIn = () => {
+    this.setState({ loading: true });
     if (this.state.appKey === this.state.typedAppKey) {
       this.props.makeSignInRequest(this.state.username, this.state.password, this.state.language);
     } else {
-      this.setState({ error: 'Incorrect Pin' });
+      this.setState({ error: 'Incorrect Pin', loading: false });
     }
   }
 
   _handleForgot = () => {
     // this.props.navigation.navigate(routeNames.root.login);
     this._debouncedNavigate(routeNames.root.login);
+  }
+
+  _renderButton = () => {
+    if (this.state.loading) {
+      return <ActivityIndicator animating size='large' />;
+    }
+    return <ButtonColored label={strings.logIn} clicked={this._handleLogIn} />;
   }
 
   render() {
@@ -164,7 +174,7 @@ class PinScreen extends PureComponent {
                 />
               </View>
               <View style={styles.sectionTwo}>
-                <ButtonColored label={strings.logIn} clicked={this._handleLogIn} />
+                {this._renderButton()}
               </View>
               <View style={styles.sectionTwo}>
                 <TouchableOpacity style={styles.forgotBttn} onPress={this._handleForgot}>
